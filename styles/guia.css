@@ -1,0 +1,43 @@
+.guia_item{
+    display: flex;
+    gap: 10px;
+
+    padding: 10px;
+    margin: 10px;
+
+
+    background-color: var(--azul);
+    border-radius: var(--border-radius);
+}
+
+.guia_item > p{
+    margin-left: auto;
+}
+
+.guia_item > img{
+    max-width: 100px;
+    border-radius: calc(var(--border-radius)/2);
+}
+
+.error{
+    background-color: var(--azul);
+    text-align: center;
+
+    width: 30%;
+    padding: 20px;
+    border-radius: var(--border-radius);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    box-shadow: var(--box-shadow);
+}
+
+.error_menssage{
+    font-size: 2rem;
+}
+
+.error > a{
+    margin: auto;}
