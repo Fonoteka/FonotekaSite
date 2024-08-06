@@ -28,7 +28,7 @@
 
   <main class="main-login">
     <figure>
-      <img id="imagem" src="assets/imagem.svg">
+
     </figure>
 
     <form method="post" class="login">
