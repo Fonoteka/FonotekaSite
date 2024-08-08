@@ -12,23 +12,23 @@
 
 <body>
   <header>
-      <a class="link_img" href="">
-        <img class="img_logo" src="assets/Logo.png" />Fonoteka
-      </a>
-    
-      <nav class="opcoes_div">
-        <a href="./index.php"> Home </a>
-        <a href=""> Sobre nós </a>
-        <a href=""> Aluno </a>
-        <a href=""> Guia </a>
-      </nav>
-    
-      <div class="div_usuario">
-        <img id="perfil_usuario" class="img_perfil" src="assets/perfil-Icon.png" />
-        <label for="perfil_usuario" class="perfil_label"><?php echo "Usuário"?></label>
-      </div>
+    <a class="link_img" href="">
+      <img class="img_logo" src="assets/Logo.png" />Fonoteka
+    </a>
 
-    </header>
+    <nav class="opcoes_div">
+      <a href="./index.php"> Home </a>
+      <a href=""> Sobre nós </a>
+      <a href=""> Aluno </a>
+      <a href="./guia.php"> Guia </a>
+    </nav>
+
+    <div class="div_usuario">
+      <img id="perfil_usuario" class="img_perfil" src="assets/perfil-Icon.png" />
+      <label for="perfil_usuario" class="perfil_label"><?php echo "Usuário" ?></label>
+    </div>
+
+  </header>
 
   <section class="cadastro">
     <h1 class="titulo">Cadastro</h1>
@@ -54,7 +54,7 @@
           Li e estou de acordo com as políticas de privacidade.*
         </label>
       </div>
-      <button>Cadastrar</button>
+      <input type="submit" value="Cadastrar" />
     </form>
   </section>
 

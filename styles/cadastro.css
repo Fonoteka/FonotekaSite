@@ -24,7 +24,7 @@
   text-align: center;
 }
 
-.formulario > button {
+.formulario > input[type="submit"] {
   margin: auto;
   width: 90%;
   height: 50px;

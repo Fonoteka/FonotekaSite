@@ -58,3 +58,4 @@ values
 truncate tb_guias;
 
 SELECT * FROM tb_guias;
+SELECT * FROM tb_cadastroMentor;

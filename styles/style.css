@@ -35,7 +35,7 @@ body {
   color: var(--branco);
 }
 
-button {
+input[type="submit"] {
   font-family: var(--font-primaria);
   font-size: 2rem;
   color: var(--branco);
