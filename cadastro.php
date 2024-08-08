@@ -25,7 +25,7 @@
     
       <div class="div_usuario">
         <img id="perfil_usuario" class="img_perfil" src="assets/perfil-Icon.png" />
-        <label for="perfil_usuario">Usuário</label>
+        <label for="perfil_usuario" class="perfil_label"><?php echo "Usuário"?></label>
       </div>
 
     </header>

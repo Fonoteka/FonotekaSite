@@ -31,15 +31,18 @@
           <a href=""> Guia </a>
         </div>
     
-        <img id="perfil_usuario" class="img_perfil" src="assets/perfil-Icon.png" />
-
-        <section class="popLogin">
+        <div class="div_usuario">
+          <img id="perfil_usuario" class="img_perfil" src="assets/perfil-Icon.png" />
+          <label for="perfil_usuario" class="perfil_label"><?php echo "Usuário"?></label>
+        </div>
+        
+        <form class="popLogin" method="POST">
             <label for="email">Email:</label>
             <input type="text" id="email" disabled>
             <label for="senha">Senha:</label>
-            <input type="password" id="senha" disabled>
-            <button>Acessar</button>
-        </section>
+            <input type="password" id="senha" disabled>            
+            <input type="submit" value="Acessar">
+        </form>
       </header>
 
       <main>
