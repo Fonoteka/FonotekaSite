@@ -92,7 +92,7 @@ if (isset($_POST['nome']) && isset($_POST['usuario']) && isset($_POST['email']) 
 
   // if ($senha === $confSenha) {
   if ($diff >= 18) {
-    $sql = $conn->prepare("SELECT IdMentor, Nome FROM tb_cadastroMentor WHERE email = ?");
+    $sql = $conn->prepare("SELECT IdMentor, Nome FROM tb_cadastro WHERE email = ?");
     $sql->bind_param("s", $email);
     $sql->execute();
     $result = $sql->get_result();
@@ -100,7 +100,7 @@ if (isset($_POST['nome']) && isset($_POST['usuario']) && isset($_POST['email']) 
     if ($result->num_rows > 0) {
       echo ("<script>msg('Usuário já cadastrado');</script>");
     } else {
-      $sql = $conn->prepare("INSERT INTO tb_cadastroMentor(Nome, Usuario, Email, Telefone, DataNascimento, Genero, Senha) VALUES (?, ?, ?, ?, ?, ?, ?)");
+      $sql = $conn->prepare("INSERT INTO tb_cadastro(Nome, Usuario, Email, Telefone, DataNascimento, Genero, Senha) VALUES (?, ?, ?, ?, ?, ?, ?)");
       $sql->bind_param("sssssss", $nome, $usuario, $email, $tel, $nascimento, $genero, $senha);
       $sql->execute();
       $result = $sql->get_result();

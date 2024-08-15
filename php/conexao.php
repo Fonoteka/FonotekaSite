@@ -8,7 +8,7 @@ $senha = "";
 $conn = new mysqli($hostname,$usuario,$senha,$banco);
 
 if($conn->connect_errno){
-    echo "Falha ao conectar: (" . $conn->connect_errno . ") " . $conn -> connect_error;
+    die ("Falha ao conectar: (" . $conn->connect_errno . ") " . $conn -> connect_error);
 }
             
 ?>

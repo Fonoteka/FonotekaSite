@@ -1,4 +1,6 @@
-<?php include_once ("./php/session.php"); ?>
+<?php
+include_once("./php/session.php");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -24,7 +26,8 @@
         </div>
 
         <div class="div_usuario">
-            <img id="perfil_usuario" class="img_perfil" src="assets/perfil-Icon.png" />
+            <img id="perfil_usuario" class="img_perfil"
+                src="<?php echo !empty($_SESSION['path_img']) ? $_SESSION['path_img'] : 'assets/perfil-Icon.png' ?>" />
             <label for="perfil_usuario" class="perfil_label">
                 <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?></label>
         </div>
@@ -38,14 +41,17 @@
         </form>
     </header>
 
-    <h1>Seja bem-vindo</h1>
-    <a href="./php/logout.php">Sair</a>
-</body>
 
-<dialog>
-    <h1 id="msgCadastro"></h1>
-    <button id="buClose" class="buClose">Fechar</button>
-</dialog>
+
+
+
+
+
+
+
+
+
+
 
 <script src="./js/Modal.js"></script>
 
@@ -53,42 +59,8 @@
 
 <?php
 
-include ('./php/conexao.php');
-
-if (!empty($_POST['email']) && !empty($_POST['senha'])) {
-
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-
-    $email = $conn->real_escape_string($_POST['email']);
-    $senha = $conn->real_escape_string($_POST['senha']);
-
-    $sql = $conn->prepare("SELECT * FROM tb_cadastroMentor WHERE email=?");
-    $sql->bind_param("s", $email);
-    $sql->execute();
-    $result = $sql->get_result();
-
-    $user = $result->fetch_assoc();
-
-    if ($result->num_rows == 1) {
-
-        if (password_verify($senha, $user['Senha'])) {
-
-            if (!isset($_SESSION)) {
-                session_start();
-            }
-
-            $_SESSION['id'] = $user['IdMentor'];
-            $_SESSION['nome'] = $user['Nome'];
-
-        } else {
-            echo "<script>msg('SENHA INCORRETA!!')</script>";
-        }
-
-    } else {
-        echo "<script>msg('EMAIL INCORRETO!!')</script>";
-    }
-}
+include('./php/conexao.php');
+include('./php/login.php');
 
 ?>
 
