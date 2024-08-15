@@ -41,17 +41,51 @@ include_once("./php/session.php");
         </form>
     </header>
 
+    <main>
+        <div class="linha"></div>
 
+        <img class="capa" src="Assets/Carrossel.png">
 
+        <!-- Ferramentas do Mentor -->
+        <div class="linha"></div>
 
+        <div class="areamentor">
+            <p class="areaMentorTitulo"> Área do
+            <p class="areaMentorTituloLaranja">Mentor </p>
+            </p>
+            <a href=""> <img class="interrogação" src="Assets/interrogação.png"> </a>
+        </div>
 
+        <div class="linha"></div>
 
+        <div class="atividades">
+            <div>
+                <a href=""><img class="addatividade" src="Assets/ADICIONAR ATIVIDADE.png"></a>
+            </div>
 
+            <div>
+                <a href=""><img class="progresso" src="Assets/progresso.png"></a>
+                <a href=""><img class="naluno" src="Assets/Addaluno.png"></a>
 
+            </div>
 
+            <div>
+                <a href="atividades.html"><img class="controle" src="Assets/Atividade.png"></a>
+                <a href=""><img class="btnguia" src="Assets/guiatea.png"></a>
 
+            </div>
+        </div>
 
+        <div class="retanguloazul">
+            <a href="" class="alunoscad"> Ver Alunos Cadastrados </a>
+        </div>
+    </main>
+</body>
 
+<dialog>
+    <h1 id="msgCadastro"></h1>
+    <button id="buClose" class="buClose">Fechar</button>
+</dialog>
 
 <script src="./js/Modal.js"></script>
 
