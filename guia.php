@@ -1,8 +1,8 @@
 <?php
-include_once ("./php/conexao.php");
-include_once ("./php/session.php");
+include_once("./php/conexao.php");
+include_once("./php/session.php");
 
-$sql = $conn->prepare("SELECT nomeGuia,descricao,nomeArquivo,nomeAutor FROM tb_guias");
+$sql = $conn->prepare("SELECT idGuia,nomeGuia,descricao,nomeArquivo,nomeAutor FROM tb_guias");
 $sql->execute();
 $result = $sql->get_result();
 $guias = $result->fetch_all(MYSQLI_ASSOC);
@@ -31,9 +31,10 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
     </div>
 
     <div class="div_usuario">
-      <img id="perfil_usuario" class="img_perfil" src="assets/perfil-Icon.png" />
-      <label for="perfil_usuario"
-        class="perfil_label"><?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?>
+      <img id="perfil_usuario" class="img_perfil"
+        src="<?php echo !empty($_SESSION['path_img']) ? $_SESSION['path_img'] : 'assets/perfil-Icon.png' ?>" />
+      <label for="perfil_usuario" class="perfil_label">
+        <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?>
       </label>
     </div>
 
@@ -54,18 +55,53 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
         echo "<p class=\"error_menssage\">INFELIZMENTE NÃO POSSUIMOS NENHUM GUIA EDUCACIONAL DISPONIVEL NO MOMENTO</p>";
         echo "<a href=\"./index.php\">Voltar à tela principal</a>";
         echo "</div>";
-        //Fazer um popUp bonitão avisando que estamos com problema na abas guias
+
       } else {
-        foreach ($guias as $key => $value) {
-          echo "<li class=\"guia_item\">";
-          echo "<img src=\"./assets/tela-preta.png\" alt=\"\">";
-          echo "<div>";
-          echo "<h1>{$value['nomeGuia']}</h1>";
-          echo "<h2>{$value['descricao']}</h2>";
-          echo "</div>";
-          echo "<p>@{$value['nomeAutor']}</p>";
-          echo "</li>";
+        foreach ($guias as $index => $value) {
+
+          $idGuia = intval($value['idGuia']);
+          $sql = $conn->query("SELECT IdImagem FROM tb_guias WHERE idGuia = $idGuia");
+
+          if ($sql) {
+            $idImagem = $sql->fetch_assoc();
+
+            if ($idImagem) {
+              $idImagemValue = intval($idImagem['IdImagem']);
+              $sql = $conn->query("SELECT * FROM tb_Imagens WHERE IdImagem = $idImagemValue");
+
+              if ($sql) {
+                $imagem = $sql->fetch_all(MYSQLI_ASSOC);
+
+                if (!empty($imagem)) {
+                  echo "<li class=\"guia_item\">";
+                  echo "<img src=\"{$imagem[0]['path']}\" alt=\"\">";
+                  echo "<div>";
+                  echo "<h1>{$value['nomeGuia']}</h1>";
+                  echo "<h2>{$value['descricao']}</h2>";
+                  echo "</div>";
+                  echo "<p>@{$value['nomeAutor']}</p>";
+                  echo "</li>";
+                } else {
+                  echo "<li class=\"guia_item\">";
+                  echo "<img src=\"path/default.jpg\" alt=\"Imagem não encontrada\">";
+                  echo "<div>";
+                  echo "<h1>{$value['nomeGuia']}</h1>";
+                  echo "<h2>{$value['descricao']}</h2>";
+                  echo "</div>";
+                  echo "<p>@{$value['nomeAutor']}</p>";
+                  echo "</li>";
+                }
+              } else {
+                echo "Erro ao buscar imagem.";
+              }
+            } else {
+              echo "IdImagem não encontrado.";
+            }
+          } else {
+            echo "Erro ao buscar guia.";
+          }
         }
+
       }
       ?>
     </section>
@@ -83,42 +119,8 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
 
 <?php
 
-include ('./php/conexao.php');
-
-if (!empty($_POST['email']) && !empty($_POST['senha'])) {
-
-  $email = $_POST['email'];
-  $senha = $_POST['senha'];
-
-  $email = $conn->real_escape_string($_POST['email']);
-  $senha = $conn->real_escape_string($_POST['senha']);
-
-  $sql = $conn->prepare("SELECT * FROM tb_cadastroMentor WHERE email=?");
-  $sql->bind_param("s", $email);
-  $sql->execute();
-  $result = $sql->get_result();
-
-  $user = $result->fetch_assoc();
-
-  if ($result->num_rows == 1) {
-
-    if (password_verify($senha, $user['Senha'])) {
-
-      if (!isset($_SESSION)) {
-        session_start();
-      }
-
-      $_SESSION['id'] = $user['IdMentor'];
-      $_SESSION['nome'] = $user['Nome'];
-
-    } else {
-      echo "<script>msg('SENHA INCORRETA!!')</script>";
-    }
-
-  } else {
-    echo "<script>msg('EMAIL INCORRETO!!')</script>";
-  }
-}
+include('./php/conexao.php');
+include('./php/login.php');
 
 ?>
 
