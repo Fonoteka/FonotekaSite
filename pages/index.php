@@ -71,7 +71,7 @@ include_once("../php/session.php");
 
             <div>
                 <a href="atividades.html"><img class="controle" src="../assets/Atividade.png"></a>
-                <a href=""><img class="btnguia" src="../assets/guiatea.png"></a>
+                <a href="./guia.php"><img class="btnguia" src="../assets/guiatea.png"></a>
 
             </div>
         </div>
@@ -87,9 +87,7 @@ include_once("../php/session.php");
     <button id="buClose" class="buClose">Fechar</button>
 </dialog>
 
-<script src="../js/Modal.js"></script>
-
-<script src="../js/popLogin.js"></script>
+<script src="../js/index.js"></script>
 
 <?php
 

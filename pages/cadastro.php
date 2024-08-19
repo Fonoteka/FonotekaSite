@@ -63,7 +63,7 @@
     <button id="buClose" class="buClose">Fechar</button>
   </dialog>
 
-  <script src="../js/Modal.js"></script>
+  <script src="../js/index.js"></script>
 </body>
 
 </html>
@@ -71,7 +71,7 @@
 
 <?php
 
-include ('../php/conexao.php');
+include('../php/conexao.php');
 
 if (isset($_POST['nome']) && isset($_POST['usuario']) && isset($_POST['email']) && isset($_POST['nascimento']) && isset($_POST['telefone']) && isset($_POST['genero']) && isset($_POST['senha']) && isset($_POST['confSenha']) && isset($_POST['politicas'])) {
   $nome = $_POST['nome'];

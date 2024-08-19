@@ -102,8 +102,7 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
     <button id="buClose" class="buClose">Fechar</button>
   </dialog>
 
-  <script src="../js/Modal.js"></script>
-  <script src="../js/popLogin.js"></script>
+  <script src="../js/index.js"></script>
 </body>
 
 
