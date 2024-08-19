@@ -1,59 +1,3 @@
-/* Login */
-
-.login {
-  grid-area: login;
-  display: flex;
-  flex-direction: column;
-
-  justify-self: center;
-  align-self: center;
-
-  width: 90%;
-  height: 80%;
-  padding: 30px;
-  border-radius: var(--border-radius);
-  background-color: var(--azul);
-}
-
-.titulo {
-  margin-bottom: 20px;
-  font-family: var(--font-primaria);
-  font-size: 3.5rem;
-  color: var(--branco);
-}
-
-.login > input {
-  height: 50px;
-  padding: 10px;
-  margin-bottom: 25px;
-}
-
-.login > input[type="submit"] {
-  height: 50px;
-}
-
-.login-links {
-  display: inline-block;
-  text-align: right;
-  margin-top: 10px;
-}
-
-/* Imagem */
-
-figure {
-  grid-area: imagem;
-  overflow: hidden;
-
-  display: flex;
-  justify-content: center;
-  margin: auto;
-}
-
-#imagem {
-  width: 90%;
-  border-radius: var(--border-radius);
-}
-
 .popLogin {
   opacity: 0;
 
@@ -71,7 +15,7 @@ figure {
 
   position: absolute;
   right: 0.5%;
-  top: 10%;
+  top: 8%;
 
   transition-property: opacity;
   transition-duration: 0.2s;
