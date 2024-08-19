@@ -5,6 +5,7 @@
 @import url("./guia.css");
 @import url("./header.css");
 @import url("./mentorArea.css");
+@import url("./atividades.css");
 
 :root {
   --laranja: #fa5f18;
@@ -66,4 +67,8 @@ select {
   grid-template-columns: 50% 50%;
   grid-template-areas: "imagem login";
   gap: 20px;
+}
+
+.hidden{
+  display: none;
 }

@@ -70,7 +70,7 @@ include_once("../php/session.php");
             </div>
 
             <div>
-                <a href="atividades.html"><img class="controle" src="../assets/Atividade.png"></a>
+                <a href="./atividades.php"><img class="controle" src="../assets/Atividade.png"></a>
                 <a href="./guia.php"><img class="btnguia" src="../assets/guiatea.png"></a>
 
             </div>
