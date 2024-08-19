@@ -6,6 +6,7 @@
 @import url("./header.css");
 @import url("./mentorArea.css");
 @import url("./atividades.css");
+@import url("./styleadd.css");
 
 :root {
   --laranja: #fa5f18;
@@ -69,6 +70,6 @@ select {
   gap: 20px;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
