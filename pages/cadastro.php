@@ -5,15 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="./styles/style.css" />
-  <script src="./js/index.js" defer></script>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <script src="../js/index.js" defer></script>
   <title>Fonoteka</title>
 </head>
 
 <body>
   <header>
     <a class="link_img" href="">
-      <img class="img_logo" src="assets/Logo.png" />Fonoteka
+      <img class="img_logo" src="../assets/Logo.png" />Fonoteka
     </a>
 
     <nav class="opcoes_div">
@@ -24,7 +24,7 @@
     </nav>
 
     <div class="div_usuario">
-      <img id="perfil_usuario" class="img_perfil" src="assets/perfil-Icon.png" />
+      <img id="perfil_usuario" class="img_perfil" src="../assets/perfil-Icon.png" />
       <label for="perfil_usuario" class="perfil_label"><?php echo "Usuário" ?></label>
     </div>
 
@@ -63,7 +63,7 @@
     <button id="buClose" class="buClose">Fechar</button>
   </dialog>
 
-  <script src="./js/Modal.js"></script>
+  <script src="../js/Modal.js"></script>
 </body>
 
 </html>
@@ -71,7 +71,7 @@
 
 <?php
 
-include ('./php/conexao.php');
+include ('../php/conexao.php');
 
 if (isset($_POST['nome']) && isset($_POST['usuario']) && isset($_POST['email']) && isset($_POST['nascimento']) && isset($_POST['telefone']) && isset($_POST['genero']) && isset($_POST['senha']) && isset($_POST['confSenha']) && isset($_POST['politicas'])) {
   $nome = $_POST['nome'];
@@ -100,8 +100,8 @@ if (isset($_POST['nome']) && isset($_POST['usuario']) && isset($_POST['email']) 
     if ($result->num_rows > 0) {
       echo ("<script>msg('Usuário já cadastrado');</script>");
     } else {
-      $sql = $conn->prepare("INSERT INTO tb_cadastro(Nome, Usuario, Email, Telefone, DataNascimento, Genero, Senha) VALUES (?, ?, ?, ?, ?, ?, ?)");
-      $sql->bind_param("sssssss", $nome, $usuario, $email, $tel, $nascimento, $genero, $senha);
+      $sql = $conn->prepare("INSERT INTO tb_cadastro(Nome, Email, Telefone, Senha, Usuario, DataNascimento, Genero, Funcao) VALUES (?, ?, ?, ?, ?, ?, ?, 0)");
+      $sql->bind_param("sssssss", $nome, $email, $tel, $senha, $usuario, $nascimento, $genero);
       $sql->execute();
       $result = $sql->get_result();
       echo ("<script>msg('Usuário cadastrado');</script>");

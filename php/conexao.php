@@ -1,14 +1,14 @@
 <?php
-            
+
 $hostname = "localhost";
 $banco = "db_fonoteka";
 $usuario = "root";
-$senha = "";
+$senha = "400289";
 
-$conn = new mysqli($hostname,$usuario,$senha,$banco);
+$conn = new mysqli($hostname, $usuario, $senha, $banco);
 
-if($conn->connect_errno){
-    die ("Falha ao conectar: (" . $conn->connect_errno . ") " . $conn -> connect_error);
+if ($conn->connect_errno) {
+    die("Falha ao conectar: (" . $conn->connect_errno . ") " . $conn->connect_error);
 }
-            
+
 ?>

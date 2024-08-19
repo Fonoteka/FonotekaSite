@@ -48,9 +48,9 @@ create table tb_guias(
 idGuia int auto_increment primary key,
 nomeGuia varchar (80) not null,
 descricao varchar(80) not null,
-nomeArquivo varchar (255) not null,
+nomeArquivo varchar (255),
 nomeAutor varchar (100) not null,
-dataPostagem date not null,
+dataPostagem date default (CURRENT_DATE),
 IdImagem int not null,
 FOREIGN KEY (IdImagem) REFERENCES tb_imagens(IdImagem)
 );
@@ -76,3 +76,4 @@ SELECT * FROM tb_cadastro;
 
 
 truncate tb_cadastro;
+describe tb_guias

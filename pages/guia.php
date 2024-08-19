@@ -1,6 +1,6 @@
 <?php
-include_once("./php/conexao.php");
-include_once("./php/session.php");
+include_once("../php/conexao.php");
+include_once("../php/session.php");
 
 $sql = $conn->prepare("SELECT idGuia,nomeGuia,descricao,nomeArquivo,nomeAutor FROM tb_guias");
 $sql->execute();
@@ -13,14 +13,14 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="../styles/style.css">
   <title>Guia Educacional</title>
 </head>
 
 <body>
   <header>
     <a class="link_img" href="">
-      <img class="img_logo" src="assets/Logo.png" />Fonoteka
+      <img class="img_logo" src="../assets/Logo.png" />Fonoteka
     </a>
 
     <div class="opcoes_div">
@@ -32,7 +32,7 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
 
     <div class="div_usuario">
       <img id="perfil_usuario" class="img_perfil"
-        src="<?php echo !empty($_SESSION['path_img']) ? $_SESSION['path_img'] : 'assets/perfil-Icon.png' ?>" />
+        src="<?php echo !empty($_SESSION['path_img']) ? $_SESSION['path_img'] : '../assets/perfil-Icon.png' ?>" />
       <label for="perfil_usuario" class="perfil_label">
         <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?>
       </label>
@@ -72,25 +72,15 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
               if ($sql) {
                 $imagem = $sql->fetch_all(MYSQLI_ASSOC);
 
-                if (!empty($imagem)) {
-                  echo "<li class=\"guia_item\">";
-                  echo "<img src=\"{$imagem[0]['path']}\" alt=\"\">";
-                  echo "<div>";
-                  echo "<h1>{$value['nomeGuia']}</h1>";
-                  echo "<h2>{$value['descricao']}</h2>";
-                  echo "</div>";
-                  echo "<p>@{$value['nomeAutor']}</p>";
-                  echo "</li>";
-                } else {
-                  echo "<li class=\"guia_item\">";
-                  echo "<img src=\"path/default.jpg\" alt=\"Imagem não encontrada\">";
-                  echo "<div>";
-                  echo "<h1>{$value['nomeGuia']}</h1>";
-                  echo "<h2>{$value['descricao']}</h2>";
-                  echo "</div>";
-                  echo "<p>@{$value['nomeAutor']}</p>";
-                  echo "</li>";
-                }
+                echo "<li class=\"guia_item\">";
+                echo !empty($imagem) ? "<img src=\"{$imagem[0]['path']}\" alt=\"\">" : "<img src=\"path/default.jpg\" alt=\"Imagem não encontrada\">";
+                echo "<div>";
+                echo "<h1>{$value['nomeGuia']}</h1>";
+                echo "<h2>{$value['descricao']}</h2>";
+                echo "</div>";
+                echo "<p>@{$value['nomeAutor']}</p>";
+                echo "</li>";
+
               } else {
                 echo "Erro ao buscar imagem.";
               }
@@ -112,15 +102,15 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
     <button id="buClose" class="buClose">Fechar</button>
   </dialog>
 
-  <script src="./js/Modal.js"></script>
-  <script src="./js/popLogin.js"></script>
+  <script src="../js/Modal.js"></script>
+  <script src="../js/popLogin.js"></script>
 </body>
 
 
 <?php
 
-include('./php/conexao.php');
-include('./php/login.php');
+include('../php/conexao.php');
+include('../php/login.php');
 
 ?>
 

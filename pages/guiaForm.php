@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
     <style>
         body {
             display: flex;
@@ -46,14 +46,13 @@
     </form>
 
     <?php
-    include_once('./php/conexao.php');
+    include_once('../php/conexao.php');
 
     if (isset($_POST['titulo']) && isset($_POST['autor']) && isset($_POST['desc']) && isset($_FILES['imagem'])) {
 
         $titulo = $_POST['titulo'];
         $descricao = $_POST['desc'];
         $autor = $_POST['autor'];
-
         $imagem = $_FILES['imagem'];
 
         if ($imagem['error'])
@@ -69,7 +68,7 @@
         if ($extensaoImagem != "jpg" && $extensaoImagem != "png" && $extensaoImagem != "jpeg")
             die("Formato não suportado");
 
-        $path = "./images/" . $uniqId . "." . $extensaoImagem;
+        $path = "../images/" . $uniqId . "." . $extensaoImagem;
 
         $moved = move_uploaded_file($imagem['tmp_name'], $path);
 
@@ -90,7 +89,7 @@
                 $idImagem = $sql_query->fetch_array();
                 $idImagem = $idImagem['IdImagem'];
 
-                $sql_query = $conn->query("INSERT INTO tb_guias (nomeGuia, descricao, nomeAutor, IdImagem) VALUES('$titulo','$descricao','$autor','$idImagem')") or die("Erro ao inserir o jogo");
+                $sql_query = $conn->query("INSERT INTO tb_guias (nomeGuia, descricao, nomeAutor, IdImagem) VALUES('$titulo','$descricao','$autor', '$idImagem')") or die("Erro ao inserir o jogo");
 
                 echo ("<script>msg('Cadastro efetuado com sucesso!!');</script>");
             }
