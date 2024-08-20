@@ -55,7 +55,8 @@ include_once("../php/session.php");
 
         <div class="atividades">
             <div>
-                <a href=""><img class="addatividade" src="../assets/ADICIONAR ATIVIDADE.png"></a>
+                <a href="./adicionarAtividade.php"><img class="addatividade"
+                        src="../assets/ADICIONAR ATIVIDADE.png"></a>
             </div>
 
             <div>

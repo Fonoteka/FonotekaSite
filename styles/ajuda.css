@@ -1,0 +1,25 @@
+.ajuda {
+  padding: 15px;
+}
+
+.ajuda > h1 {
+  font-size: 2rem;
+}
+
+.ajuda_item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 10px;
+  margin: 10px;
+
+  background-color: var(--azul);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.ajuda_item > img {
+  width: 35px;
+  border-radius: calc(var(--border-radius) / 2);
+}
