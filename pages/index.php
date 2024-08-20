@@ -42,12 +42,9 @@ include_once("../php/session.php");
     </header>
 
     <main>
-        <div class="linha"></div>
-
         <img class="capa" src="../assets/Carrossel.png">
 
         <!-- Ferramentas do Mentor -->
-        <div class="linha"></div>
 
         <div class="areamentor">
             <p class="areaMentorTitulo"> Área do
@@ -55,8 +52,6 @@ include_once("../php/session.php");
             </p>
             <a href=""> <img class="interrogação" src="../assets/interrogação.png"> </a>
         </div>
-
-        <div class="linha"></div>
 
         <div class="atividades">
             <div>

@@ -3,7 +3,7 @@
 $hostname = "localhost";
 $banco = "db_fonoteka";
 $usuario = "root";
-$senha = "400289";
+$senha = "";
 
 $conn = new mysqli($hostname, $usuario, $senha, $banco);
 
