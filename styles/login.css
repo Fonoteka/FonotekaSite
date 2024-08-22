@@ -1,7 +1,5 @@
 .popLogin {
-  opacity: 0;
-
-  display: flex;
+  display: none;
   flex-direction: column;
 
   width: 15vw;
@@ -27,5 +25,5 @@
 }
 
 .visible {
-  opacity: 1;
+  display: flex;
 }
