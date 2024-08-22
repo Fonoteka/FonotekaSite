@@ -47,34 +47,13 @@ include_once("../php/session.php");
     <section class="ajuda">
       <h1>Duvidas frequentes</h1>
       <li class="ajuda_item">
-        <div>
+        <div class="ajuda_item_principal">
           <h1>Duvida 1</h1>
+          <img src="../assets/seta.svg" alt="">
         </div>
-        <img src="../assets/seta.svg" alt="">
-      </li>
-      <li class="ajuda_item">
-        <div>
-          <h1>Duvida 2</h1>
+        <div class="ajuda_desc">
+          <p>Descrição</p>
         </div>
-        <img src="../assets/seta.svg" alt="">
-      </li>
-      <li class="ajuda_item">
-        <div>
-          <h1>Duvida 3</h1>
-        </div>
-        <img src="../assets/seta.svg" alt="">
-      </li>
-      <li class="ajuda_item">
-        <div>
-          <h1>Duvida 4</h1>
-        </div>
-        <img src="../assets/seta.svg" alt="">
-      </li>
-      <li class="ajuda_item">
-        <div>
-          <h1>Duvida 5</h1>
-        </div>
-        <img src="../assets/seta.svg" alt="">
       </li>
     </section>
   </main>

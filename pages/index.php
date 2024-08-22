@@ -50,7 +50,7 @@ include_once("../php/session.php");
             <p class="areaMentorTitulo"> Área do
             <p class="areaMentorTituloLaranja">Mentor </p>
             </p>
-            <a href=""> <img class="interrogação" src="../assets/interrogação.png"> </a>
+            <a href="./ajuda.php"> <img class="interrogação" src="../assets/interrogação.png"> </a>
         </div>
 
         <div class="atividades">

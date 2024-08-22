@@ -7,9 +7,7 @@
 }
 
 .ajuda_item {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  list-style: none;
 
   padding: 10px;
   margin: 10px;
@@ -19,7 +17,68 @@
   box-shadow: var(--box-shadow);
 }
 
-.ajuda_item > img {
+.ajuda_item_principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.ajuda_item_principal > img {
   width: 35px;
   border-radius: calc(var(--border-radius) / 2);
+}
+
+.ajuda_desc {
+  overflow: hidden;
+  max-height: 0px;
+  padding: 0px;
+
+  transition: max-height 0.1s ease-out;
+  transition: padding 0.2s linear;
+
+  background-color: gray;
+  border-radius: var(--border-radius);
+}
+
+.ajuda_item:hover > .ajuda_desc {
+  max-height: 200px;
+  padding: 10px;
+  transition: max-height 0.2s linear;
+  transition: padding 0.2s linear;
+}
+
+.ajuda_item:hover > .ajuda_item_principal {
+  margin-bottom: 10px;
+}
+
+.ajuda_item > .ajuda_item_principal > img {
+  animation: giraImagemInversa 0.1s linear alternate forwards;
+}
+
+.ajuda_item:hover > .ajuda_item_principal > img {
+  animation: giraImagem 0.1s linear alternate forwards;
+}
+
+@keyframes giraImagem {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes giraImagemInversa {
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
