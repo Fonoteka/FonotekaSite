@@ -20,7 +20,7 @@ include_once("../php/session.php");
     </a>
 
     <div class="opcoes_div">
-      <a href="#"> Home </a>
+      <a href="./index.php"> Home </a>
       <a href=""> Sobre nós </a>
       <a href=""> Aluno </a>
       <a href="./guia.php"> Guia </a>
@@ -38,7 +38,10 @@ include_once("../php/session.php");
       <input type="email" id="email" name="email" required disabled>
       <label for="senha">Senha:</label>
       <input type="password" id="senha" name="senha" required disabled>
+      <a class="link_popLogin" href="./esqSenha.php">Esqueceu a senha?</a>
       <input type="submit" value="Acessar">
+      <a class="link_popLogin" href="./cadastro.php">Sem conta?</a>
+      <a class="btn_logout" href="./logout.php">Sair</a>
     </form>
   </header>
 
