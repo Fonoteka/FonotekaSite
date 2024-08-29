@@ -1,6 +1,0 @@
-//Deve ser atualizado e estilizado o formulário de adição de guias
-//O refresh automático quando nos cadastramos deve ser implementado
-//Verificar a viabilidade de programar o back em javascript
-//Foto de perfil
-//Verificação das senhas no cadastro, e modificação do DOM
-//Responsividade

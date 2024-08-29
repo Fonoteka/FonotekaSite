@@ -19,6 +19,7 @@ DataNascimento date not null,
 Genero varchar (20) not null,
 Funcao boolean not null,
 IdImagem int,
+recuperarSenha varchar(220),
 FOREIGN KEY (IdImagem) REFERENCES tb_imagens (IdImagem)
 );
 
@@ -57,7 +58,7 @@ FOREIGN KEY (IdImagem) REFERENCES tb_imagens(IdImagem)
 
 insert into tb_cadastro
 values
-(1,'Lucas', 'Lucas@gmail.com', '12981438361', '$2y$10$HBlfDki6pAqpOHuKi0dkpOPrXaSlfieR04aY.rnA.lte4e9Mtg9CW','lucas', '2001-02-02', 'Homem', 1, null);
+(1,'Lucas', 'Lucas@gmail.com', '12981438361', '$2y$10$HBlfDki6pAqpOHuKi0dkpOPrXaSlfieR04aY.rnA.lte4e9Mtg9CW','lucas', '2001-02-02', 'Homem', 1, null, null);
 
 insert into tb_guias
 (nomeGuia, descricao, nomeArquivo, nomeAutor, dataPostagem)
