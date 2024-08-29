@@ -21,7 +21,35 @@
 
 .popLogin > input[type="submit"] {
   font-size: 1rem;
-  margin-top: 10px;
+  margin: 0;
+}
+
+.link_popLogin {
+  font-size: 1rem;
+  margin: 5px 0;
+  display: block;
+}
+
+form > .btn_logout {
+  font-family: var(--font-primaria);
+  color: var(--laranja);
+
+  background-color: var(--branco);
+
+  border-radius: var(--border-radius);
+  border: none;
+  margin-bottom: 5px;
+}
+
+form > .btn_logout:hover {
+  font-family: var(--font-primaria);
+  color: var(--laranja);
+
+  background-color: var(--cinza);
+
+  border-radius: var(--border-radius);
+  border: none;
+  margin-bottom: 5px;
 }
 
 .visible {

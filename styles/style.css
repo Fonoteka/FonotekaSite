@@ -11,10 +11,12 @@
 
 :root {
   --laranja: #fa5f18;
+  --laranja-escuro: #d45115;
   --azul-claro: #c1e5f5;
   --azul: #0097cc;
   --azul-border: #004b67;
   --branco: #ffff;
+  --cinza: #c2c2c2;
 
   --font-primaria: "Madimi One", sans-serif;
   --font-secundaria: "Kodchasan", sans-serif;
@@ -49,6 +51,13 @@ input[type="submit"] {
 
   border-radius: var(--border-radius);
   border: none;
+  margin-bottom: 5px;
+}
+
+input[type="submit"]:hover {
+  color: var(--branco);
+
+  background-color: var(--laranja-escuro);
 }
 
 input,
