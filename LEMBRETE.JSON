@@ -1,0 +1,15 @@
+{
+  "URGENTE": ["Pagina esqueceu senha", "Responsividade"],
+
+  "POUCO URGENTE": [
+    "Verificar a viabilidade de programar o back em javascript"
+  ],
+
+  "IMPORTANTE": ["Verificação das senhas no cadastro, e modificação do DOM"],
+
+  "POUCO IMPORTANTE": [],
+
+  "OPCIONAL": [
+    "Deve ser atualizado e estilizado o formulário de adição de guias"
+  ]
+}
