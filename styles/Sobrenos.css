@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --azul-claro: #c1e5f5;
+    --azul: #0097cc;
+    --branco: #ffff;
+  
+    --font-primaria: "Madimi One", sans-serif;
+    --font-secundaria: "Kodchasan", sans-serif;
+    --font-terciaria: "Montserrat", sans-serif;
+  }
+
+#total{
+    display: flex;
+    flex-direction: wrap;
+}
+
+#titulo{
+    background-color: white;
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+}
+
+#sobrenos{
+    font-size: 60px;
+    padding: 1%;
+    color:#FA5F18;
+    font-family: var(--font-secundaria);
+
+}
+#esquerda{
+    display:flex;
+    flex-direction: column;
+    width:67%;
+    height: 100%;
+}
+
+#direita{
+    display: flex;
+    flex-direction: wrap;
+    align-items: center;
+    background-color: var(--azul);
+    width:33%;
+    height: 100%;
+}
+
+#logo{
+    margin-top: 15%;
+    margin-bottom: 27%;
+    width:100%;
+}
+
+#linha {
+    /*Linha separando*/
+    background-color: #fa5f18;
+    width: 100%;
+    height: 5px;
+  }
+
+  #fotoescola{
+      width:30%;
+      border: black solid 1px;
+  }
+
+  #fotoescola2{
+    width:30%;
+}
+
+  #geral{
+      display: flex;
+      flex-direction: wrap;
+      justify-content: center;
+      margin-top: 5%
+  }
+
+  
+
+  #iniciativa{
+      margin-top: 5%;
+      font-size: 45px;
+      color:#FA5F18;
+      font-family: var(--font-secundaria);
+
+  }
+
+  #texto{
+      margin-top: 2%;
+        font-size: 30px;
+      font-family: var(--font-terciaria);
+  }
+
+  #geral2{
+      width:50%;
+      margin-left: 5%;
+  }
