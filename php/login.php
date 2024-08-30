@@ -30,7 +30,7 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
             $path = $sql->fetch_all(MYSQLI_ASSOC);
 
             $_SESSION['path_img'] = $path[0]['path'];
-            header("Refresh: 0");
+            header("Location: ".$_SERVER['PHP_SELF']);
         } else {
             echo "<script>msg('SENHA INCORRETA!!')</script>";
         }

@@ -1,0 +1,31 @@
+.cont_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    width: 20%;
+
+    background-color: var(--azul);
+    border-radius: var(--border-radius);
+}
+
+.cont_form > .form_recuperar{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form_recuperar > input[type="text"], .form_recuperar > input[type="password"]{
+    margin-bottom: 10px;
+}
+
+.form_recuperar > input[type="submit"]{
+    font-size: 1rem;
+}

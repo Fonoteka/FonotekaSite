@@ -1,5 +1,10 @@
 {
-  "URGENTE": ["Pagina esqueceu senha", "Responsividade"],
+  "URGENTE": [
+    "Pagina esqueceu senha",
+    "Responsividade",
+    "UTILIZAR MÉTODO DE ENVIO FORMULÁRIO DO VIDEO",
+    "INICIAR SESSAO PARA MOSTRAR MENSAGENS"
+  ],
 
   "POUCO URGENTE": [
     "Verificar a viabilidade de programar o back em javascript"
