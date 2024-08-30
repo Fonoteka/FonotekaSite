@@ -1,5 +1,6 @@
 <?php
 include_once("../php/conexao.php");
+include_once("../php/session.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,7 +42,7 @@ if (!empty($_POST['recupera'])) {
         $sql->bind_param("ss", $chave_recupera_senha, $user_row['IdMentor']);
         
         if($sql->execute()){
-            echo "<a href=\"http://localhost/fonotekaSite/pages/recupSenha.php?chave=$chave_recupera_senha\">AQUI</a>";
+            $_SESSION['msg'] = "<a href=\"http://localhost/fonotekaSite/pages/recupSenha.php?chave=$chave_recupera_senha\">AQUI</a>";
         } else {
             echo "erro2";
         }
