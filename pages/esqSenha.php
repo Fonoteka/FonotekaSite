@@ -1,3 +1,6 @@
+<?php
+include_once("../php/conexao.php");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,18 +13,18 @@
 </head>
 
 <body>
-    <h1>Recuperação de conta</h1>
-    <form method="POST">
-        <input type="text" name="recupera" placeholder="Email, cpf ou telefone">
-        <input type="submit" value="Recuperar">
-        <a href="/index.php">Lembrou?</a>
-    </form>
+    <main class="cont_form">
+        <h1>Recuperação de conta</h1>
+        <form class="form_recuperar" method="POST">
+            <input type="text" name="recupera" placeholder="Email, cpf ou telefone">
+            <input type="submit" value="Recuperar">
+            <a href="/index.php">Lembrou?</a>
+            <?php echo $_SESSION['msg'] ? $_SESSION['msg'] : ""?>
+        </form>
+    </main>
 </body>
 
 <?php
-include_once("../php/conexao.php");
-
-
 if (!empty($_POST['recupera'])) {
     $recupera = $_POST['recupera'];
     

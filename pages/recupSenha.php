@@ -13,12 +13,14 @@ include_once ("../php/conexao.php");
 </head>
 
 <body>
-    <h1>Recuperar Senha</h1>
-    <form method="POST">
-        <input type="password" name="novaSenha" placeholder="Digite a nova senha">
-        <input type="submit" value="Atualizar" name="SendnovaSenha">
-        <a href="/index.php">Lembrou?</a>
-    </form>
+    <main class="cont_form">
+        <h1>Recuperar Senha</h1>
+        <form class="form_recuperar" method="POST">
+            <input type="password" name="novaSenha" placeholder="Digite a nova senha">
+            <input type="submit" value="Atualizar" name="SendnovaSenha">
+            <a href="/index.php">Lembrou?</a>
+        </form>
+    </main>
     <?php
         $chave = filter_input(INPUT_GET, 'chave', FILTER_DEFAULT);
 
