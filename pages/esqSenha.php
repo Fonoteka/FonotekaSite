@@ -19,7 +19,7 @@ include_once("../php/session.php");
         <form class="form_recuperar" method="POST">
             <input type="text" name="recupera" placeholder="Email, cpf ou telefone">
             <input type="submit" value="Recuperar">
-            <a href="/index.php">Lembrou?</a>
+            <a href="./index.php">Lembrou?</a>
             <?php echo !empty($_SESSION['msg']) ? $_SESSION['msg'] : "" ?>
         </form>
     </main>
