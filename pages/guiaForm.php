@@ -110,7 +110,7 @@
             $result = $sql->get_result();
 
             if (mysqli_num_rows($result) > 0) {
-                echo ("<script>msg('Guia já cadastrado');</script>");
+                echo ("<script>msgPop('Guia já cadastrado');</script>");
             } else {
                 $sql_query = $conn->query("INSERT INTO tb_imagens(nomeImagem,path)VALUES('$nomeImagem', '$path')") or die("Erro ao inserir a imagem");
 
@@ -121,7 +121,7 @@
 
                 $sql_query = $conn->query("INSERT INTO tb_guias (nomeGuia, descricao, nomeAutor, IdImagem) VALUES('$titulo','$descricao','$autor', '$idImagem')") or die("Erro ao inserir o jogo");
 
-                echo ("<script>msg('Cadastro efetuado com sucesso!!');</script>");
+                echo ("<script>msgPop('Cadastro efetuado com sucesso!!');</script>");
             }
         } else {
             echo "Erro ao mover a imagem para a pasta";

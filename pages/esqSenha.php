@@ -20,10 +20,12 @@ include_once("../php/session.php");
             <input type="text" name="recupera" placeholder="Email, cpf ou telefone">
             <input type="submit" value="Recuperar">
             <a href="./index.php">Lembrou?</a>
-            <?php echo !empty($_SESSION['msg']) ? $_SESSION['msg'] : "" ?>
+            <p id="msg"></p>
         </form>
     </main>
 </body>
+
+<script src="../js/index.js"></script>
 
 <?php
 if (!empty($_POST['recupera'])) {
@@ -42,12 +44,12 @@ if (!empty($_POST['recupera'])) {
         $sql->bind_param("ss", $chave_recupera_senha, $user_row['IdMentor']);
 
         if ($sql->execute()) {
-            $_SESSION['msg'] = "<a href=\"http://localhost/fonotekaSite/pages/recupSenha.php?chave=$chave_recupera_senha\">AQUI</a>";
+            echo "<script>msgTexto('<a href=\"http://localhost/fonotekaSite/pages/recupSenha.php?chave=$chave_recupera_senha\">AQUI</a>')</script>";
         } else {
-            echo "erro2";
+            echo "<script>msgTexto('<p>ERRO: Não foi pussivel atualizar o recuperar Senha</p>')</script>";
         }
     } else {
-        echo "erro1";
+        echo "<script>msgTexto('<p>ERRO: Email não encontrado no banco de dados</p>')</script>";
     }
 }
 ?>

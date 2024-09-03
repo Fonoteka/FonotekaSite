@@ -32,11 +32,11 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
             $_SESSION['path_img'] = $path[0]['path'];
             header("Location: ".$_SERVER['PHP_SELF']);
         } else {
-            echo "<script>msg('SENHA INCORRETA!!')</script>";
+            echo "<script>msgPop('SENHA INCORRETA!!')</script>";
         }
 
     } else {
-        echo "<script>msg('EMAIL INCORRETO!!')</script>";
+        echo "<script>msgPop('EMAIL INCORRETO!!')</script>";
     }
 }
 

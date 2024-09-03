@@ -15,12 +15,12 @@ include_once("../php/session.php");
 
 <body>
     <main class="cont_form">
-        <h1>Recuperar Senha</h1>
+        <h1>Resetar Senha</h1>
         <form class="form_recuperar" method="POST">
             <input type="password" name="novaSenha" placeholder="Digite a nova senha">
             <input type="submit" value="Atualizar" name="SendnovaSenha">
-            <a href="ajuda.php">Lembrou?</a>
-            <?php echo !empty($_SESSION['msg']) ? $_SESSION['msg'] : ""; ?>
+            <a href="./index.php">Lembrou?</a>
+            <div id="msg"></div>
         </form>
     </main>
     <?php
@@ -42,17 +42,18 @@ include_once("../php/session.php");
                 $sql->bind_param("ss", $senha_usuario, $user_row['IdMentor']);
 
                 if ($sql->execute()) {
-                    $_SESSION['msg'] = "<p>Senha atualizada com sucesso</p>";
+                    echo "<script>msgTexto('<p>Senha atualizada com sucesso</p>')</script>";
                     header("Location: ./esqSenha.php");
                 } else {
-                    $_SESSION['msg'] = "<p>Erro ao atualizar senha3</p>";
+                    echo "<script>msgTexto('<p>Erro ao atualizar senha</p>')</script>";
                 }
             }
         } else {
+            echo "<script>msgTexto('<p>ERRO: Chave inválida</p>')</script>";
             header("Location: ./esqSenha.php");
         }
     } else {
-        $_SESSION['msg'] = "<p>Erro ao atualizar senha1</p>";
+        echo "<script>msgTexto('<p>ERRO: Link inválido</p>')</script>";
         header("Location: ./esqSenha.php");
     }
 

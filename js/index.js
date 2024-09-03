@@ -7,6 +7,12 @@ const popLogin = document.querySelector(".popLogin");
 const email = document.querySelector("#email");
 const senha = document.querySelector("#senha");
 
+const msgP = document.querySelector("#msg");
+
+function msgTexto(texto) {
+  msgP.innerHTML = texto;
+}
+
 if (perfil_usuario) {
   perfil_usuario.addEventListener("click", () => {
     popLogin.classList.toggle("visible");
@@ -20,7 +26,7 @@ if (perfil_usuario) {
   });
 }
 
-function msg(texto) {
+function msgPop(texto) {
   msgStatus.innerHTML = texto;
   modal.showModal();
 }
