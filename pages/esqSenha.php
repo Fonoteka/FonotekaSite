@@ -1,6 +1,7 @@
 <?php
 include_once("../php/conexao.php");
 include_once("../php/session.php");
+include_once("../php/phpMailer.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -45,6 +46,26 @@ if (!empty($_POST['recupera'])) {
 
         if ($sql->execute()) {
             echo "<script>msgTexto('<a href=\"http://localhost/fonotekaSite/pages/recupSenha.php?chave=$chave_recupera_senha\">AQUI</a>')</script>";
+
+            try {
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                $phpmailer->isSMTP();
+                $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+                $phpmailer->SMTPAuth = true;
+                $phpmailer->Username = '08dd0f1bf77900';
+                $phpmailer->Password = 'c3c9326f1f9691';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $phpmailer->Port = 2525;
+
+                $mail->setFrom('atendimento@fonoteka.com', 'atendimento');
+                $mail->addAddress("$user_row[']", 'Joe User');
+                $mail->addReplyTo('info@example.com', 'Information');
+                $mail->addCC('cc@example.com');
+                $mail->addBCC('bcc@example.com');
+
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
         } else {
             echo "<script>msgTexto('<p>ERRO: Não foi pussivel atualizar o recuperar Senha</p>')</script>";
         }
