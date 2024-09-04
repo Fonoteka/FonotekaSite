@@ -1,20 +1,16 @@
 {
   "URGENTE": [
-    "Pagina esqueceu senha",
+    "Funcionalidade foto de perfil form cadastro",
     "Responsividade",
     "UTILIZAR MÉTODO DE ENVIO FORMULÁRIO DO VIDEO",
     "Utilizar nova função mostrar MENSAGENS"
   ],
 
-  "POUCO URGENTE": [
-    "Verificar a viabilidade de programar o back em javascript"
-  ],
+  "POUCO URGENTE": ["Verificação das senhas no cadastro, e modificação do DOM"],
 
-  "IMPORTANTE": ["Verificação das senhas no cadastro, e modificação do DOM"],
+  "IMPORTANTE": [],
 
   "POUCO IMPORTANTE": [],
 
-  "OPCIONAL": [
-    "Deve ser atualizado e estilizado o formulário de adição de guias"
-  ]
+  "OPCIONAL": ["Verificar a viabilidade de programar o back em javascript"]
 }

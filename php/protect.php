@@ -1,7 +1,7 @@
 <?php
-include_once ("./php/session.php");
+include_once("./php/session.php");
 
 if (!isset($_SESSION['id'])) {
-    header("Location: login.php");
+    header("Location: ../pages/index.php");
 }
 ?>
