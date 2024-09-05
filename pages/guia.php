@@ -1,6 +1,8 @@
 <?php
 include_once("../php/conexao.php");
 include_once("../php/session.php");
+include_once("../php/protect.php");
+protectAdm(0);
 
 $sql = $conn->prepare("SELECT idGuia,nomeGuia,descricao,nomeArquivo,nomeAutor FROM tb_guias");
 $sql->execute();

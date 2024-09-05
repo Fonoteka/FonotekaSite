@@ -1,5 +1,7 @@
 <?php
 include_once("../php/session.php");
+include_once("../php/protect.php");
+protectAdm(0);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

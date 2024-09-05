@@ -1,3 +1,9 @@
+<?php
+include_once("../php/session.php");
+include_once("../php/protect.php");
+protectAdm(1);
+?>
+
 <html lang="PT-BR">
 
 <head>

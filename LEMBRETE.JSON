@@ -3,10 +3,14 @@
     "Funcionalidade foto de perfil form cadastro",
     "Responsividade",
     "Refresh automático",
-    "UTILIZAR MÉTODO DE ENVIO FORMULÁRIO DO VIDEO"
+    "Botao adicionar formulario apenas adm"
   ],
 
-  "POUCO URGENTE": ["Verificação das senhas no cadastro, e modificação do DOM"],
+  "POUCO URGENTE": [
+    "Verificação das senhas no cadastro, e modificação do DOM",
+    "Mensagem de 'necessário login' entre as telas",
+    "caso esteja logado exibir outras informações no popLogin"
+  ],
 
   "IMPORTANTE": [],
 
