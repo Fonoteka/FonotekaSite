@@ -1,5 +1,4 @@
 <?php
-include_once("../php/conexao.php");
 include_once("../php/session.php");
 ?>
 <!DOCTYPE html>
@@ -8,9 +7,9 @@ include_once("../php/session.php");
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../styles/style.css">
-  <title>Ajuda</title>
+  <title>Fonoteka</title>
+</head>
 </head>
 
 <body>
@@ -30,7 +29,8 @@ include_once("../php/session.php");
       <img id="perfil_usuario" class="img_perfil"
         src="<?php echo !empty($_SESSION['path_img']) ? $_SESSION['path_img'] : '../assets/perfil-Icon.png' ?>" />
       <label for="perfil_usuario" class="perfil_label">
-        <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?></label>
+        <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?>
+      </label>
     </div>
 
     <form class="popLogin" method="POST">
@@ -45,29 +45,49 @@ include_once("../php/session.php");
     </form>
   </header>
 
-  <main>
-    <section class="ajuda">
-      <h1>Duvidas frequentes</h1>
-      <li class="ajuda_item">
-        <div class="ajuda_item_principal">
-          <h1>Duvida 1</h1>
-          <img src="../assets/seta.svg" alt="">
-        </div>
-        <div class="ajuda_desc">
-          <p>Descrição</p>
-        </div>
-      </li>
-    </section>
-  </main>
+  <div id="total">
+    <div id="esquerda">
 
-  <dialog>
-    <h1 id="msgCadastro"></h1>
-    <button id="buClose" class="buClose">Fechar</button>
-  </dialog>
+      <div id="titulo">
+        <p id="sobrenos">Sobre nós</p>
+      </div>
 
-  <script src="../js/index.js"></script>
+      <div id="geral">
+        <img id="fotoescola" src="../assets/etec.png">
+        <div id="geral2">
+          <p id="iniciativa">Iniciativa</p>
+          <p id="texto">Trabalho para
+            conclusão de curso
+            (Desenvolvimento de
+            Sistemas 2024)</p>
+        </div>
+      </div>
+
+      <div id="geral">
+        <img id="fotoescola2" src="../assets/autismo.png">
+        <div id="geral2">
+          <p id="iniciativa">Foco</p>
+          <p id="texto">Somos focados em
+            auxiliar crianças com
+            Transtorno do Espectro
+            Autista (TEA),</p>
+        </div>
+      </div>
+
+    </div>
+    <div id="direita">
+      <img id="logo" src="../assets/Logo.png">
+    </div>
+  </div>
+
 </body>
 
+<dialog>
+  <h1 id="msgCadastro"></h1>
+  <button id="buClose" class="buClose">Fechar</button>
+</dialog>
+
+<script src="../js/index.js"></script>
 
 <?php
 

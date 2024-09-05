@@ -1,7 +1,14 @@
 <?php
 include_once("../php/conexao.php");
 include_once("../php/session.php");
-include_once("../php/phpMailer.php");
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../lib/vendor/autoload.php';
+
+$mail = new PHPMailer(true);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,7 +26,7 @@ include_once("../php/phpMailer.php");
         <h1>Recuperação de conta</h1>
         <form class="form_recuperar" method="POST">
             <input type="text" name="recupera" placeholder="Email, cpf ou telefone">
-            <input type="submit" value="Recuperar">
+            <input type="submit" value="Recuperar" name="SendGeraSenha">
             <a href="./index.php">Lembrou?</a>
             <p id="msg"></p>
         </form>
@@ -29,7 +36,10 @@ include_once("../php/phpMailer.php");
 <script src="../js/index.js"></script>
 
 <?php
-if (!empty($_POST['recupera'])) {
+
+$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+if (!empty($dados['SendGeraSenha'])) {
     $recupera = $_POST['recupera'];
 
     $sql_query = "SELECT IdMentor, nome, email, Telefone FROM tb_cadastro WHERE email = ? LIMIT 1";
@@ -45,26 +55,30 @@ if (!empty($_POST['recupera'])) {
         $sql->bind_param("ss", $chave_recupera_senha, $user_row['IdMentor']);
 
         if ($sql->execute()) {
-            echo "<script>msgTexto('<a href=\"http://localhost/fonotekaSite/pages/recupSenha.php?chave=$chave_recupera_senha\">AQUI</a>')</script>";
+            $link = "http://localhost/fonotekaSite/pages/recupSenha.php?chave=$chave_recupera_senha";
 
             try {
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-                $phpmailer->isSMTP();
-                $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
-                $phpmailer->SMTPAuth = true;
-                $phpmailer->Username = '08dd0f1bf77900';
-                $phpmailer->Password = 'c3c9326f1f9691';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                $phpmailer->Port = 2525;
+                $mail->CharSet = "UTF-8";
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'bancodesanguetcc03@gmail.com';
+                $mail->Password = 'ywxwwqscovsgvwca';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
 
                 $mail->setFrom('atendimento@fonoteka.com', 'atendimento');
-                $mail->addAddress("$user_row[']", 'Joe User');
-                $mail->addReplyTo('info@example.com', 'Information');
-                $mail->addCC('cc@example.com');
-                $mail->addBCC('bcc@example.com');
+                $mail->addAddress($user_row['email'], $user_row['nome']);
+
+                $mail->isHTML(true);
+                $mail->Subject = 'Recuperar a senha - Fonoteka';
+                $mail->Body = "Prezado(a) " . $user_row['nome'] . "<br><br>Recebemos uma solicitação para redefinir a senha da sua conta. Para prosseguir com a alteração, por favor, <b>clique no link abaixo:</b> <br><br> <a href=" . $link . ">Redefinir senha</a> <br><br>Por questões de segurança, este link é válido apenas uma vez. Se você não solicitou a redefinição da senha, desconsidere este email. Sua conta permanecerá segura. <br><br> Atenciosamente,<br>Iniciativa Fonoteka";
+                $mail->AltBody = $link;
+
+                $mail->send();
 
             } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                echo "<script>msgTexto(\"<p>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>\")</script>";
             }
         } else {
             echo "<script>msgTexto('<p>ERRO: Não foi pussivel atualizar o recuperar Senha</p>')</script>";

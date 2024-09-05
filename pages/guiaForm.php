@@ -15,7 +15,7 @@
 
         <div class="opcoes_div">
             <a href="./index.php"> Home </a>
-            <a href=""> Sobre nós </a>
+            <a href="./sobrenos.php"> Sobre nós </a>
             <a href=""> Aluno </a>
             <a href="./guia.php"> Guia </a>
         </div>
@@ -39,7 +39,7 @@
         </form>
     </header>
 
-    <form enctype="multipart/form-data" class="form-cad" method="POST">
+    <form enctype="multipart/form-data" class="form-guia" method="POST">
         <h1>Adicione um guia</h1>
 
         <div>
