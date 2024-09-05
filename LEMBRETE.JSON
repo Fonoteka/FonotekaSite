@@ -2,8 +2,8 @@
   "URGENTE": [
     "Funcionalidade foto de perfil form cadastro",
     "Responsividade",
-    "UTILIZAR MÉTODO DE ENVIO FORMULÁRIO DO VIDEO",
-    "Utilizar nova função mostrar MENSAGENS"
+    "Refresh automático",
+    "UTILIZAR MÉTODO DE ENVIO FORMULÁRIO DO VIDEO"
   ],
 
   "POUCO URGENTE": ["Verificação das senhas no cadastro, e modificação do DOM"],
