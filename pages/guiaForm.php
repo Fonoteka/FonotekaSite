@@ -39,7 +39,7 @@
         </form>
     </header>
 
-    <form enctype="multipart/form-data" class="form-cad" method="POST">
+    <form enctype="multipart/form-data" class="form-guia" method="POST">
         <h1>Adicione um guia</h1>
 
         <div>
