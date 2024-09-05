@@ -15,7 +15,7 @@
 
         <div class="opcoes_div">
             <a href="./index.php"> Home </a>
-            <a href=""> Sobre nós </a>
+            <a href="./sobrenos.php"> Sobre nós </a>
             <a href=""> Aluno </a>
             <a href="./guia.php"> Guia </a>
         </div>
