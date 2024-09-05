@@ -79,6 +79,9 @@ if (!empty($dados['SendGeraSenha'])) {
 
             } catch (Exception $e) {
                 echo "<script>msgTexto(\"<p>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>\")</script>";
+            } finally {
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit();
             }
         } else {
             echo "<script>msgTexto('<p>ERRO: Não foi pussivel atualizar o recuperar Senha</p>')</script>";

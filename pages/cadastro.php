@@ -114,9 +114,13 @@ if (isset($_POST['nome']) && isset($_POST['usuario']) && isset($_POST['email']) 
     } else {
       $sql = $conn->prepare("INSERT INTO tb_cadastro(Nome, Email, Telefone, Senha, Usuario, DataNascimento, Genero, Funcao) VALUES (?, ?, ?, ?, ?, ?, ?, 0)");
       $sql->bind_param("sssssss", $nome, $email, $tel, $senha, $usuario, $nascimento, $genero);
-      $sql->execute();
-      $result = $sql->get_result();
-      echo ("<script>msgPop('Usuário cadastrado');</script>");
+      if ($sql->execute()) {
+        echo ("<script>msgPop('Usuário cadastrado');</script>");
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+      } else {
+        echo ("<script>msgPop('ERRO: Problema de inserção no banco de dados');</script>");
+      }
     }
   } else {
     echo ("<script>msgPop('Idade minima não atendida');</script>");

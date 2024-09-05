@@ -24,13 +24,15 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
 
             $_SESSION['id'] = $user['IdMentor'];
             $_SESSION['nome'] = $user['Nome'];
+            $_SESSION['funcao'] = $user['Funcao'];
 
             $idImagem = $user['IdImagem'];
             $sql = $conn->query("SELECT path FROM tb_Imagens WHERE IdImagem = $idImagem");
             $path = $sql->fetch_all(MYSQLI_ASSOC);
 
             $_SESSION['path_img'] = $path[0]['path'];
-            header("Location: ".$_SERVER['PHP_SELF']);
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
         } else {
             echo "<script>msgPop('SENHA INCORRETA!!')</script>";
         }
