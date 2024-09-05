@@ -16,5 +16,13 @@
 
   "POUCO IMPORTANTE": [],
 
-  "OPCIONAL": ["Verificar a viabilidade de programar o back em javascript"]
+  "OPCIONAL": ["Verificar a viabilidade de programar o back em javascript"],
+
+  "CONCLUIDOS": [
+    "UTILIZAR MÉTODO DE ENVIO FORMULÁRIO DO VIDEO",
+    "Utilizar nova função mostrar MENSAGENS",
+    "Deve ser atualizado e estilizado o formulário de adição de guias",
+    "Pagina esqueceu senha",
+    "Deve ser atualizado e estilizado o formulário de adição de guias"
+  ]
 }
