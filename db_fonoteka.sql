@@ -61,10 +61,10 @@ values
 (1,'Lucas', 'Lucas@gmail.com', '12981438361', '$2y$10$HBlfDki6pAqpOHuKi0dkpOPrXaSlfieR04aY.rnA.lte4e9Mtg9CW','lucas', '2001-02-02', 'Homem', 1, null, null);
 
 insert into tb_guias
-(nomeGuia, descricao, nomeArquivo, nomeAutor, dataPostagem)
+(nomeGuia, descricao, nomeArquivo, nomeAutor, dataPostagem, IdImagem)
 values
-('TEA', 'GUIA SOBRE TEA', 'EDEDDE.JPG', 'RUAN', '2001-02-02'),
-('LUCAS', 'LINDO', 'TESTE.JPG', 'RAFAEL', '2001-02-02');
+('TEA', 'GUIA SOBRE TEA', 'EDEDDE.JPG', 'RUAN', '2001-02-02', 1),
+('LUCAS', 'LINDO', 'TESTE.JPG', 'RAFAEL', '2001-02-02', 2);
 
 truncate tb_guias;
 SET FOREIGN_KEY_CHECKS = 0; 

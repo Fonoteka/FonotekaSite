@@ -5,8 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../styles/style.css" />
-  <script src="../js/index.js" defer></script>
+  <link rel="stylesheet" href="../styles/style.css"/>
   <title>Fonoteka</title>
 </head>
 
@@ -116,7 +115,6 @@ if (isset($_POST['nome']) && isset($_POST['usuario']) && isset($_POST['email']) 
       $sql->bind_param("sssssss", $nome, $email, $tel, $senha, $usuario, $nascimento, $genero);
       if ($sql->execute()) {
         echo ("<script>msgPop('Usuário cadastrado');</script>");
-        header("Location: " . $_SERVER['PHP_SELF']);
         exit();
       } else {
         echo ("<script>msgPop('ERRO: Problema de inserção no banco de dados');</script>");
