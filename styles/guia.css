@@ -41,3 +41,18 @@
 .error > a {
   margin: auto;
 }
+
+.button_addGuia{
+  width: 10%;
+  padding: 10px;
+  margin: auto;
+
+  background-color: var(--laranja);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.button_addGuia:hover{
+  background-color: var(--laranja-escuro);
+  color: var(--branco);
+}

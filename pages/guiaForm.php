@@ -95,7 +95,7 @@ protectAdm(1);
         $extensaoImagem = strtolower(pathinfo($nomeImagem, PATHINFO_EXTENSION));
 
         if ($extensaoImagem != "jpg" && $extensaoImagem != "png" && $extensaoImagem != "jpeg")
-            die("Formato não suportado");
+            die("<script>msgPop('Formato não suportado');</script>");
 
         $path = "../images/" . $uniqId . "." . $extensaoImagem;
 
@@ -123,7 +123,7 @@ protectAdm(1);
                 echo ("<script>msgPop('Cadastro efetuado com sucesso!!');</script>");
             }
         } else {
-            echo "Erro ao mover a imagem para a pasta";
+            echo ("<script>msgPop('Erro ao mover a imagem para a pasta');</script>");
         }
     }
 
