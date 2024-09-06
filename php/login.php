@@ -27,10 +27,20 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
             $_SESSION['funcao'] = $user['Funcao'];
 
             $idImagem = $user['IdImagem'];
-            $sql = $conn->query("SELECT path FROM tb_Imagens WHERE IdImagem = $idImagem");
-            $path = $sql->fetch_all(MYSQLI_ASSOC);
+            $idImagem = intval($idImagem);
 
-            $_SESSION['path_img'] = $path[0]['path'];
+            $sql = $conn->prepare("SELECT path FROM tb_Imagens WHERE IdImagem = ?");
+            $sql->bind_param("i", $idImagem);
+            $sql->execute();
+            $result = $sql->get_result();
+            
+            $pathData = $result->fetch_assoc();
+            if ($pathData) {
+                $_SESSION['path_img'] = $pathData['path'];
+            } else {
+                $_SESSION['path_img'] = '';
+            }
+            
             header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         } else {
