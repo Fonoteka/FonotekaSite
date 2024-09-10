@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../styles/style.css"/>
+  <link rel="stylesheet" href="../styles/style.css" />
   <title>Fonoteka</title>
 </head>
 
@@ -23,22 +23,10 @@
     </div>
 
     <div class="div_usuario">
-      <img id="perfil_usuario" class="img_perfil"
-        src="<?php echo !empty($_SESSION['path_img']) ? $_SESSION['path_img'] : '../assets/perfil-Icon.png' ?>" />
-      <label for="perfil_usuario" class="perfil_label">
-        <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?></label>
+      <img id="perfil_usuario" class="img_perfil" src="../assets/perfil-Icon.png" />
+      <label for="perfil_usuario" class="perfil_label">Usuário</label>
     </div>
 
-    <form class="popLogin" method="POST">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required disabled>
-      <label for="senha">Senha:</label>
-      <input type="password" id="senha" name="senha" required disabled>
-      <a class="link_popLogin" href="./esqSenha.php">Esqueceu a senha?</a>
-      <input type="submit" value="Acessar">
-      <a class="link_popLogin" href="./cadastro.php">Sem conta?</a>
-      <a class="btn_logout" href="./logout.php">Sair</a>
-    </form>
   </header>
 
   <section class="cadastro">
@@ -58,7 +46,10 @@
         <option value="mulher">Prefiro não dizer</option>
       </select>
       <input type="password" name="senha" id="senha" placeholder="Senha" required />
-      <input type="password" name="confSenha" id="confSenha" placeholder="Confirmar Senha" required />
+      <div class="div_pConf">
+        <input type="password" name="confSenha" id="confSenha" placeholder="Confirmar Senha" required />
+        <p class="p_conf">Senha não coincidem</p>
+      </div>
       <div class="div-politicas">
         <input type="checkbox" name="politicas" id="politicas" required />
         <label for="politicas">
@@ -93,6 +84,7 @@ if (isset($_POST['nome']) && isset($_POST['usuario']) && isset($_POST['email']) 
   $genero = $_POST['genero'];
   $tel = $_POST['telefone'];
   $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+  $senhaDescriptografada = $_POST['senha'];
   $confSenha = $_POST['confSenha'];
   $politicas = $_POST['politicas'];
 
@@ -101,31 +93,31 @@ if (isset($_POST['nome']) && isset($_POST['usuario']) && isset($_POST['email']) 
   $diff = $hoje->diff($obj_nascimento);
   $diff = $diff->y;
 
-  // if ($senha === $confSenha) {
-  if ($diff >= 18) {
-    $sql = $conn->prepare("SELECT IdMentor, Nome FROM tb_cadastro WHERE email = ?");
-    $sql->bind_param("s", $email);
-    $sql->execute();
-    $result = $sql->get_result();
+  if ($senhaDescriptografada === $confSenha) {
+    if ($diff >= 18) {
+      $sql = $conn->prepare("SELECT IdMentor, Nome FROM tb_cadastro WHERE email = ?");
+      $sql->bind_param("s", $email);
+      $sql->execute();
+      $result = $sql->get_result();
 
-    if ($result->num_rows > 0) {
-      echo ("<script>msgPop('Usuário já cadastrado');</script>");
-    } else {
-      $sql = $conn->prepare("INSERT INTO tb_cadastro(Nome, Email, Telefone, Senha, Usuario, DataNascimento, Genero, Funcao) VALUES (?, ?, ?, ?, ?, ?, ?, 0)");
-      $sql->bind_param("sssssss", $nome, $email, $tel, $senha, $usuario, $nascimento, $genero);
-      if ($sql->execute()) {
-        echo ("<script>msgPop('Usuário cadastrado');</script>");
-        exit();
+      if ($result->num_rows > 0) {
+        echo ("<script>msgPop('Usuário já cadastrado');</script>");
       } else {
-        echo ("<script>msgPop('ERRO: Problema de inserção no banco de dados');</script>");
+        $sql = $conn->prepare("INSERT INTO tb_cadastro(Nome, Email, Telefone, Senha, Usuario, DataNascimento, Genero, Funcao) VALUES (?, ?, ?, ?, ?, ?, ?, 0)");
+        $sql->bind_param("sssssss", $nome, $email, $tel, $senha, $usuario, $nascimento, $genero);
+        if ($sql->execute()) {
+          echo ("<script>msgPop('Usuário cadastrado');</script>");
+          exit();
+        } else {
+          echo ("<script>msgPop('ERRO: Problema de inserção no banco de dados');</script>");
+        }
       }
+    } else {
+      echo ("<script>msgPop('Idade minima não atendida');</script>");
     }
   } else {
-    echo ("<script>msgPop('Idade minima não atendida');</script>");
+    echo ("<script>msgPop('As senhas não coincidem');</script>");
   }
-  // } else {
-  //   echo ("<script>msgPop('As senhas não coincidem');</script>");
-  // }
 
 }
 ?>

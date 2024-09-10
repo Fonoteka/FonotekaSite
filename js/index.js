@@ -37,14 +37,24 @@ if (buttonClose) {
   };
 }
 
-// const inpSenha = document.querySelector("#senha");
-// const inpConf = document.querySelector("#confSenha");
-// const txtConf = document.querySelector(".confSenhaTXT");
+const inpSenha = document.querySelector("#senha");
+const inpConf = document.querySelector("#confSenha");
+const txtConf = document.querySelector(".p_conf");
 
-// inpConf.addEventListener("keydown", (e) => {
-//   if (inpConf.value !== inpSenha.value) {
-//     txtConf.textContent = "AS SENHAS NÃO COINCIDEM";
-//   } else {
-//     txtConf.textContent = "";
-//   }
-// });
+if (inpSenha && inpConf) {
+  inpConf.addEventListener("input", (e) => {
+    if (inpConf.value !== inpSenha.value) {
+      txtConf.classList.add("naoCoincidem");
+    } else {
+      txtConf.classList.remove("naoCoincidem");
+    }
+  });
+
+  inpSenha.addEventListener("input", (e) => {
+    if (inpConf.value !== inpSenha.value) {
+      txtConf.classList.add("naoCoincidem");
+    } else {
+      txtConf.classList.remove("naoCoincidem");
+    }
+  });
+}

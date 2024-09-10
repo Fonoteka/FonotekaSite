@@ -7,7 +7,6 @@
   ],
 
   "POUCO URGENTE": [
-    "Verificação das senhas no cadastro, e modificação do DOM",
     "Mensagem de 'necessário login' entre as telas",
     "caso esteja logado exibir outras informações no popLogin"
   ],
