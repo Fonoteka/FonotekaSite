@@ -32,16 +32,22 @@ include_once("../php/session.php");
                 <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?></label>
         </div>
 
-        <form class="popLogin" method="POST">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required disabled>
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required disabled>
-            <a class="link_popLogin" href="./esqSenha.php">Esqueceu a senha?</a>
-            <input type="submit" value="Acessar">
-            <a class="link_popLogin" href="./cadastro.php">Sem conta?</a>
-            <a class="btn_logout" href="./logout.php">Sair</a>
-        </form>
+        <?php
+        echo "<form class=\"popLogin\" method=\"POST\">";
+        if (isset($_SESSION['id'])) {
+            echo "<button class=\"alt_cont\">Configurações conta</button>";
+            echo "<a class=\"btn_logout\" href=\"./logout.php\">Sair</a>";
+        } else {
+            echo "<label for=\"email\">Email:</label>";
+            echo "<input type=\"email\" id=\"email\" name=\"email\" required disabled>";
+            echo "<label for=\"senha\">Senha:</label>";
+            echo "<input type=\"password\" id=\"senha\" name=\"senha\" required disabled>";
+            echo "<a class=\"link_popLogin\" href=\"./esqSenha.php\">Esqueceu a senha?</a>";
+            echo "<input class=\"alt_cont\" type=\"submit\" value=\"Acessar\">";
+            echo "<a class=\"link_popLogin\" href=\"./cadastro.php\">Sem conta?</a>";
+        }
+        echo "</form>";
+        ?>
     </header>
 
     <main>

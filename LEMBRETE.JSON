@@ -5,7 +5,7 @@
     "Refresh automático"
   ],
 
-  "POUCO URGENTE": ["caso esteja logado exibir outras informações no popLogin"],
+  "POUCO URGENTE": [],
 
   "IMPORTANTE": [],
 
@@ -21,6 +21,7 @@
     "Verificação das senhas no cadastro, e modificação do DOM",
     "Botao adicionar formulario apenas adm",
     "Mensagem de 'necessário login' entre as telas",
-    "Deve ser atualizado e estilizado o formulário de adição de guias"
+    "Deve ser atualizado e estilizado o formulário de adição de guias",
+    "caso esteja logado exibir outras informações no popLogin"
   ]
 }

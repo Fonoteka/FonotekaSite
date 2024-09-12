@@ -45,7 +45,8 @@ body {
   color: var(--branco);
 }
 
-input[type="submit"] {
+input[type="submit"],
+.alt_cont {
   font-family: var(--font-primaria);
   font-size: 2rem;
   color: var(--branco);
@@ -57,7 +58,8 @@ input[type="submit"] {
   margin-bottom: 5px;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+.alt_cont:hover {
   color: var(--branco);
 
   background-color: var(--laranja-escuro);
