@@ -3,7 +3,7 @@ function protectAdm($adm)
 {
     if (empty($_SESSION['id'])) {
         header("Location: ../pages/index.php");
-        echo ("<script>msgPop('É necessario login');</script>");
+        $_SESSION['msgLogin'] = "<script>msgPop('É necessario login');</script>";
         exit();
     }
 

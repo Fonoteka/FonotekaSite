@@ -2,14 +2,10 @@
   "URGENTE": [
     "Funcionalidade foto de perfil form cadastro",
     "Responsividade",
-    "Refresh automático",
-    "Botao adicionar formulario apenas adm"
+    "Refresh automático"
   ],
 
-  "POUCO URGENTE": [
-    "Mensagem de 'necessário login' entre as telas",
-    "caso esteja logado exibir outras informações no popLogin"
-  ],
+  "POUCO URGENTE": ["caso esteja logado exibir outras informações no popLogin"],
 
   "IMPORTANTE": [],
 
@@ -23,6 +19,8 @@
     "Deve ser atualizado e estilizado o formulário de adição de guias",
     "Pagina esqueceu senha",
     "Verificação das senhas no cadastro, e modificação do DOM",
+    "Botao adicionar formulario apenas adm",
+    "Mensagem de 'necessário login' entre as telas",
     "Deve ser atualizado e estilizado o formulário de adição de guias"
   ]
 }

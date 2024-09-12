@@ -92,7 +92,9 @@ include_once("../php/session.php");
 
 include('../php/conexao.php');
 include('../php/login.php');
+echo $_SESSION['msgLogin'];
+$_SESSION['msgLogin'] = ""
 
-?>
+    ?>
 
 </html>
