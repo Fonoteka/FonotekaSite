@@ -55,22 +55,22 @@ protectAdm(0);
     <form method="POST" class="fundo">
         <div class="containerimagem">
             <img class="imagem" src="../assets/Adicionarativ.png">
-            <input class="bntadd" type="submit" value="Enviar Atividade">
+            <input class="bntadd" type="submit" name="sendAtividade" value="Enviar Atividade">
         </div>
 
         <div class="containertexto">
             <input class="titulotext" type="text" id="titulo" placeholder="Digite o nome da atividade:"
-                name="atividade">
+                name="nomeAtividade">
             <p class="obs"> Abaixo adicione as informações de forma curta para execução da atividade</p>
-            <input class="obsadd" type="text" placeholder="Adicionar descrição" name="atividade">
+            <input class="obsadd" type="text" placeholder="Adicionar descrição" name="descAtividade">
 
         </div>
 
         <div class="containeradicional">
             <input class="pontos" type="number" placeholder="Quantidade de Pontos" name="pontos">
-            <input class="pontos" type="number" placeholder="Nível de Autismo" name="pontos">
-            <input class="pontos" type="date" placeholder="Data Inicial (Mentor)" name="pontos">
-            <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" name="pontos">
+            <input class="pontos" type="number" placeholder="Nível de Autismo" name="nivelAutismo">
+            <input class="pontos" type="date" placeholder="Data Inicial (Mentor)" name="dataPostagem">
+            <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" name="dataEntrega">
             <label class="audio"> Adicionar áudio/pdf:</label>
             <input class="audio1" type="file" placeholder="Adicionar PDF" name="pontos">
 
@@ -89,8 +89,35 @@ protectAdm(0);
 
 <?php
 
+
 include('../php/conexao.php');
 include('../php/login.php');
+
+$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+if (!empty($dados['sendAtividade'])) {
+    $nomeAtividade = $dados['nomeAtividade'];
+    $descAtividade = $dados['descAtividade'];
+    $pontos = $dados['pontos'];
+    $nivelAutismo = $dados['nivelAutismo'];
+    $dataPostagem = $dados['dataPostagem'];
+    $dataEntrega = $dados['dataEntrega'];
+    $IdArquivo = 1;
+    $IdAluno = 1;
+    $IdMentor = $_SESSION['id'];
+
+    $sql_query = "INSERT INTO tb_atividades (nomeAtividade, descAtividade, IdMentor, qtnPontos, nivelAutismo, dataPostagem , dataEntrega, IdArquivo, IdAluno) VALUES (?,?,?,?,?,?,?,?,?)";
+    $sql = $conn->prepare($sql_query);
+    $sql->bind_param("sssssssss", $nomeAtividade, $descAtividade, $IdMentor, $pontos, $nivelAutismo, $dataPostagem, $dataEntrega, $IdArquivo, $IdAluno);
+    if ($sql->execute()) {
+        echo ("<script>msgPop('Atividade cadastrada com sucesso');</script>");
+        $sql_query = "";
+    } else {
+        echo ("<script>msgPop('ERRO: Não foi possivel cadastrar atividade');</script>");
+        $sql_query = "";
+    }
+
+}
 
 ?>
 

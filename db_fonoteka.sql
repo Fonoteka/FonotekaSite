@@ -8,6 +8,13 @@ create table tb_imagens(
   PRIMARY KEY (IdImagem)
 );
 
+create table tb_arquivos(
+IdArquivo int(11) auto_increment not null,
+nomeArquivo varchar(255) not null,
+pathArquivo varchar(255) not null,
+PRIMARY KEY (IdArquivo)
+);		
+
 create table tb_cadastro(
 IdMentor int auto_increment primary key,
 Nome varchar (50) not null,
@@ -37,12 +44,17 @@ FOREIGN KEY (IdMentor) REFERENCES tb_cadastro(IdMentor)
 create table tb_atividades(
 idAtividade int auto_increment primary key,
 nomeAtividade varchar (60) not null,
+descAtividade varchar(100) not null,
 IdMentor int not null,
+qtnPontos int not null,
+nivelAutismo int not null,
 dataPostagem date not null,
 dataEntrega datetime not null,
+IdArquivo int not null,
 IdAluno int not null,
 FOREIGN KEY (IdAluno) REFERENCES tb_cadastroAluno(IdAluno),
-FOREIGN KEY (IdMentor) REFERENCES tb_cadastro(IdMentor)
+FOREIGN KEY (IdMentor) REFERENCES tb_cadastro(IdMentor),
+FOREIGN KEY (IdArquivo) REFERENCES tb_arquivos(IdArquivo)
 );
 
 create table tb_guias(
@@ -56,16 +68,23 @@ IdImagem int not null,
 FOREIGN KEY (IdImagem) REFERENCES tb_imagens(IdImagem)
 );
 
+insert into tb_cadastroAluno
+values
+(1,'lucas', 'lupesi','lucas', 'lucas', '1');
+
+insert into tb_arquivos
+values
+(1,'as','as');
+
 insert into tb_cadastro
 values
-(1,'Lucas', 'Lucas@gmail.com', '12981438361', '$2y$10$HBlfDki6pAqpOHuKi0dkpOPrXaSlfieR04aY.rnA.lte4e9Mtg9CW','lucas', '2001-02-02', 'Homem', 0, null, null),
-(2,'Lucas Pereira', 'lucas4162007@gmail.com', '12981438361', '$2y$10$HBlfDki6pAqpOHuKi0dkpOPrXaSlfieR04aY.rnA.lte4e9Mtg9CW','lupesi', '2007-04-16', 'Homem', 1, null, null);
+(1,'Lucas Silva e Pereira', 'lucas4162007@gmail.com', '12981438361', '$2y$10$HBlfDki6pAqpOHuKi0dkpOPrXaSlfieR04aY.rnA.lte4e9Mtg9CW','lupesi', '2006-04-16', 'Homem', 1, null, null);
 
 insert into tb_guias
-(nomeGuia, descricao, nomeArquivo, nomeAutor, dataPostagem, IdImagem)
+(nomeGuia, descricao, nomeArquivo, nomeAutor, dataPostagem)
 values
-('TEA', 'GUIA SOBRE TEA', 'EDEDDE.JPG', 'RUAN', '2001-02-02', 1),
-('LUCAS', 'LINDO', 'TESTE.JPG', 'RAFAEL', '2001-02-02', 2);
+('TEA', 'GUIA SOBRE TEA', 'EDEDDE.JPG', 'RUAN', '2001-02-02'),
+('LUCAS', 'LINDO', 'TESTE.JPG', 'RAFAEL', '2001-02-02');
 
 truncate tb_guias;
 SET FOREIGN_KEY_CHECKS = 0; 
@@ -75,6 +94,8 @@ SET FOREIGN_KEY_CHECKS = 1;
 SELECT * FROM tb_guias;
 SELECT * FROM tb_Imagens;
 SELECT * FROM tb_cadastro;
+SELECT * FROM tb_atividades;
+
 
 
 truncate tb_cadastro;
