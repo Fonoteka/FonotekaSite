@@ -1,4 +1,6 @@
 <?php
+include("conexao.php");
+
 if (!empty($_POST['email']) && !empty($_POST['senha'])) {
 
     $email = $_POST['email'];
@@ -33,16 +35,17 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
             $sql->bind_param("i", $idImagem);
             $sql->execute();
             $result = $sql->get_result();
-            
+
             $pathData = $result->fetch_assoc();
             if ($pathData) {
                 $_SESSION['path_img'] = $pathData['path'];
             } else {
                 $_SESSION['path_img'] = '';
             }
-            
-            header("Location: " . $_SERVER['PHP_SELF']);
+
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
+
         } else {
             echo "<script>msgPop('SENHA INCORRETA!!')</script>";
         }

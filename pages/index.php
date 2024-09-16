@@ -33,7 +33,7 @@ include_once("../php/session.php");
         </div>
 
         <?php
-        echo "<form class=\"popLogin\" method=\"POST\">";
+        echo "<form class=\"popLogin\" action=\"../php/login.php\" method=\"POST\">";
         if (isset($_SESSION['id'])) {
             echo "<button class=\"alt_cont\">Configurações conta</button>";
             echo "<a class=\"btn_logout\" href=\"./logout.php\">Sair</a>";
@@ -96,11 +96,9 @@ include_once("../php/session.php");
 
 <?php
 
-include('../php/conexao.php');
-include('../php/login.php');
 echo $_SESSION['msgLogin'];
-$_SESSION['msgLogin'] = ""
+$_SESSION['msgLogin'] = "";
 
-    ?>
+?>
 
 </html>
