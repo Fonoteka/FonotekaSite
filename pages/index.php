@@ -96,7 +96,7 @@ include_once("../php/session.php");
 
 <?php
 
-echo $_SESSION['msgLogin'];
+echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
 $_SESSION['msgLogin'] = "";
 
 ?>
