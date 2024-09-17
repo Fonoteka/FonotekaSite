@@ -72,6 +72,10 @@ select {
   border-radius: var(--border-radius);
 }
 
+hr {
+  margin: 10px 0;
+}
+
 /* Main */
 
 .main-login {
@@ -88,3 +92,8 @@ select {
 .hidden {
   display: none;
 }
+
+.visible {
+  display: flex;
+}
+

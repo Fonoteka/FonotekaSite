@@ -1,6 +1,7 @@
 .popLogin {
   display: none;
   flex-direction: column;
+  overflow: hidden;
 
   width: 15vw;
   padding: 10px;
@@ -50,8 +51,4 @@ form > .btn_logout:hover {
   border-radius: var(--border-radius);
   border: none;
   margin-bottom: 5px;
-}
-
-.visible {
-  display: flex;
 }

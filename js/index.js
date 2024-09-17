@@ -3,6 +3,7 @@ const modal = document.querySelector("dialog");
 const buttonClose = document.getElementById("buClose");
 
 const perfil_usuario = document.querySelector(".div_usuario");
+const perfil_usuario_menu = document.querySelector(".menu_div_usuario");
 const popLogin = document.querySelector(".popLogin");
 const email = document.querySelector("#email");
 const senha = document.querySelector("#senha");
@@ -57,4 +58,35 @@ if (inpSenha && inpConf) {
       txtConf.classList.remove("naoCoincidem");
     }
   });
+}
+
+const menuHamburguer = document.querySelector(".menu_hamburguer");
+const nav = document.querySelector("nav");
+
+
+window.addEventListener("resize", () => {
+  if(window.screen.width > 830){
+    nav.classList.remove("visible");
+  }
+});
+
+if(menuHamburguer && nav){
+  menuHamburguer.addEventListener('click', () => {
+    nav.classList.toggle("visible")
+    popLogin.classList.remove("visible");
+  })
+}
+
+if(perfil_usuario_menu){
+  perfil_usuario_menu.addEventListener('click', () => {
+    popLogin.classList.toggle("visible");
+    nav.classList.remove("visible");
+    if (popLogin.classList.contains("visible")) {
+      email.removeAttribute("disabled");
+      senha.removeAttribute("disabled");
+    } else {
+      email.setAttribute("disabled", "true");
+      senha.setAttribute("disabled", "true");
+    }
+  })
 }
