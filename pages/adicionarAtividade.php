@@ -141,6 +141,9 @@ if (!empty($dados['sendAtividade'])) {
 
 }
 
+echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
+$_SESSION['msgLogin'] = "";
+
 ?>
 
 </html>

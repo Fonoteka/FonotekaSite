@@ -154,7 +154,8 @@ protectAdm(1);
             echo ("<script>msgPop('Erro ao mover a imagem para a pasta');</script>");
         }
     }
-
+    echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
+    $_SESSION['msgLogin'] = "";
     ?>
 </body>
 

@@ -1,5 +1,6 @@
 <?php
 include("conexao.php");
+include("session.php");
 
 if (!empty($_POST['email']) && !empty($_POST['senha'])) {
 
@@ -42,16 +43,17 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
             } else {
                 $_SESSION['path_img'] = '';
             }
-
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
 
         } else {
-            echo "<script>msgPop('SENHA INCORRETA!!')</script>";
+            $_SESSION['msgLogin'] = "<script>msgPop('ERRO: Senha Incorreta!!');</script>";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
         }
 
     } else {
-        echo "<script>msgPop('EMAIL INCORRETO!!')</script>";
+        $_SESSION['msgLogin'] = "<script>msgPop('ERRO: Email Incorreto!!');</script>";
+        header("Location: " . $_SERVER['HTTP_REFERER']);
     }
 }
 

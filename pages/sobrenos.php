@@ -121,6 +121,9 @@ include_once("../php/session.php");
 include('../php/conexao.php');
 include('../php/login.php');
 
+echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
+$_SESSION['msgLogin'] = "";
+
 ?>
 
 </html>

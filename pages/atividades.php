@@ -116,6 +116,9 @@ protectAdm(0);
 include('../php/conexao.php');
 include('../php/login.php');
 
+echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
+$_SESSION['msgLogin'] = "";
+
 ?>
 
 </html>
