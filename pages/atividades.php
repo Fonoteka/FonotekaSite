@@ -32,7 +32,8 @@ protectAdm(0);
       <img id="perfil_usuario" class="img_perfil"
         src="<?php echo !empty($_SESSION['path_img']) ? $_SESSION['path_img'] : '../assets/perfil-Icon.png' ?>" />
       <label for="perfil_usuario" class="perfil_label">
-        <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?></label>
+        <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?>
+      </label>
     </div>
 
     <?php
@@ -51,15 +52,38 @@ protectAdm(0);
     }
     echo "</form>";
     ?>
-  </header>
 
-  <div id="total"> <!--Botões para tipos de atividades-->
+    <img class="menu_hamburguer" src="../assets/menu.png" alt="">
+    <nav>
+
+      <section>
+        <div class="menu_opcoes_div">
+          <a href="./index.php"> Home </a>
+          <a href="./sobrenos.php"> Sobre nós </a>
+          <a href=""> Aluno </a>
+          <a href="./guia.php"> Guia </a>
+        </div>
+        <hr>
+        <div class="menu_div_usuario">
+          <img id="perfil_usuario" class="img_perfil"
+            src="<?php echo !empty($_SESSION['path_img']) ? $_SESSION['path_img'] : '../assets/perfil-Icon.png' ?>" />
+          <label for="perfil_usuario" class="perfil_label">
+            <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?>
+          </label>
+        </div>
+      </section>
+
+    </nav>
+  </header>
+  <div id="total">
+    <!--Botões para tipos de atividades-->
     <button id="personalizadas">Personalizadas</button>
     <button id="predefinidas">Pré Definidas</button>
     <button id="concluidas">Concluídas</button>
   </div>
 
-  <div id="perso"><!--Mostra as informações das atividades personalizadas-->
+  <div id="perso">
+    <!--Mostra as informações das atividades personalizadas-->
     <img class="atividade" src="../assets/leao.jpg">
     <img class="atividade" src="../assets/leao.jpg">
     <img class="atividade" src="../assets/leao.jpg">

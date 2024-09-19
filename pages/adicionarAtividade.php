@@ -31,7 +31,8 @@ protectAdm(0);
             <img id="perfil_usuario" class="img_perfil"
                 src="<?php echo !empty($_SESSION['path_img']) ? $_SESSION['path_img'] : '../assets/perfil-Icon.png' ?>" />
             <label for="perfil_usuario" class="perfil_label">
-                <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?></label>
+                <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?>
+            </label>
         </div>
 
         <?php
@@ -50,8 +51,29 @@ protectAdm(0);
         }
         echo "</form>";
         ?>
-    </header>
 
+        <img class="menu_hamburguer" src="../assets/menu.png" alt="">
+        <nav>
+
+            <section>
+                <div class="menu_opcoes_div">
+                    <a href="./index.php"> Home </a>
+                    <a href="./sobrenos.php"> Sobre nós </a>
+                    <a href=""> Aluno </a>
+                    <a href="./guia.php"> Guia </a>
+                </div>
+                <hr>
+                <div class="menu_div_usuario">
+                    <img id="perfil_usuario" class="img_perfil"
+                        src="<?php echo !empty($_SESSION['path_img']) ? $_SESSION['path_img'] : '../assets/perfil-Icon.png' ?>" />
+                    <label for="perfil_usuario" class="perfil_label">
+                        <?php echo !empty($_SESSION['id']) ? $_SESSION['nome'] : "Usuário"; ?>
+                    </label>
+                </div>
+            </section>
+
+        </nav>
+    </header>
     <form method="POST" class="fundo">
         <div class="containerimagem">
             <img class="imagem" src="../assets/Adicionarativ.png">
