@@ -9,10 +9,10 @@ create table tb_imagens(
 );
 
 create table tb_arquivos(
-IdArquivo int(11) auto_increment not null,
+IdGroup varchar(23) not null,
 nomeArquivo varchar(255) not null,
 pathArquivo varchar(255) not null,
-PRIMARY KEY (IdArquivo)
+PRIMARY KEY (IdGroup)
 );		
 
 create table tb_cadastro(
@@ -50,11 +50,11 @@ qtnPontos int not null,
 nivelAutismo int not null,
 dataPostagem date not null,
 dataEntrega datetime not null,
-IdArquivo int not null,
+IdArquivo varchar(23) not null,
 IdAluno int not null,
 FOREIGN KEY (IdAluno) REFERENCES tb_cadastroAluno(IdAluno),
 FOREIGN KEY (IdMentor) REFERENCES tb_cadastro(IdMentor),
-FOREIGN KEY (IdArquivo) REFERENCES tb_arquivos(IdArquivo)
+FOREIGN KEY (IdArquivo) REFERENCES tb_arquivos(IdGroup)
 );
 
 create table tb_guias(
@@ -86,9 +86,7 @@ values
 ('TEA', 'GUIA SOBRE TEA', 'EDEDDE.JPG', 'RUAN', '2001-02-02'),
 ('LUCAS', 'LINDO', 'TESTE.JPG', 'RAFAEL', '2001-02-02');
 
-truncate tb_guias;
 SET FOREIGN_KEY_CHECKS = 0; 
-TRUNCATE table tb_Imagens;
 SET FOREIGN_KEY_CHECKS = 1;
 
 SELECT * FROM tb_guias;
@@ -96,7 +94,4 @@ SELECT * FROM tb_Imagens;
 SELECT * FROM tb_cadastro;
 SELECT * FROM tb_atividades;
 
-
-
-truncate tb_cadastro;
 describe tb_guias

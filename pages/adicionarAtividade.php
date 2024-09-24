@@ -93,14 +93,9 @@ protectAdm(0);
             <input class="pontos" type="number" placeholder="Nível de Autismo" name="nivelAutismo">
             <input class="pontos" type="date" placeholder="Data Inicial (Mentor)" name="dataPostagem">
             <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" name="dataEntrega">
-            <div class="ids">
-                <input class="pontos2" type="number" placeholder="ID Aluno" name="dataEntrega">
-                <input class="pontos2" type="number" placeholder="ID Arquivo" name="dataEntrega">
-                <input class="pontos2" type="number" placeholder="ID Mentor" name="dataEntrega">
-
-            </div>
+            <input class="pontos" type="number" placeholder="ID Aluno" name="idAluno">
             <label class="audio"> Adicionar áudio/pdf:</label>
-            <input class="audio1" type="file" placeholder="Adicionar PDF" name="pontos">
+            <input class="audio1" type="file" placeholder="Adicionar PDF" name="arquivo[]">
 
 
         </div>
@@ -130,12 +125,24 @@ if (!empty($dados['sendAtividade'])) {
     $nivelAutismo = $dados['nivelAutismo'];
     $dataPostagem = $dados['dataPostagem'];
     $dataEntrega = $dados['dataEntrega'];
-    $IdArquivo = 1;
-    $IdAluno = 1;
+    $IdAluno = $dados['idAluno'];
     $IdMentor = $_SESSION['id'];
+    $arquivo = $_FILES['arquivo'];
+    $IdGroup = uniqid();
 
-    $sql_query = "INSERT INTO tb_atividades (nomeAtividade, descAtividade, IdMentor, qtnPontos, nivelAutismo, dataPostagem , dataEntrega, IdArquivo, IdAluno) VALUES (?,?,?,?,?,?,?,?,?)";
-    $sql = $conn->prepare($sql_query);
+    foreach ($arquivo['error'] as $key => $error) {
+        if ($error == UPLOAD_ERR_OK) {
+            $nomeArquivo = $arquivo['name'][$key];
+            $uniqId = uniqid();
+            $extensaoArquivo = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
+
+            $path = "../files/" . $uniqId . "." . $extensaoArquivo;
+
+            $moved = move_uploaded_file($arquivo['tmp_name'][$key], $path);
+
+            if ($moved) {
+                $sql_query = "INSERT INTO tb_atividades (IdGroup, nomeAtividade, descAtividade, IdMentor, qtnPontos, nivelAutismo, dataPostagem , dataEntrega, IdArquivo, IdAluno) VALUES (?,?,?,?,?,?,?,?,?,?)" or die("<script>msgPop('ERRO: Não foi possivel inserir arquivo');</script>");
+                $sql = $conn->prepare($sql_query);
     $sql->bind_param("sssssssss", $nomeAtividade, $descAtividade, $IdMentor, $pontos, $nivelAutismo, $dataPostagem, $dataEntrega, $IdArquivo, $IdAluno);
     if ($sql->execute()) {
         echo ("<script>msgPop('Atividade cadastrada com sucesso');</script>");
@@ -145,6 +152,24 @@ if (!empty($dados['sendAtividade'])) {
         $sql_query = "";
     }
 
+                    $sql_query = $conn->query("SELECT IdImagem FROM tb_imagens WHERE path = '$path'") or die("Erro ao inserir o jogo");
+
+                    $idImagem = $sql_query->fetch_array();
+                    $idImagem = $idImagem['IdImagem'];
+
+                    $sql_query = $conn->query("INSERT INTO tb_guias (nomeGuia, descricao, nomeAutor, IdImagem) VALUES('$titulo','$descricao','$autor', '$idImagem')") or die("Erro ao inserir o jogo");
+
+                    echo ("<script>msgPop('Cadastro efetuado com sucesso!!');</script>");
+                }
+            } else {
+                echo ("<script>msgPop('Erro ao mover a imagem para a pasta');</script>");
+            }
+        } else {
+            die("<script>msgPop('ERRO: Não foi possivel dar upload');</script>");
+        }
+    }
+
+    $dados = array();
 }
 
 echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
