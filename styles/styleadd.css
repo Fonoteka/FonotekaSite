@@ -101,3 +101,17 @@
   height: 70px;
   margin-left: 50px;
 }
+
+
+.pontos2 {
+  margin-top: 5%;
+  width: 100px;
+  height: 70px;
+  border: solid 2px #fa5f18;
+  margin-left: 50px;
+}
+
+.ids{
+  display: flex;
+  flex-direction: wrap;
+}
