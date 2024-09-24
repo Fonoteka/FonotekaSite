@@ -93,6 +93,12 @@ protectAdm(0);
             <input class="pontos" type="number" placeholder="Nível de Autismo" name="nivelAutismo">
             <input class="pontos" type="date" placeholder="Data Inicial (Mentor)" name="dataPostagem">
             <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" name="dataEntrega">
+            <div class="ids">
+                <input class="pontos2" type="number" placeholder="ID Aluno" name="dataEntrega">
+                <input class="pontos2" type="number" placeholder="ID Arquivo" name="dataEntrega">
+                <input class="pontos2" type="number" placeholder="ID Mentor" name="dataEntrega">
+
+            </div>
             <label class="audio"> Adicionar áudio/pdf:</label>
             <input class="audio1" type="file" placeholder="Adicionar PDF" name="pontos">
 
