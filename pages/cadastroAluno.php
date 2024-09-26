@@ -116,7 +116,7 @@ protectAdm(0);
 </dialog>
 
 <script src="../js/index.js"></script>
-
+ 
 
 
 </html>
