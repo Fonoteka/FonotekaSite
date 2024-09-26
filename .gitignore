@@ -1,3 +1,5 @@
 images/*
+files/*
 
+!files
 !images/default.png

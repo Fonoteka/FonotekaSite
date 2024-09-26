@@ -74,33 +74,28 @@ protectAdm(0);
 
         </nav>
     </header>
-    <form method="POST" class="fundo">
+    <form enctype="multipart/form-data" method="POST" class="fundo">
         <div class="containerimagem">
             <img class="imagem" src="../assets/Adicionarativ.png">
-            <input class="bntadd" type="submit" name="sendAtividade" value="Enviar Atividade">
+            <input class="bntadd" type="submit" name="sendAtividade" value="Enviar Atividade" required>
         </div>
 
         <div class="containertexto">
             <input class="titulotext" type="text" id="titulo" placeholder="Digite o nome da atividade:"
-                name="nomeAtividade">
+                name="nomeAtividade" required>
             <p class="obs"> Abaixo adicione as informações de forma curta para execução da atividade</p>
-            <input class="obsadd" type="text" placeholder="Adicionar descrição" name="descAtividade">
+            <input class="obsadd" type="text" placeholder="Adicionar descrição" name="descAtividade" required>
 
         </div>
 
         <div class="containeradicional">
-            <input class="pontos" type="number" placeholder="Quantidade de Pontos" name="pontos">
-            <input class="pontos" type="number" placeholder="Nível de Autismo" name="nivelAutismo">
-            <input class="pontos" type="date" placeholder="Data Inicial (Mentor)" name="dataPostagem">
-            <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" name="dataEntrega">
-            <div class="ids">
-                <input class="pontos2" type="number" placeholder="ID Aluno" name="dataEntrega">
-                <input class="pontos2" type="number" placeholder="ID Arquivo" name="dataEntrega">
-                <input class="pontos2" type="number" placeholder="ID Mentor" name="dataEntrega">
-
-            </div>
+            <input class="pontos" type="number" placeholder="Quantidade de Pontos" name="pontos" required>
+            <input class="pontos" type="number" placeholder="Nível de Autismo" name="nivelAutismo" required>
+            <input class="pontos" type="date" placeholder="Data Inicial (Mentor)" name="dataPostagem" required>
+            <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" name="dataEntrega" required>
+            <input class="pontos" type="number" placeholder="ID Aluno" name="idAluno" required>
             <label class="audio"> Adicionar áudio/pdf:</label>
-            <input class="audio1" type="file" placeholder="Adicionar PDF" name="pontos">
+            <input class="audio1" type="file" multiple="multiple" placeholder="Adicionar PDF" name="arquivo[]" required>
 
 
         </div>
@@ -124,19 +119,47 @@ include('../php/login.php');
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 if (!empty($dados['sendAtividade'])) {
+
+
     $nomeAtividade = $dados['nomeAtividade'];
     $descAtividade = $dados['descAtividade'];
     $pontos = $dados['pontos'];
     $nivelAutismo = $dados['nivelAutismo'];
     $dataPostagem = $dados['dataPostagem'];
     $dataEntrega = $dados['dataEntrega'];
-    $IdArquivo = 1;
-    $IdAluno = 1;
+    $IdAluno = $dados['idAluno'];
     $IdMentor = $_SESSION['id'];
+    $arquivo = $_FILES['arquivo'];
+    $IdGroup = uniqid();
 
-    $sql_query = "INSERT INTO tb_atividades (nomeAtividade, descAtividade, IdMentor, qtnPontos, nivelAutismo, dataPostagem , dataEntrega, IdArquivo, IdAluno) VALUES (?,?,?,?,?,?,?,?,?)";
+    foreach ($arquivo['error'] as $key => $error) {
+        if ($error == UPLOAD_ERR_OK) {
+            $nomeArquivo = $arquivo['name'][$key];
+            $uniqId = uniqid();
+            $extensaoArquivo = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
+
+            $path = "../files/" . $uniqId . "." . $extensaoArquivo;
+
+            $moved = move_uploaded_file($arquivo['tmp_name'][$key], $path);
+
+            if ($moved) {
+                $sql_query = "INSERT INTO tb_arquivos (IdGroup, nomeArquivo, pathArquivo) VALUES (?,?,?)";
+                $sql = $conn->prepare($sql_query);
+                $sql->bind_param("sss", $IdGroup, $nomeArquivo, $path);
+                if (!($sql->execute())) {
+                    die("ERRO: Não foi possivel inserir o arquivo $nomeArquivo");
+                }
+            } else {
+                die("<script>msgPop(ERRO: Não foi possivel mover os arquivos para a pasta');</script>");
+            }
+        } else {
+            die("<script>msgPop(ERRO: Não foi possivel dar upload');</script>");
+        }
+    }
+
+    $sql_query = "INSERT INTO tb_atividades (nomeAtividade, descAtividade, IdMentor, qtnPontos, nivelAutismo, dataPostagem , dataEntrega, IdGroup, IdAluno) VALUES (?,?,?,?,?,?,?,?,?)" or die("<script>msgPop('ERRO: Não foi possivel inserir arquivo');</script>");
     $sql = $conn->prepare($sql_query);
-    $sql->bind_param("sssssssss", $nomeAtividade, $descAtividade, $IdMentor, $pontos, $nivelAutismo, $dataPostagem, $dataEntrega, $IdArquivo, $IdAluno);
+    $sql->bind_param("sssssssss", $nomeAtividade, $descAtividade, $IdMentor, $pontos, $nivelAutismo, $dataPostagem, $dataEntrega, $IdGroup, $IdAluno);
     if ($sql->execute()) {
         echo ("<script>msgPop('Atividade cadastrada com sucesso');</script>");
         $sql_query = "";
@@ -145,6 +168,7 @@ if (!empty($dados['sendAtividade'])) {
         $sql_query = "";
     }
 
+    $dados = array();
 }
 
 echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
