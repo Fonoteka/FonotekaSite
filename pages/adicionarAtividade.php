@@ -96,8 +96,6 @@ protectAdm(0);
             <input class="pontos" type="number" placeholder="ID Aluno" name="idAluno" required>
             <label class="audio"> Adicionar áudio/pdf:</label>
             <input class="audio1" type="file" multiple="multiple" placeholder="Adicionar PDF" name="arquivo[]" required>
-
-
         </div>
     </form>
 

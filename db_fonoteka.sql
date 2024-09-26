@@ -96,3 +96,4 @@ SELECT * FROM tb_atividades;
 SELECT * FROM tb_arquivos;
 
 describe tb_atividades;
+describe tb_guias
