@@ -102,61 +102,68 @@ protectAdm(1);
         </div>
     </form>
 
-    <?php
-    include_once('../php/conexao.php');
+    <dialog>
+        <h1 id="msgCadastro"></h1>
+        <button id="buClose" class="buClose">Fechar</button>
+    </dialog>
 
-    if (isset($_POST['titulo']) && isset($_POST['autor']) && isset($_POST['desc']) && isset($_FILES['imagem'])) {
-
-        $titulo = $_POST['titulo'];
-        $descricao = $_POST['desc'];
-        $autor = $_POST['autor'];
-        $imagem = $_FILES['imagem'];
-
-        if ($imagem['error'])
-            die("Erro ao carregar a imagem");
-
-        if ($imagem['size'] > 2097152)
-            die("Arquivo muito pesado");
-
-        $nomeImagem = $imagem['name'];
-        $uniqId = uniqid();
-        $extensaoImagem = strtolower(pathinfo($nomeImagem, PATHINFO_EXTENSION));
-
-        if ($extensaoImagem != "jpg" && $extensaoImagem != "png" && $extensaoImagem != "jpeg")
-            die("<script>msgPop('Formato não suportado');</script>");
-
-        $path = "../images/" . $uniqId . "." . $extensaoImagem;
-
-        $moved = move_uploaded_file($imagem['tmp_name'], $path);
-
-        if ($moved) {
-            $sql = $conn->prepare("SELECT nomeGuia FROM tb_guias WHERE nomeGuia =?");
-            $sql->bind_param('s', $titulo);
-            $sql->execute();
-
-            $result = $sql->get_result();
-
-            if (mysqli_num_rows($result) > 0) {
-                echo ("<script>msgPop('Guia já cadastrado');</script>");
-            } else {
-                $sql_query = $conn->query("INSERT INTO tb_imagens(nomeImagem,path)VALUES('$nomeImagem', '$path')") or die("Erro ao inserir a imagem");
-
-                $sql_query = $conn->query("SELECT IdImagem FROM tb_imagens WHERE path = '$path'") or die("Erro ao inserir o jogo");
-
-                $idImagem = $sql_query->fetch_array();
-                $idImagem = $idImagem['IdImagem'];
-
-                $sql_query = $conn->query("INSERT INTO tb_guias (nomeGuia, descricao, nomeAutor, IdImagem) VALUES('$titulo','$descricao','$autor', '$idImagem')") or die("Erro ao inserir o jogo");
-
-                echo ("<script>msgPop('Cadastro efetuado com sucesso!!');</script>");
-            }
-        } else {
-            echo ("<script>msgPop('Erro ao mover a imagem para a pasta');</script>");
-        }
-    }
-    echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
-    $_SESSION['msgLogin'] = "";
-    ?>
 </body>
+<script src="../js/index.js"></script>
+
+<?php
+include_once('../php/conexao.php');
+
+if (isset($_POST['titulo']) && isset($_POST['autor']) && isset($_POST['desc']) && isset($_FILES['imagem'])) {
+
+    $titulo = $_POST['titulo'];
+    $descricao = $_POST['desc'];
+    $autor = $_POST['autor'];
+    $imagem = $_FILES['imagem'];
+
+    if ($imagem['error'])
+        die("Erro ao carregar a imagem");
+
+    if ($imagem['size'] > 2097152)
+        die("Arquivo muito pesado");
+
+    $nomeImagem = $imagem['name'];
+    $uniqId = uniqid();
+    $extensaoImagem = strtolower(pathinfo($nomeImagem, PATHINFO_EXTENSION));
+
+    if ($extensaoImagem != "jpg" && $extensaoImagem != "png" && $extensaoImagem != "jpeg")
+        die("<script>msgPop('Formato não suportado');</script>");
+
+    $path = "../images/" . $uniqId . "." . $extensaoImagem;
+
+    $moved = move_uploaded_file($imagem['tmp_name'], $path);
+
+    if ($moved) {
+        $sql = $conn->prepare("SELECT nomeGuia FROM tb_guias WHERE nomeGuia =?");
+        $sql->bind_param('s', $titulo);
+        $sql->execute();
+
+        $result = $sql->get_result();
+
+        if (mysqli_num_rows($result) > 0) {
+            echo ("<script>msgPop('Guia já cadastrado');</script>");
+        } else {
+            $sql_query = $conn->query("INSERT INTO tb_imagens(nomeImagem,path)VALUES('$nomeImagem', '$path')") or die("Erro ao inserir a imagem");
+
+            $sql_query = $conn->query("SELECT IdImagem FROM tb_imagens WHERE path = '$path'") or die("Erro ao inserir o jogo");
+
+            $idImagem = $sql_query->fetch_array();
+            $idImagem = $idImagem['IdImagem'];
+
+            $sql_query = $conn->query("INSERT INTO tb_guias (nomeGuia, descricao, nomeAutor, IdImagem) VALUES('$titulo','$descricao','$autor', '$idImagem')") or die("Erro ao inserir o jogo");
+
+            echo ("<script>msgPop('Cadastro efetuado com sucesso!!');</script>");
+        }
+    } else {
+        echo ("<script>msgPop('Erro ao mover a imagem para a pasta');</script>");
+    }
+}
+echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
+$_SESSION['msgLogin'] = "";
+?>
 
 </html>
