@@ -21,7 +21,7 @@ $mail = new PHPMailer(true);
     <title>Esqueceu a senha</title>
 </head>
 
-<body>
+<body class="esqSenha_body">
     <main class="cont_form">
         <h1>Recuperação de conta</h1>
         <form class="form_recuperar" method="POST">

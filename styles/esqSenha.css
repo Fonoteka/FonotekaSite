@@ -1,3 +1,9 @@
+.esqSenha_body{
+  background-image: url("../assets/Carrossel.png");
+  background-repeat: no-repeat;
+  background-size: 100vw;
+}
+
 .cont_form {
   display: flex;
   flex-direction: column;
