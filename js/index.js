@@ -11,7 +11,9 @@ const senha = document.querySelector("#senha");
 const msgP = document.querySelector("#msg");
 
 function msgTexto(texto) {
-  msgP.innerHTML = texto;
+  if (msgP) {
+    msgP.innerHTML = texto;
+  }
 }
 
 if (perfil_usuario) {
@@ -28,8 +30,10 @@ if (perfil_usuario) {
 }
 
 function msgPop(texto) {
-  msgStatus.innerHTML = texto;
-  modal.showModal();
+  if (msgStatus) {
+    msgStatus.innerHTML = texto;
+    modal.showModal();
+  }
 }
 
 if (buttonClose) {
@@ -65,7 +69,7 @@ const nav = document.querySelector("nav");
 
 
 window.addEventListener("resize", () => {
-  if(window.screen.width > 830){
+  if(window.screen.width > 830 && nav){
     nav.classList.remove("visible");
   }
 });

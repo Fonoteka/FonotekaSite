@@ -23,41 +23,46 @@ include_once("../php/session.php");
             <div id="msg"></div>
         </form>
     </main>
-    <?php
-    $chave = filter_input(INPUT_GET, 'chave', FILTER_DEFAULT);
 
-    if (!empty($chave)) {
-        $sql = $conn->prepare("SELECT IdMentor FROM tb_cadastro WHERE recuperarSenha = ? LIMIT 1");
-        $sql->bind_param("s", $chave);
-        $sql->execute();
-        $result = $sql->get_result();
+    <dialog>
+        <h1 id="msgCadastro"></h1>
+        <button id="buClose" class="buClose">Fechar</button>
+    </dialog>
+</body>
+<?php
+$chave = filter_input(INPUT_GET, 'chave', FILTER_DEFAULT);
 
-        if (($result) and $result->num_rows == 1) {
-            $user_row = $result->fetch_assoc();
-            $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-            if (!empty($dados['SendnovaSenha'])) {
-                $senha_usuario = password_hash($dados['novaSenha'], PASSWORD_DEFAULT);
+if (!empty($chave)) {
+    $sql = $conn->prepare("SELECT IdMentor FROM tb_cadastro WHERE recuperarSenha = ? LIMIT 1");
+    $sql->bind_param("s", $chave);
+    $sql->execute();
+    $result = $sql->get_result();
 
-                $sql = $conn->prepare("UPDATE tb_cadastro SET Senha = ?, recuperarSenha = NULL WHERE IdMentor = ?");
-                $sql->bind_param("ss", $senha_usuario, $user_row['IdMentor']);
+    if (($result) and $result->num_rows == 1) {
+        $user_row = $result->fetch_assoc();
+        $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if (!empty($dados['SendnovaSenha'])) {
+            $senha_usuario = password_hash($dados['novaSenha'], PASSWORD_DEFAULT);
 
-                if ($sql->execute()) {
-                    echo "<script>msgTexto('<p>Senha atualizada com sucesso</p>')</script>";
-                    header("Location: ./esqSenha.php");
-                } else {
-                    echo "<script>msgTexto('<p>Erro ao atualizar senha</p>')</script>";
-                }
+            $sql = $conn->prepare("UPDATE tb_cadastro SET Senha = ?, recuperarSenha = NULL WHERE IdMentor = ?");
+            $sql->bind_param("ss", $senha_usuario, $user_row['IdMentor']);
+
+            if ($sql->execute()) {
+                echo "<script>msgTexto('<p>Senha atualizada com sucesso</p>')</script>";
+                header("Location: ./esqSenha.php");
+            } else {
+                echo "<script>msgTexto('<p>Erro ao atualizar senha</p>')</script>";
             }
-        } else {
-            echo "<script>msgTexto('<p>ERRO: Chave inválida</p>')</script>";
-            header("Location: ./esqSenha.php");
         }
     } else {
-        echo "<script>msgTexto('<p>ERRO: Link inválido</p>')</script>";
+        echo "<script>msgTexto('<p>ERRO: Chave inválida</p>')</script>";
         header("Location: ./esqSenha.php");
     }
+} else {
+    echo "<script>msgTexto('<p>ERRO: Link inválido</p>')</script>";
+    header("Location: ./esqSenha.php");
+}
 
-    ?>
-</body>
+?>
 
 </html>

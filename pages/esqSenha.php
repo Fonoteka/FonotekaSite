@@ -63,7 +63,7 @@ if (!empty($dados['SendGeraSenha'])) {
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'bancodesanguetcc03@gmail.com';
-                $mail->Password = 'ywxwwqscovsgvwca';
+                $mail->Password = 'doozqbubaxitqqrb';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
@@ -77,19 +77,24 @@ if (!empty($dados['SendGeraSenha'])) {
 
                 $mail->send();
 
+                $_SESSION['msgTexto'] = "<script>msgTexto('<p>Email enviado com sucesso!!</p>')</script>";
             } catch (Exception $e) {
-                echo "<script>msgTexto(\"<p>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>\")</script>";
+                $_SESSION['msgTexto'] = "<script>msgTexto('<p>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>')</script>";
             } finally {
                 header("Location: " . $_SERVER['PHP_SELF']);
+                $dados = array();
                 exit();
             }
         } else {
-            echo "<script>msgTexto('<p>ERRO: Não foi pussivel atualizar o recuperar Senha</p>')</script>";
+            $_SESSION['msgTexto'] = "<script>msgTexto('<p>ERRO: Não foi possivel atualizar o recuperar Senha</p>')</script>";
         }
     } else {
-        echo "<script>msgTexto('<p>ERRO: Email não encontrado no banco de dados</p>')</script>";
+        $_SESSION['msgTexto'] = "<script>msgTexto('<p>ERRO: Email não encontrado no banco de dados</p>')</script>";
     }
 }
+
+echo !empty($_SESSION['msgTexto']) ? $_SESSION['msgTexto'] : "";
+$_SESSION['msgTexto'] = "";
 ?>
 
 </html>
