@@ -1,9 +1,5 @@
 {
-  "URGENTE": [
-    "Funcionalidade foto de perfil form cadastro",
-    "Responsividade",
-    "Back adicionar atividade"
-  ],
+  "URGENTE": ["Funcionalidade foto de perfil form cadastro", "Responsividade"],
 
   "POUCO URGENTE": [],
 
@@ -22,6 +18,7 @@
     "Botao adicionar formulario apenas adm",
     "Mensagem de 'necessário login' entre as telas",
     "Refresh automático",
-    "caso esteja logado exibir outras informações no popLogin"
+    "caso esteja logado exibir outras informações no popLogin",
+    "Back adicionar atividade"
   ]
 }

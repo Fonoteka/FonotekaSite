@@ -16,8 +16,9 @@
   position: absolute;
   right: 0.5%;
   top: 10%;
+  z-index: 999;
 
-  animation: aparece .5s;
+  animation: aparece 0.5s forwards;
 }
 
 .popLogin > .alt_cont {
@@ -54,15 +55,15 @@ form > .btn_logout:hover {
 }
 
 @keyframes aparece {
-  0%{
+  0% {
     opacity: 0;
   }
 
-  50%{
-    opacity: .5;
+  50% {
+    opacity: 0.5;
   }
 
-  100%{
+  100% {
     opacity: 1;
   }
 }
