@@ -83,7 +83,7 @@ include_once("../php/session.php");
           <img src="../assets/seta.svg" alt="">
         </div>
         <div class="ajuda_desc">
-          <a href="http://localhost/Tcc/pages/sobrenos.php"> SOBRE NÓS </a>
+          <a href="./sobrenos.php"> SOBRE NÓS </a>
         </div>
       </li>
 
@@ -93,7 +93,8 @@ include_once("../php/session.php");
           <img src="../assets/seta.svg" alt="">
         </div>
         <div class="ajuda_desc">
-          <p> TEA é a sigla para Transtorno do Espectro Autista, para saber mais clique abaixo para saber mais por meio de nossos guias  </p> <a href="http://localhost/Tcc/pages/guia.php"> GUIAS DE TEA </a>
+          <p> TEA é a sigla para Transtorno do Espectro Autista, para saber mais clique abaixo para saber mais por meio
+            de nossos guias </p> <a href="./guia.php"> GUIAS DE TEA </a>
         </div>
       </li>
       <li class="ajuda_item">
@@ -108,7 +109,7 @@ include_once("../php/session.php");
           <p> -É necessário preencher todos os campos requeridos</p>
           <p> -Selecionar a checkbox "Li e estou de acordo com as políticas de privacidade.* "</p>
           <p> -Após isso, basta clicar em CADASTRAR e a seguir já pode logar no site Fonoteka</p>
-          <a href="http://localhost/Tcc/pages/cadastro.php">CRIAR CONTA</a> 
+          <a href="./cadastro.php">CRIAR CONTA</a>
         </div>
       </li>
 
@@ -118,7 +119,10 @@ include_once("../php/session.php");
           <img src="../assets/seta.svg" alt="">
         </div>
         <div class="ajuda_desc">
-          <p> O site Fonoteka é útil para todos os públicos e principalmente para tutores e professores de crianças com Transtorno do Espectro Autista,</p> <p> por conta da grande quantidade de ferramentas e organização que auxiliam no desenvolvimento da fala de crianças de forma lúdica </p>
+          <p> O site Fonoteka é útil para todos os públicos e principalmente para tutores e professores de crianças com
+            Transtorno do Espectro Autista,</p>
+          <p> por conta da grande quantidade de ferramentas e organização que auxiliam no desenvolvimento da fala de
+            crianças de forma lúdica </p>
         </div>
       </li>
       <li class="ajuda_item">
@@ -148,7 +152,7 @@ include_once("../php/session.php");
           <p> -Será enviada uma notificação para você pelo email cadastrado* "</p>
           <p> -Altere a senha</p>
           <p> Assim estara pronta sua nova senha</p>
-          <a href="http://localhost/Tcc/pages/esqSenha.php">RECUPERAR CONTA</a> 
+          <a href="./esqSenha.php">RECUPERAR CONTA</a>
         </div>
       </li>
       <li class="ajuda_item">
@@ -158,7 +162,7 @@ include_once("../php/session.php");
         </div>
         <div class="ajuda_desc">
           <p>A aba "Guia" é focada para os tutores das crianças autistas, onde podem achar informações e </p>
-          <p>se interar do assunto para auxiliar de forma correta os portadores do Transtorno do  Espectro Autista </p>
+          <p>se interar do assunto para auxiliar de forma correta os portadores do Transtorno do Espectro Autista </p>
           <p> -Acessar o link "Esqueceu a senha?"</p>
           <p> -Insira o email</p>
           <p> -Será enviada uma notificação para você pelo email cadastrado* "</p>
@@ -174,11 +178,12 @@ include_once("../php/session.php");
         </div>
         <div class="ajuda_desc">
           <p>Para achar as informações referentes as atividades lançadas e pré-estabelecidas siga o passo a passo:</p>
-          <p>se interar do assunto para auxiliar de forma correta os portadores do Transtorno do  Espectro Autista </p>
+          <p>se interar do assunto para auxiliar de forma correta os portadores do Transtorno do Espectro Autista </p>
           <p> -Entre com sua conta Fonoteka</p>
           <p> -Na página inicial role a tela para baixo</p>
           <p> -Clique no maior botão "Ver tarefas"</p>
-          <p> E pronto, você conseguirar ter acesso a todas as atividades feitas por você, pré-estabelecidas e as concluidas por seus alunos.</p>
+          <p> E pronto, você conseguirar ter acesso a todas as atividades feitas por você, pré-estabelecidas e as
+            concluidas por seus alunos.</p>
         </div>
       </li>
 
@@ -188,8 +193,10 @@ include_once("../php/session.php");
           <img src="../assets/seta.svg" alt="">
         </div>
         <div class="ajuda_desc">
-          <p> Para fazer o download de nosso aplicativo basta você ir na loja de aplicativo "Playstore" e pesquisar por "Fonoteka,"</p>
-          <p> após esse processo, basta clicar em "Instalar" e logar com a conta da criança préviamente criada no site</p>
+          <p> Para fazer o download de nosso aplicativo basta você ir na loja de aplicativo "Playstore" e pesquisar por
+            "Fonoteka,"</p>
+          <p> após esse processo, basta clicar em "Instalar" e logar com a conta da criança préviamente criada no site
+          </p>
         </div>
       </li>
 
@@ -208,7 +215,7 @@ include_once("../php/session.php");
 
 
     </section>
-    
+
   </main>
 
   <dialog>
