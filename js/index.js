@@ -106,3 +106,16 @@ if (perfil_usuario_menu) {
     }
   });
 }
+
+const listAjuda = document.querySelectorAll("li");
+
+if (listAjuda) {
+  listAjuda.forEach((guia) => {
+    guia.addEventListener("click", (event) => {
+      const checkBox = event.currentTarget.querySelector(".checkAjuda");
+      if (checkBox) {
+        checkBox.checked = !checkBox.checked;
+      }
+    });
+  });
+}

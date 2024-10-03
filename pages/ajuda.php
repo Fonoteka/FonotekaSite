@@ -78,6 +78,7 @@ include_once("../php/session.php");
       <h1>Duvidas frequentes</h1>
 
       <li class="ajuda_item">
+        <input type="checkbox" class="checkAjuda">
         <div class="ajuda_item_principal">
           <h1>O que é Fonoteka?</h1>
           <img src="../assets/seta.svg" alt="">
@@ -88,6 +89,7 @@ include_once("../php/session.php");
       </li>
 
       <li class="ajuda_item">
+        <input type="checkbox" class="checkAjuda">
         <div class="ajuda_item_principal">
           <h1>O que é TEA?</h1>
           <img src="../assets/seta.svg" alt="">
@@ -98,6 +100,7 @@ include_once("../php/session.php");
         </div>
       </li>
       <li class="ajuda_item">
+        <input type="checkbox" class="checkAjuda">
         <div class="ajuda_item_principal">
           <h1>Como criar uma conta?</h1>
           <img src="../assets/seta.svg" alt="">
@@ -114,6 +117,7 @@ include_once("../php/session.php");
       </li>
 
       <li class="ajuda_item">
+        <input type="checkbox" class="checkAjuda">
         <div class="ajuda_item_principal">
           <h1>Para que o site Fonoteka é útil para você?</h1>
           <img src="../assets/seta.svg" alt="">
@@ -126,6 +130,7 @@ include_once("../php/session.php");
         </div>
       </li>
       <li class="ajuda_item">
+        <input type="checkbox" class="checkAjuda">
         <div class="ajuda_item_principal">
           <h1>Como adicionar uma atividade?</h1>
           <img src="../assets/seta.svg" alt="">
@@ -140,6 +145,7 @@ include_once("../php/session.php");
         </div>
       </li>
       <li class="ajuda_item">
+        <input type="checkbox" class="checkAjuda">
         <div class="ajuda_item_principal">
           <h1>Esqueci minha senha, e agora?</h1>
           <img src="../assets/seta.svg" alt="">
@@ -156,6 +162,7 @@ include_once("../php/session.php");
         </div>
       </li>
       <li class="ajuda_item">
+        <input type="checkbox" class="checkAjuda">
         <div class="ajuda_item_principal">
           <h1>Para que serve a aba "Guia?</h1>
           <img src="../assets/seta.svg" alt="">
@@ -172,6 +179,7 @@ include_once("../php/session.php");
       </li>
 
       <li class="ajuda_item">
+        <input type="checkbox" class="checkAjuda">
         <div class="ajuda_item_principal">
           <h1>Como ver as atividades lançadas?</h1>
           <img src="../assets/seta.svg" alt="">
@@ -188,6 +196,7 @@ include_once("../php/session.php");
       </li>
 
       <li class="ajuda_item">
+        <input type="checkbox" class="checkAjuda">
         <div class="ajuda_item_principal">
           <h1>Como baixo o aplicativo para os portadores de TEA?</h1>
           <img src="../assets/seta.svg" alt="">
@@ -201,6 +210,7 @@ include_once("../php/session.php");
       </li>
 
       <li class="ajuda_item">
+        <input type="checkbox" class="checkAjuda">
         <div class="ajuda_item_principal">
           <h1>Como sair de sua conta?</h1>
           <img src="../assets/seta.svg" alt="">
