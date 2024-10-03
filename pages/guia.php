@@ -128,7 +128,7 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
       }
       ?>
     </section>
-    <?php echo $_SESSION['funcao'] ? "<a class=\"button_addGuia\" href=\"./guiaForm.php\">Adicionar Guia</a>" : "" ?>
+    <?php echo $_SESSION['funcao'] ? "<a class=\"button_addGuia\" href=\"./guiaForm.php\"><p class=\"guiaP\">Adicionar Guia</p></a>" : "" ?>
   </main>
 
   <dialog>

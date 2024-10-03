@@ -67,6 +67,9 @@ if (inpSenha && inpConf) {
 const menuHamburguer = document.querySelector(".menu_hamburguer");
 const nav = document.querySelector("nav");
 
+const btnAddGuia = document.querySelector(".button_addGuia");
+const pGuia = document.querySelector(".guiaP");
+
 window.addEventListener("resize", () => {
   if (window.screen.width > 830 && nav) {
     nav.classList.remove("visible");
@@ -74,6 +77,12 @@ window.addEventListener("resize", () => {
 
   if (window.screen.width < 830 && perfil_usuario) {
     popLogin.classList.remove("visible");
+  }
+
+  if (btnAddGuia) {
+    let windowWidth = window.screen.width * 0.05;
+    let btnWidth = parseFloat(pGuia.offsetWidth + windowWidth);
+    btnAddGuia.style.width = btnWidth + "px";
   }
 });
 
