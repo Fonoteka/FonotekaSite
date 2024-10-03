@@ -67,22 +67,25 @@ if (inpSenha && inpConf) {
 const menuHamburguer = document.querySelector(".menu_hamburguer");
 const nav = document.querySelector("nav");
 
-
 window.addEventListener("resize", () => {
-  if(window.screen.width > 830 && nav){
+  if (window.screen.width > 830 && nav) {
     nav.classList.remove("visible");
+  }
+
+  if (window.screen.width < 830 && perfil_usuario) {
+    popLogin.classList.remove("visible");
   }
 });
 
-if(menuHamburguer && nav){
-  menuHamburguer.addEventListener('click', () => {
-    nav.classList.toggle("visible")
+if (menuHamburguer && nav) {
+  menuHamburguer.addEventListener("click", () => {
+    nav.classList.toggle("visible");
     popLogin.classList.remove("visible");
-  })
+  });
 }
 
-if(perfil_usuario_menu){
-  perfil_usuario_menu.addEventListener('click', () => {
+if (perfil_usuario_menu) {
+  perfil_usuario_menu.addEventListener("click", () => {
     popLogin.classList.toggle("visible");
     nav.classList.remove("visible");
     if (popLogin.classList.contains("visible")) {
@@ -92,5 +95,5 @@ if(perfil_usuario_menu){
       email.setAttribute("disabled", "true");
       senha.setAttribute("disabled", "true");
     }
-  })
+  });
 }
