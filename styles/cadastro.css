@@ -46,7 +46,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  text-align: center;
+  text-align: left;
   font-size: 1.5rem;
   margin: 10px auto;
 }
@@ -58,11 +58,7 @@
 
 .div_pConf {
   position: relative;
-  margin: 10px auto;
   width: 50%;
-
-  display: table;
-  float: left;
 }
 
 .div_pConf > input {
@@ -105,4 +101,36 @@
 
 .naoCoincidem {
   display: inline-block;
+}
+
+@media screen and (max-width: 1000px) {
+  .cadastro{
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .cadastro{
+    position: static;
+    transform: none;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  .formulario{
+    flex-direction: column;
+  }
+
+  .formulario > input,
+  .formulario > select {
+    width: 100%;
+  }
+
+  .div_pConf {
+    width: 100%;
+  }
+  
+  .div_pConf > input {
+    width: 100%;
+  }
 }

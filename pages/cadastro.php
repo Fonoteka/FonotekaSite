@@ -24,7 +24,7 @@
 
     <div class="div_usuario">
       <img id="perfil_usuario" class="img_perfil" src="../assets/perfil-Icon.png" />
-      <label for="perfil_usuario" class="perfil_label">"Usuário"</label>
+      <label for="perfil_usuario" class="perfil_label">Usuário</label>
     </div>
 
 
@@ -39,9 +39,9 @@
           <a href="./guia.php"> Guia </a>
         </div>
         <hr>
-        <div class="menu_div_usuario">>
+        <div class="menu_div_usuario">
           <img id="perfil_usuario" class="img_perfil" src="../assets/perfil-Icon.png" />
-          <label for="perfil_usuario" class="perfil_label">"Usuário"</label>
+          <label for="perfil_usuario" class="perfil_label">Usuário</label>
         </div>
       </section>
 
