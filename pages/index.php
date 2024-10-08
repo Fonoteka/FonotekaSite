@@ -79,9 +79,7 @@ include_once("../php/session.php");
         <!-- Ferramentas do Mentor -->
 
         <div class="areamentor">
-            <p class="areaMentorTitulo"> Área do
-            <p class="areaMentorTituloLaranja">Mentor </p>
-            </p>
+            <p class="areaMentorTitulo"> Área do <span class="areaMentorTituloLaranja">Mentor</span></p>
             <a href="./ajuda.php"> <img class="interrogação" src="../assets/interrogação.png"> </a>
         </div>
 

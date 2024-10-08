@@ -5,6 +5,7 @@
   overflow: hidden;
 
   width: 15vw;
+  min-width: 190px;
   padding: 10px;
   border-radius: calc(var(--border-radius) / 2);
   box-shadow: var(--box-shadow);

@@ -12,8 +12,10 @@
 }
 .areamentor {
   /*Header Area Mentor*/
+  padding: 10px 20px;
   background-color: #0097cc;
   display: flex;
+  justify-content: space-between;
   flex-direction: wrap;
   border-top: 5px solid var(--laranja);
   border-bottom: 5px solid var(--laranja);
@@ -21,8 +23,6 @@
 
 .areaMentorTitulo {
   /*Titulo em Branco, Area do*/
-  padding: 10px;
-  margin-left: 20px;
   color: white;
   font-family: "Kodchasan", sans-serif;
   font-size: 50px;
@@ -113,9 +113,6 @@
 
 /*Botão de ajuda*/
 .interrogação {
-  margin-left: 1000px;
-  margin-top: 15px;
-  width: 50px;
   height: 50px;
 }
 

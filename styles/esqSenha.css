@@ -1,4 +1,4 @@
-.esqSenha_body{
+.esqSenha_body {
   background-image: url("../assets/Carrossel.png");
   background-repeat: no-repeat;
   background-size: 100vw;
@@ -17,6 +17,7 @@
   transform: translate(-50%, -50%);
 
   width: 20%;
+  min-width: 200px;
 
   background-color: var(--azul);
   border-radius: var(--border-radius);

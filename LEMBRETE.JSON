@@ -1,5 +1,5 @@
 {
-  "URGENTE": ["Funcionalidade foto de perfil form cadastro", "Responsividade"],
+  "URGENTE": ["Funcionalidade foto de perfil form cadastro"],
 
   "POUCO URGENTE": [],
 
@@ -19,6 +19,7 @@
     "Mensagem de 'necessário login' entre as telas",
     "Refresh automático",
     "caso esteja logado exibir outras informações no popLogin",
-    "Back adicionar atividade"
+    "Back adicionar atividade",
+    "Responsividade(Lucas)"
   ]
 }
