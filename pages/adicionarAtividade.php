@@ -77,25 +77,24 @@ protectAdm(0);
     <form enctype="multipart/form-data" method="POST" class="fundo">
         <div class="containerimagem">
             <img class="imagem" src="../assets/Adicionarativ.png">
-            <input class="bntadd" type="submit" name="sendAtividade" value="Enviar Atividade" required>
+            <input class="bntadd" type="submit" name="sendAtividade" value="Adicionar" required>
         </div>
 
         <div class="containertexto">
-            <input class="titulotext" type="text" id="titulo" placeholder="Digite o nome da atividade:"
-                name="nomeAtividade" required>
+            <input class="titulotext" type="text" id="titulo" placeholder="Nome da atividade:" name="nomeAtividade"
+                required>
             <p class="obs"> Abaixo adicione as informações de forma curta para execução da atividade</p>
             <input class="obsadd" type="text" placeholder="Adicionar descrição" name="descAtividade" required>
 
         </div>
 
         <div class="containeradicional">
-            <input class="pontos" type="number" placeholder="Quantidade de Pontos" name="pontos" required>
-            <input class="pontos" type="number" placeholder="Nível de Autismo" name="nivelAutismo" required>
+            <input class="pontos" type="number" placeholder="Qtd Pontos" name="pontos" required>
+            <input class="pontos" type="number" placeholder="Nível Autismo" name="nivelAutismo" required>
             <input class="pontos" type="date" placeholder="Data Inicial (Mentor)" name="dataPostagem" required>
             <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" name="dataEntrega" required>
             <input class="pontos" type="number" placeholder="ID Aluno" name="idAluno" required>
-            <label class="audio"> Adicionar áudio/pdf:</label>
-            <input class="audio1" type="file" multiple="multiple" placeholder="Adicionar PDF" name="arquivo[]" required>
+
         </div>
     </form>
 
