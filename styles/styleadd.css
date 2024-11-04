@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: row;
   border-radius: 20px;
+  height: 100%;
 }
 
 .containerimagem {
@@ -88,21 +89,119 @@
   margin-left: 50px;
 }
 
-.audio {
-  margin-top: 5%;
-  margin-left: 10%;
-  color: white;
-  font-family: "Gabarito", sans-serif;
-}
-.audio1 {
-  margin-top: 5%;
-  margin-left: 5%;
-  width: 300px;
-  height: 70px;
-  margin-left: 50px;
-}
-
 .ids {
   display: flex;
   flex-direction: wrap;
+}
+
+@media all and (max-width: 500px) {
+  .containertexto {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 10%;
+  }
+
+  .titulotext {
+    margin-top: 260px;
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    padding: 3%;
+    border-radius: 25px;
+    border: solid 2px #fa5f18;
+    font-family: "Gabarito", sans-serif;
+  }
+
+  .fundo {
+    background-color: #0097cc;
+    width: 95%;
+    margin-left: 2%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    height: 100%;
+  }
+
+  .pontos {
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 80px;
+    height: 70px;
+    border: solid 2px #fa5f18;
+    margin-left: 50px;
+  }
+
+  .audio {
+    margin-top: 5%;
+    margin-left: 10%;
+    color: white;
+    font-family: "Gabarito", sans-serif;
+  }
+  .audio1 {
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 300px;
+    height: 70px;
+    margin-left: 50px;
+  }
+
+  .ids {
+    display: flex;
+    flex-direction: wrap;
+  }
+
+  .obs {
+    color: white;
+    font-family: "Gabarito", sans-serif;
+    margin-left: 3%;
+    font-size: 14px;
+    margin-top: 5%;
+  }
+
+  .obsadd {
+    color: rgb(0, 0, 0);
+    font-family: "Gabarito", sans-serif;
+    margin-top: 6.5%;
+    font-size: 15px;
+    height: 200px;
+    width: 175px;
+    margin-left: 1%;
+    border-radius: 5px;
+    border: solid 2px #fa5f18;
+    background-color: #c1e5f5;
+  }
+  .imagem {
+    width: 220px;
+    height: 220px;
+    border-radius: 8px;
+    border: solid 2px #fa5f18;
+    margin-top: 15%;
+    margin-left: 20%;
+  }
+
+  .containeradicional {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
+    margin-top: 3.2%;
+  }
+
+  .bntadd {
+    background-color: #fa5f18;
+    width: 100%;
+    height: 143px;
+    margin-top: 120%;
+    color: white;
+    margin-left: 165%;
+    font-size: 25px;
+    border: solid 0px;
+    padding: 7px;
+    font-family: "Gabarito", sans-serif;
+    margin-bottom: 100px;
+  }
 }
