@@ -2,22 +2,28 @@
 include("conexao.php");
 include("session.php");
 
+$auth = $service->createAuth();
+
 if (!empty($_POST['email']) && !empty($_POST['senha'])) {
 
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $email = $conn->real_escape_string($_POST['email']);
-    $senha = $conn->real_escape_string($_POST['senha']);
+    $query = $service->initializeQueryBuilder();
 
-    $sql = $conn->prepare("SELECT * FROM tb_cadastro WHERE email=?");
-    $sql->bind_param("s", $email);
-    $sql->execute();
-    $result = $sql->get_result();
+    $user;
 
-    $user = $result->fetch_assoc();
+    try {
+        $user = $query->select('*')
+            ->from('tb_cadastro')
+            // ->where('email', "$email")
+            ->execute()
+            ->getResult();
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 
-    if ($result->num_rows == 1) {
+    if ($user->num_rows == 1) {
 
         if (password_verify($senha, $user['Senha'])) {
 
