@@ -87,6 +87,7 @@ include_once("../php/session.php");
             conclusão de curso
             (Desenvolvimento de
             Sistemas 2024)</p>
+
         </div>
       </div>
 
@@ -99,11 +100,14 @@ include_once("../php/session.php");
             Transtorno do Espectro
             Autista (TEA),</p>
         </div>
+        <img id="logoresponsi" src="../assets/Logo.png">
+
       </div>
 
     </div>
     <div id="direita">
       <img id="logo" src="../assets/Logo.png">
+
     </div>
   </div>
 
