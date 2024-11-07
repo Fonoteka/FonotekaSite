@@ -9,46 +9,53 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $query = $service->initializeQueryBuilder();
+    $queryUser = $service->initializeQueryBuilder();
 
     $user;
 
     try {
-        $user = $query->select('*')
+        $user = $queryUser->select('*')
             ->from('tb_cadastro')
-            // ->where('email', "$email")
+            ->where('email', "eq.$email")
             ->execute()
             ->getResult();
     } catch (Exception $e) {
         echo $e->getMessage();
     }
 
-    if ($user->num_rows == 1) {
+    if (is_array($user)) {
 
-        if (password_verify($senha, $user['Senha'])) {
+        if (password_verify($senha, $user[0]->senha)) {
 
             if (!isset($_SESSION)) {
                 session_start();
             }
 
-            $_SESSION['id'] = $user['IdMentor'];
-            $_SESSION['nome'] = $user['Nome'];
-            $_SESSION['funcao'] = $user['Funcao'];
+            $_SESSION['id'] = $user[0]->idmentor;
+            $_SESSION['nome'] = $user[0]->nome;
+            $_SESSION['funcao'] = $user[0]->funcao;
 
-            $idImagem = $user['IdImagem'];
+            $idImagem = $user[0]->idimagem;
             $idImagem = intval($idImagem);
 
-            $sql = $conn->prepare("SELECT path FROM tb_Imagens WHERE IdImagem = ?");
-            $sql->bind_param("i", $idImagem);
-            $sql->execute();
-            $result = $sql->get_result();
+            $queryPath = $service->initializeQueryBuilder();
 
-            $pathData = $result->fetch_assoc();
-            if ($pathData) {
-                $_SESSION['path_img'] = $pathData['path'];
-            } else {
-                $_SESSION['path_img'] = '';
+            try {
+                $path = $queryPath->select('path')
+                    ->from('tb_imagens')
+                    ->where('idimagem', "eq.$idImagem")
+                    ->execute()
+                    ->getResult();
+            } catch (Exception $e) {
+                echo $e->getMessage();
             }
+
+            if ($path) {
+                $_SESSION['path_img'] = $path[0]->path;
+            } else {
+                $_SESSION['path_img'] = 'NULO';
+            }
+
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
 
@@ -62,5 +69,3 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
         header("Location: " . $_SERVER['HTTP_REFERER']);
     }
 }
-
-?>
