@@ -146,3 +146,121 @@
   text-decoration: none;
   font-family: "Kodchasan", sans-serif;
 }
+
+@media all and (max-width:500px){
+  .capa {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .foto {
+    width: 100%;
+  }
+  .areamentor {
+    /*Header Area Mentor*/
+    padding: 10px 20px;
+    background-color: #0097cc;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: wrap;
+    border-top: 5px solid var(--laranja);
+    border-bottom: 5px solid var(--laranja);
+  }
+  
+  .areaMentorTitulo {
+    /*Titulo em Branco, Area do*/
+    color: white;
+    font-family: "Kodchasan", sans-serif;
+    font-size: 35px;
+    margin-top: 1px;
+  }
+  
+  .areaMentorTituloLaranja {
+    /*Titulo em laranja, Mentor*/
+    padding: 10px;
+    color: orange;
+    font-family: "Kodchasan", sans-serif;
+    font-size: 35px;
+    margin-left: -10px;
+  }
+  
+  .linha {
+    /*Linha separando*/
+    background-color: #fa5f18;
+    width: 100%;
+    height: 5px;
+  }
+  /*Contém todas as atividades*/
+  .atividades {
+    width: 10%;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-left: -1%;
+  }
+  
+  /*Adicionar Atividade, imagem*/
+  .addatividade {
+    margin-left: 0px;
+    width: 170px;
+    height:250px
+  }
+
+  /*Verificar progresso*/
+  .progresso {
+    margin-top: 4%;
+    margin-left: 0%;
+    width: 130px;
+  }
+  
+  /*Adicionar Aluno*/
+  .naluno {
+    margin-top: 2%;
+    margin-left: 0%;
+    width: 130px;
+  }
+  
+  /*Ver guia*/
+  .btnguia {
+    margin-left: 0%;
+    margin-top: 0%;
+    width: 130px;
+  }
+  
+  /*Ver progresso aluno*/
+  .controle {
+    margin-top: 25%;
+    margin-left: 0%;
+    width: 130px;
+  }
+  .controle:hover {
+    width: 395px;
+    transition: 0.5s;
+  }
+  
+  /*Botão de ajuda*/
+  .interrogação {
+    height: 30px;
+  }
+  
+  .retanguloazul {
+    background-color: #0097cc;
+    padding: 1px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .alunoscad {
+    padding: 10px;
+    background-color: #fa5f18;
+    width: 259px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    font-family: "Kodchasan", sans-serif;
+  }
+ 
+  
+}
