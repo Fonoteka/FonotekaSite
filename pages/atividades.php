@@ -75,33 +75,27 @@ protectAdm(0);
 
     </nav>
   </header>
-  <div id="total">
-    <!--Botões para tipos de atividades-->
-    <button id="personalizadas">Personalizadas</button>
-    <button id="predefinidas">Pré Definidas</button>
-    <button id="concluidas">Concluídas</button>
+
+
+  <div id="perso">
+    <!--Mostra as informações das atividades personalizadas-->
+    <img class="atividade" src="../assets/atvd1.png">
+    <img class="atividade" src="../assets/atvd2.png">
+    <img class="atividade" src="../assets/atvd3.png">
+
   </div>
 
   <div id="perso">
     <!--Mostra as informações das atividades personalizadas-->
-    <img class="atividade" src="../assets/leao.jpg">
-    <img class="atividade" src="../assets/leao.jpg">
-    <img class="atividade" src="../assets/leao.jpg">
+    <img class="atividade" src="../assets/atvd4.png">
+    <img class="atividade" src="../assets/atvd5.png">
+    <img class="atividade" src="../assets/atvd6.png">
 
   </div>
 
-  <!--<div id="predefi">
-      <img class="atividade"src="leao.jpg">
-      <img class="atividade"src="leao.jpg">
-      <img class="atividade"src="Leao.jpg">
-    </div>-->
-
-  <!--<div id="conclu">
-      <img class="atividade"src="leao.jpg">
-      <img class="atividade"src="leao.jpg">
-      <img class="atividade"src="Leao.jpg">
-    </div>-->
-  <div class="linha"></div>
+  <div class="linha">
+    <a href="adicionarAtividade.php" id="addatividade2"> Adicionar nova atividade </a>
+  </div>
 
   <dialog>
     <h1 id="msgCadastro"></h1>
