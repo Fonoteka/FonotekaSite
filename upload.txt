@@ -1,0 +1,37 @@
+<script>
+  // Função para fazer o upload do arquivo
+  document.getElementById('uploadForm').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Impede o envio do formulário (recarregar a página)
+
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0]; // Obtém o arquivo selecionado
+
+    if (!file) {
+      document.getElementById('status').innerText = 'Por favor, selecione um arquivo.';
+      return;
+    }
+
+    // Cria um nome único para o arquivo (usando o timestamp)
+    const fileName = `${Date.now()}-${file.name}`;
+
+    try {
+      // Faz o upload para o Supabase Storage
+      const { data, error } = await supabase.storage
+        .from('images') // Nome do Bucket onde você vai salvar o arquivo
+        .upload(fileName, file); // fileName é o nome do arquivo, file é o arquivo real
+
+      if (error) {
+        throw error; // Se houver erro, lança a exceção
+      }
+
+      // Após o upload, mostre a URL do arquivo
+      document.getElementById('status').innerHTML = `
+        Arquivo enviado com sucesso!<br>
+        URL da imagem: <a href="${data.Key}" target="_blank">${data.Key}</a>
+      `;
+    } catch (error) {
+      console.error('Erro ao fazer upload', error);
+      document.getElementById('status').innerText = `Erro: ${error.message}`;
+    }
+  });
+</script>

@@ -1,6 +1,7 @@
 {
   "require": {
     "phpmailer/phpmailer": "^6.9",
-    "rafaelwendel/phpsupabase": "^0.0.8"
+    "rafaelwendel/phpsupabase": "^0.0.8",
+    "supabase/storage-php": "^0.0.3"
   }
 }
