@@ -11,6 +11,10 @@ protectAdm(1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+
 </head>
 
 <body>
@@ -73,7 +77,7 @@ protectAdm(1);
 
         </nav>
     </header>
-    <form enctype="multipart/form-data" class="form-guia" method="POST">
+    <form enctype="multipart/form-data" class="form-guia" id="form-guia" method="POST">
         <h1>Adicione um guia</h1>
 
         <div>
@@ -94,7 +98,7 @@ protectAdm(1);
 
         <div>
             <p>Imagem:</p>
-            <input type="file" name="imagem" required>
+            <input type="file" name="imagem" id="imagem" accept="image/*" required>
         </div>
 
         <div class="div_form">
@@ -109,7 +113,7 @@ protectAdm(1);
 
 </body>
 <script src="../js/index.js"></script>
-
+<script src="../js/storage-supabase.js"></script>
 <?php
 include_once('../php/conexao.php');
 
@@ -120,46 +124,60 @@ if (isset($_POST['titulo']) && isset($_POST['autor']) && isset($_POST['desc']) &
     $autor = $_POST['autor'];
     $imagem = $_FILES['imagem'];
 
-    if ($imagem['error'])
-        die("Erro ao carregar a imagem");
-
-    if ($imagem['size'] > 2097152)
-        die("Arquivo muito pesado");
-
     $nomeImagem = $imagem['name'];
     $uniqId = uniqid();
     $extensaoImagem = strtolower(pathinfo($nomeImagem, PATHINFO_EXTENSION));
-
-    if ($extensaoImagem != "jpg" && $extensaoImagem != "png" && $extensaoImagem != "jpeg")
-        die("<script>msgPop('Formato não suportado');</script>");
-
     $path = "../images/" . $uniqId . "." . $extensaoImagem;
 
-    $moved = move_uploaded_file($imagem['tmp_name'], $path);
+    $queryGuias = $service->initializeQueryBuilder();
 
-    if ($moved) {
-        $sql = $conn->prepare("SELECT nomeGuia FROM tb_guias WHERE nomeGuia =?");
-        $sql->bind_param('s', $titulo);
-        $sql->execute();
+    $guias = $queryGuias->select("nomeguia")
+        ->from("tb_guias")
+        ->where("nomeguia", "eq.$titulo")
+        ->execute()
+        ->getResult();
 
-        $result = $sql->get_result();
-
-        if (mysqli_num_rows($result) > 0) {
-            echo ("<script>msgPop('Guia já cadastrado');</script>");
-        } else {
-            $sql_query = $conn->query("INSERT INTO tb_imagens(nomeImagem,path)VALUES('$nomeImagem', '$path')") or die("Erro ao inserir a imagem");
-
-            $sql_query = $conn->query("SELECT IdImagem FROM tb_imagens WHERE path = '$path'") or die("Erro ao inserir o jogo");
-
-            $idImagem = $sql_query->fetch_array();
-            $idImagem = $idImagem['IdImagem'];
-
-            $sql_query = $conn->query("INSERT INTO tb_guias (nomeGuia, descricao, nomeAutor, IdImagem) VALUES('$titulo','$descricao','$autor', '$idImagem')") or die("Erro ao inserir o jogo");
-
-            echo ("<script>msgPop('Cadastro efetuado com sucesso!!');</script>");
-        }
+    if ($guias) {
+        echo ("<script>msgPop('Guia já cadastrado');</script>");
     } else {
-        echo ("<script>msgPop('Erro ao mover a imagem para a pasta');</script>");
+
+        $db = $service->initializeDatabase('tb_imagens', 'idimagem');
+
+        $newImagem = [
+            "nomeimagem" => $nomeImagem,
+            "path" => $path
+        ];
+
+        try {
+            $dataImagem = $db->insert($newImagem);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
+        $queryIdImagem = $service->initializeQueryBuilder();
+
+        $guias = $queryIdImagem->select("idimagem")
+            ->from("tb_imagens")
+            ->where("path", "eq.$path")
+            ->execute()
+            ->getResult();
+
+        $dbguia = $service->initializeDatabase('tb_guias', 'idguia');
+
+        $newGuia = [
+            "nomeguia" => $titulo,
+            "descricao" => $descricao,
+            "nomeautor" => $autor,
+            "idimagem" => $guias[0]->idimagem
+        ];
+
+        try {
+            $dataGuia = $dbguia->insert($newGuia);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
+        echo ("<script>msgPop('Cadastro efetuado com sucesso!!');</script>");
     }
 }
 echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
