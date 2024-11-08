@@ -39,6 +39,7 @@ if (!empty($dados['SendNovoUsuario'])) {
                     ->getResult();
             } catch (Exception $e) {
                 echo $e->getMessage();
+                exit();
             }
             var_dump($userExist);
             if ($userExist) {
@@ -65,6 +66,7 @@ if (!empty($dados['SendNovoUsuario'])) {
                 } catch (Exception $e) {
                     echo $e->getMessage();
                     $_SESSION['msgCadastro'] = "<script>msgPop('ERRO: Problema de inserção no banco de dados');</script>";
+                    exit();
                 }
             }
         } else {

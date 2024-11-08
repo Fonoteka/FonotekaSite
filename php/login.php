@@ -21,6 +21,7 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
             ->getResult();
     } catch (Exception $e) {
         echo $e->getMessage();
+        exit();
     }
 
     if (is_array($user)) {
@@ -48,6 +49,7 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
                     ->getResult();
             } catch (Exception $e) {
                 echo $e->getMessage();
+                exit();
             }
 
             if ($path) {
