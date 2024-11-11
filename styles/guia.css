@@ -42,8 +42,8 @@
   margin: auto;
 }
 
-.button_addGuia{
-  width: 10%;
+.button_addGuia {
+  width: 15%;
   padding: 10px;
   margin: auto;
 
@@ -52,7 +52,7 @@
   text-align: center;
 }
 
-.button_addGuia:hover{
+.button_addGuia:hover {
   background-color: var(--laranja-escuro);
   color: var(--branco);
 }

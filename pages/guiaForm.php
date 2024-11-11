@@ -77,23 +77,25 @@ protectAdm(1);
 
         </nav>
     </header>
-    <form enctype="multipart/form-data" class="form-guia" id="form-guia" method="POST">
+    <form enctype="multipart/form-data" class="form-guia" id="form-guia">
         <h1>Adicione um guia</h1>
 
         <div>
             <p>Titulo:</p>
-            <input type="text" name="titulo" autocomplete="off" placeholder="Digite o Titulo" maxlength="50" autofocus
-                required>
+            <input type="text" name="titulo" id="titulo" autocomplete="off" placeholder="Digite o Titulo" maxlength="50"
+                autofocus required>
         </div>
 
         <div>
             <p>Descrição:</p>
-            <input type="text" name="desc" autocomplete="off" placeholder="Digite a descrição" maxlength="100" required>
+            <input type="text" name="desc" id="desc" autocomplete="off" placeholder="Digite a descrição" maxlength="100"
+                required>
         </div>
 
         <div>
             <p>Autor:</p>
-            <input type="text" name="autor" autocomplete="off" placeholder="Digite o autor" maxlength="50" required>
+            <input type="text" name="autor" id="autor" autocomplete="off" placeholder="Digite o autor" maxlength="50"
+                required>
         </div>
 
         <div>
@@ -102,9 +104,10 @@ protectAdm(1);
         </div>
 
         <div class="div_form">
-            <input class="button_cadastro" id="buSubmit" type="submit" value="Cadastrar">
+            <input class="button_cadastro" id="buSubmit" name="SendNewGuia" type="submit" value="Cadastrar">
         </div>
     </form>
+
 
     <dialog>
         <h1 id="msgCadastro"></h1>
@@ -114,74 +117,10 @@ protectAdm(1);
 </body>
 <script src="../js/index.js"></script>
 <script src="../js/storage-supabase.js"></script>
+
 <?php
-include_once('../php/conexao.php');
-
-if (isset($_POST['titulo']) && isset($_POST['autor']) && isset($_POST['desc']) && isset($_FILES['imagem'])) {
-
-    $titulo = $_POST['titulo'];
-    $descricao = $_POST['desc'];
-    $autor = $_POST['autor'];
-    $imagem = $_FILES['imagem'];
-
-    $nomeImagem = $imagem['name'];
-    $uniqId = uniqid();
-    $extensaoImagem = strtolower(pathinfo($nomeImagem, PATHINFO_EXTENSION));
-    $path = "../images/" . $uniqId . "." . $extensaoImagem;
-
-    $queryGuias = $service->initializeQueryBuilder();
-
-    $guias = $queryGuias->select("nomeguia")
-        ->from("tb_guias")
-        ->where("nomeguia", "eq.$titulo")
-        ->execute()
-        ->getResult();
-
-    if ($guias) {
-        echo ("<script>msgPop('Guia já cadastrado');</script>");
-    } else {
-
-        $db = $service->initializeDatabase('tb_imagens', 'idimagem');
-
-        $newImagem = [
-            "nomeimagem" => $nomeImagem,
-            "path" => $path
-        ];
-
-        try {
-            $dataImagem = $db->insert($newImagem);
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-
-        $queryIdImagem = $service->initializeQueryBuilder();
-
-        $guias = $queryIdImagem->select("idimagem")
-            ->from("tb_imagens")
-            ->where("path", "eq.$path")
-            ->execute()
-            ->getResult();
-
-        $dbguia = $service->initializeDatabase('tb_guias', 'idguia');
-
-        $newGuia = [
-            "nomeguia" => $titulo,
-            "descricao" => $descricao,
-            "nomeautor" => $autor,
-            "idimagem" => $guias[0]->idimagem
-        ];
-
-        try {
-            $dataGuia = $dbguia->insert($newGuia);
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-
-        echo ("<script>msgPop('Cadastro efetuado com sucesso!!');</script>");
-    }
-}
-echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
-$_SESSION['msgLogin'] = "";
+echo !empty($_SESSION['msgGuia']) ? $_SESSION['msgGuia'] : "";
+$_SESSION['msgGuia'] = "";
 ?>
 
 </html>

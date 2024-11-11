@@ -7,7 +7,7 @@ protectAdm(0);
 $queryGuias = $service->initializeQueryBuilder();
 
 try {
-  $guias = $queryGuias->select('idguia,nomeguia,descricao,nomearquivo,nomeautor')
+  $guias = $queryGuias->select('nomeguia,descricao,nomearquivo,nomeautor,path_imagem')
     ->from('tb_guias')
     ->execute()
     ->getResult();
@@ -98,48 +98,16 @@ try {
 
       } else {
         foreach ($guias as $index => $value) {
-          $idGuia = intval($value->idguia);
 
-          $queryIdImagem = $service->initializeQueryBuilder();
+          echo "<li class=\"guia_item\">";
+          echo !empty($guias[$index]) ? "<img src=\"{$value->path_imagem}\" alt=\"\">" : "<img src=\"path/default.jpg\" alt=\"Imagem não encontrada\">";
+          echo "<div>";
+          echo "<h1>{$value->nomeguia}</h1>";
+          echo "<h2>{$value->descricao}</h2>";
+          echo "</div>";
+          echo "<p>@{$value->nomeautor}</p>";
+          echo "</li>";
 
-          try {
-            $idImagem = $queryIdImagem->select('idimagem')
-              ->from('tb_guias')
-              ->where('idguia', "eq.$idGuia")
-              ->execute()
-              ->getResult();
-          } catch (Exception $e) {
-            echo $e->getMessage();
-            exit();
-          }
-
-          if ($idImagem) {
-            $idImagemValue = intval($idImagem[0]->idimagem);
-
-            $queryImagem = $service->initializeQueryBuilder();
-
-            try {
-              $imagem = $queryImagem->select('*')
-                ->from('tb_imagens')
-                ->where('idimagem', "eq.$idImagemValue")
-                ->execute()
-                ->getResult();
-            } catch (Exception $e) {
-              echo $e->getMessage();
-              exit();
-            }
-            echo "<li class=\"guia_item\">";
-            echo !empty($imagem) ? "<img src=\"{$imagem[0]->path}\" alt=\"\">" : "<img src=\"path/default.jpg\" alt=\"Imagem não encontrada\">";
-            echo "<div>";
-            echo "<h1>{$value->nomeguia}</h1>";
-            echo "<h2>{$value->descricao}</h2>";
-            echo "</div>";
-            echo "<p>@{$value->nomeautor}</p>";
-            echo "</li>";
-
-          } else {
-            echo "Erro ao buscar imagem.";
-          }
         }
       }
 

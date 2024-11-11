@@ -6,31 +6,104 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     const formulario = document.getElementById("form-guia");
+    var tituloGuia = document.getElementById("titulo");
+    var descGuia = document.getElementById("desc");
+    var autorGuia = document.getElementById("autor");
 
     formulario.addEventListener("submit", async function (e) {
-      const fileInput = document.getElementById("imagem");
-      const file = fileInput.files[0];
+      e.preventDefault();
 
-      if (!file) {
-        msgPop("Adicione um arquivo");
-      }
+      await vereficaGuia();
+      const fileName = await uploadImagem();
+      const fileURL = await getImagemURL();
+      cadastraImagem();
+      cadastraGuia();
 
-      const fileName = `${Date.now()}-${file.name}`;
+      async function uploadImagem() {
+        const fileInput = document.getElementById("imagem");
+        const file = fileInput.files[0];
 
-      try {
-        const { data, error } = await supabaseClient.storage
-          .from("images")
-          .upload(fileName, file);
-
-        if (error) {
-          msgPop(`ERRO: ${error.message}`);
-          return;
+        if (!file) {
+          msgPop("Adicione um arquivo");
         }
 
-        msgPop("Upload bem-sucedido!");
-      } catch (error) {
-        msgPop(`ERRO: ${error}`);
-        return;
+        const fileName = `${Date.now()}-${file.name}`;
+
+        try {
+          const { data, error } = await supabaseClient.storage
+            .from("images")
+            .upload(fileName, file);
+
+          if (error) {
+            msgPop(`ERRO: ${error.message}`);
+            return;
+          }
+
+          return fileName;
+        } catch (error) {
+          msgPop(`ERRO: ${error}`);
+          return;
+        }
+      }
+
+      async function getImagemURL() {
+        try {
+          const { data } = supabaseClient.storage
+            .from("images")
+            .getPublicUrl(fileName);
+
+          const fileURL = data.publicUrl;
+          return fileURL;
+        } catch (error) {
+          msgPop(`ERRO: ${error}`);
+          return;
+        }
+      }
+
+      async function vereficaGuia() {
+        try {
+          const { data, error } = await supabaseClient
+            .from("tb_guias")
+            .select("nomeguia")
+            .eq("nomeguia", tituloGuia.value);
+
+          if (data.length > 0) {
+            msgPop("Guia já cadastrado");
+            return;
+          }
+        } catch (error) {
+          msgPop(`ERRO: ${error}`);
+          return;
+        }
+      }
+
+      async function cadastraImagem() {
+        try {
+          const { error } = await supabaseClient.from("tb_imagens").insert({
+            url: fileURL,
+          });
+        } catch (error) {
+          msgPop(`ERRO: ${error}`);
+          return;
+        }
+      }
+
+      async function cadastraGuia() {
+        try {
+          const { error } = await supabaseClient.from("tb_guias").insert({
+            nomeguia: tituloGuia.value,
+            descricao: descGuia.value,
+            nomeautor: autorGuia.value,
+            path_imagem: fileURL,
+          });
+
+          if (!error) {
+            msgPop("Cadastro efetuado com sucesso!!");
+          }
+        } catch (error) {
+          msgPop(`ERRO: ${error}`);
+          return;
+        }
       }
     });
   }
