@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var tituloGuia = document.getElementById("titulo");
     var descGuia = document.getElementById("desc");
     var autorGuia = document.getElementById("autor");
+    var linkGuia = document.getElementById("link");
 
     formulario.addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -16,8 +17,24 @@ document.addEventListener("DOMContentLoaded", function () {
       await vereficaGuia();
       const fileName = await uploadImagem();
       const fileURL = await getImagemURL();
-      cadastraImagem();
       cadastraGuia();
+
+      async function vereficaGuia() {
+        try {
+          const { data, error } = await supabaseClient
+            .from("tb_guias")
+            .select("nomeguia")
+            .eq("nomeguia", tituloGuia.value);
+
+          if (data.length > 0) {
+            msgPop("Guia já cadastrado");
+            return;
+          }
+        } catch (error) {
+          msgPop(`ERRO: ${error}`);
+          return;
+        }
+      }
 
       async function uploadImagem() {
         const fileInput = document.getElementById("imagem");
@@ -60,40 +77,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      async function vereficaGuia() {
-        try {
-          const { data, error } = await supabaseClient
-            .from("tb_guias")
-            .select("nomeguia")
-            .eq("nomeguia", tituloGuia.value);
-
-          if (data.length > 0) {
-            msgPop("Guia já cadastrado");
-            return;
-          }
-        } catch (error) {
-          msgPop(`ERRO: ${error}`);
-          return;
-        }
-      }
-
-      async function cadastraImagem() {
-        try {
-          const { error } = await supabaseClient.from("tb_imagens").insert({
-            url: fileURL,
-          });
-        } catch (error) {
-          msgPop(`ERRO: ${error}`);
-          return;
-        }
-      }
-
       async function cadastraGuia() {
         try {
           const { error } = await supabaseClient.from("tb_guias").insert({
             nomeguia: tituloGuia.value,
             descricao: descGuia.value,
             nomeautor: autorGuia.value,
+            linkGuia: linkGuia.value,
             path_imagem: fileURL,
           });
 

@@ -7,7 +7,7 @@ protectAdm(0);
 $queryGuias = $service->initializeQueryBuilder();
 
 try {
-  $guias = $queryGuias->select('nomeguia,descricao,nomearquivo,nomeautor,path_imagem')
+  $guias = $queryGuias->select('nomeguia,descricao,nomeautor,linkGuia,path_imagem')
     ->from('tb_guias')
     ->execute()
     ->getResult();
@@ -105,7 +105,10 @@ try {
           echo "<h1>{$value->nomeguia}</h1>";
           echo "<h2>{$value->descricao}</h2>";
           echo "</div>";
+          echo "<div class=\"div_info\">";
           echo "<p>@{$value->nomeautor}</p>";
+          echo "<a class=\"link_guia\" href=\"{$value->linkGuia}\">Acesse o guia</a>";
+          echo "</div>";
           echo "</li>";
 
         }

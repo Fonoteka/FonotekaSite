@@ -2,6 +2,7 @@
   display: none;
   opacity: 0;
   flex-direction: column;
+  align-items: center;
   overflow: hidden;
 
   width: 15vw;
@@ -23,8 +24,18 @@
 }
 
 .popLogin > .alt_cont {
+  width: 100%;
+  height: 25px;
+  font-family: var(--font-primaria);
   font-size: 1rem;
-  margin-bottom: 10px;
+  color: var(--branco);
+
+  background-color: var(--laranja);
+
+  border-radius: var(--border-radius);
+  border: none;
+  margin-bottom: 2px;
+  white-space: nowrap;
 }
 
 .link_popLogin {
@@ -34,6 +45,7 @@
 }
 
 form > .btn_logout {
+  width: 100%;
   font-family: var(--font-primaria);
   color: var(--laranja);
 

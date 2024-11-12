@@ -82,25 +82,28 @@ protectAdm(1);
 
         <div>
             <p>Titulo:</p>
-            <input type="text" name="titulo" id="titulo" autocomplete="off" placeholder="Digite o Titulo" maxlength="50"
-                autofocus required>
+            <input type="text" id="titulo" autocomplete="off" placeholder="Digite o Titulo" maxlength="50" autofocus
+                required>
         </div>
 
         <div>
             <p>Descrição:</p>
-            <input type="text" name="desc" id="desc" autocomplete="off" placeholder="Digite a descrição" maxlength="100"
-                required>
+            <input type="text" id="desc" autocomplete="off" placeholder="Digite a descrição" maxlength="100" required>
         </div>
 
         <div>
             <p>Autor:</p>
-            <input type="text" name="autor" id="autor" autocomplete="off" placeholder="Digite o autor" maxlength="50"
-                required>
+            <input type="text" id="autor" autocomplete="off" placeholder="Digite o autor" maxlength="50" required>
+        </div>
+
+        <div>
+            <p>Link:</p>
+            <input type="text" id="link" autocomplete="off" placeholder="Digite o link" required>
         </div>
 
         <div>
             <p>Imagem:</p>
-            <input type="file" name="imagem" id="imagem" accept="image/*" required>
+            <input type="file" id="imagem" accept="image/*" required>
         </div>
 
         <div class="div_form">
