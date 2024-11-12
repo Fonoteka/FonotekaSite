@@ -74,36 +74,26 @@ protectAdm(0);
 
         </nav>
     </header>
-    <form method="POST" class="fundo">
+    <form action="../php/cadastraAluno.php" method="POST" class="fundo">
         <div class="containerimagem">
             <img class="imagem" src="../assets/perfilaluno.jpg">
-            <input class="bntadd" type="submit" name="cadastrarAluno" value="Cadastrar Aluno">
+            <input class="bntadd" type="submit" name="newAluno" value="Cadastrar Aluno">
         </div>
 
         <div class="containertexto">
-        <div class="textbox2">
-                    <select class="titulotext"name="genero">
-                        <option value="">Selecione o gênero</option>
-                        <option value="homem">Homem</option>
-                        <option value="mulher">Mulher</option>
-                        <option value="mulher">Não-binário</option>
-                        <option value="mulher">Não Informar</option>
-                    </select>
-
-                    <input class="titulotext" type="number" id="titulo" placeholder="Nível de Autismo do aluno:"
-                    name="nomeAtividade">
-                </div>
-            <input class="titulotext" type="text" id="titulo" placeholder="Nome completo aluno:"
-                name="nomeAtividade">
-                <input class="titulotext" type="text" id="titulo" placeholder="Usuário do aluno:"
-                name="nomeAtividade">
-                <input class="titulotext" type="text" id="titulo" placeholder="Senha do aluno:"
-                name="nomeAtividade">
-                <input class="titulotext" type="email" id="titulo" placeholder="E-mail Aluno:"
-                name="nomeAtividade">
-                <input class="titulotext" type="number" id="titulo" placeholder="Id do Mentor:"
-                name="nomeAtividade">
-                
+            <input class="titulotext" type="text" name="nome" placeholder="Nome completo aluno:">
+            <input class="titulotext" type="number" name="nivel" placeholder="Nível de Autismo do aluno:">
+            <input class="titulotext" type="text" name="usuario" placeholder="Usuário do aluno:">
+            <select class="titulotext" name="genero">
+                <option value="">Selecione o gênero</option>
+                <option value="homem">Homem</option>
+                <option value="mulher">Mulher</option>
+                <option value="mulher">Não-binário</option>
+                <option value="mulher">Não Informar</option>
+            </select>
+            <input class="titulotext" type="email" name="email" placeholder="E-mail Aluno:">
+            <input class="titulotext" type="password" name="senha" placeholder="Senha do aluno:">
+            <input class="titulotext" type="number" name="idMentor" placeholder="Id do Mentor:">
 
         </div>
     </form>
@@ -116,7 +106,12 @@ protectAdm(0);
 </dialog>
 
 <script src="../js/index.js"></script>
- 
 
+<?php
+
+echo !empty($_SESSION['msgCadastroAluno']) ? $_SESSION['msgCadastroAluno'] : "";
+$_SESSION['msgCadastroAluno'] = "";
+
+?>
 
 </html>
