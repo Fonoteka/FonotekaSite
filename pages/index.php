@@ -91,7 +91,7 @@ include_once("../php/session.php");
 
             <div>
                 <a href=""><img class="progresso" src="../assets/progresso.png"></a>
-                <a href=""><img class="naluno" src="../assets/Addaluno.png"></a>
+                <a href="./cadastroAluno.php"><img class="naluno" src="../assets/Addaluno.png"></a>
 
             </div>
 

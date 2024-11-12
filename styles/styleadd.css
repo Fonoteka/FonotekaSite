@@ -1,12 +1,16 @@
 .fundo {
-  background-color: #0097cc;
-  width: 96%;
-  margin-left: 2%;
-  margin-top: 2%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 90%;
+  padding: 2%;
+  margin: auto;
+  margin-top: 20px;
+
+  background-color: #0097cc;
   border-radius: 20px;
-  height: 100%;
 }
 
 .containerimagem {
@@ -14,7 +18,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin-top:2%;
 }
 
 .imagem {
@@ -44,7 +47,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 2%;
 }
 
 .titulotext {
