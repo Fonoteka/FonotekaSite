@@ -11,6 +11,8 @@ protectAdm(0);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="../styles/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <title> Adicionar Atividades </title>
 </head>
 
@@ -74,27 +76,28 @@ protectAdm(0);
 
         </nav>
     </header>
-    <form enctype="multipart/form-data" method="POST" class="fundo">
+    <form enctype="multipart/form-data" action="../php/adicionarAtividade.php" method="POST" class="fundo"
+        id="form-ativ">
         <div class="containerimagem">
             <img class="imagem" src="../assets/Adicionarativ.png">
             <input class="bntadd" type="submit" name="sendAtividade" value="Adicionar" required>
         </div>
 
         <div class="containertexto">
-            <input class="titulotext" type="text" id="titulo" placeholder="Nome da atividade:" name="nomeAtividade"
-                required>
+            <input class="titulotext" type="text" id="nomeAtividade" placeholder="Nome da atividade:" required>
             <p class="obs"> Abaixo adicione as informações de forma curta para execução da atividade</p>
-            <input class="obsadd" type="text" placeholder="Adicionar descrição" name="descAtividade" required>
+            <input class="obsadd" type="text" placeholder="Adicionar descrição" id="descAtividade" required>
 
         </div>
 
         <div class="containeradicional">
-            <input class="pontos" type="number" placeholder="Qtd Pontos" name="pontos" required>
-            <input class="pontos" type="number" placeholder="Nível Autismo" name="nivelAutismo" required>
-            <input class="pontos" type="date" placeholder="Data Inicial (Mentor)" name="dataPostagem" required>
-            <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" name="dataEntrega" required>
-            <input class="pontos" type="number" placeholder="ID Aluno" name="idAluno" required>
-
+            <input class="pontos" type="number" placeholder="Qtd Pontos" id="pontos" required>
+            <input class="pontos" type="number" placeholder="Nível Autismo" id="nivelAutismo" required>
+            <input class="pontos" type="date" placeholder="Data Inicial (Mentor)" id="dataPostagem" required>
+            <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" id="dataEntrega" required>
+            <input class="pontos" type="number" placeholder="ID Aluno" id="idAluno" required>
+            <input class="pontos file" type="file" id="imagem" accept="image/*">
+            <input style="display:none" type="text" id="idMentor" value="<?php echo $_SESSION["id"] ?>">
         </div>
     </form>
 
@@ -106,71 +109,7 @@ protectAdm(0);
 </dialog>
 
 <script src="../js/index.js"></script>
+<script src="../js/storage-atividade.js"></script>
 
-<?php
-
-
-include('../php/conexao.php');
-include('../php/login.php');
-
-$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
-if (!empty($dados['sendAtividade'])) {
-
-
-    $nomeAtividade = $dados['nomeAtividade'];
-    $descAtividade = $dados['descAtividade'];
-    $pontos = $dados['pontos'];
-    $nivelAutismo = $dados['nivelAutismo'];
-    $dataPostagem = $dados['dataPostagem'];
-    $dataEntrega = $dados['dataEntrega'];
-    $IdAluno = $dados['idAluno'];
-    $IdMentor = $_SESSION['id'];
-    $arquivo = $_FILES['arquivo'];
-    $IdGroup = uniqid();
-
-    foreach ($arquivo['error'] as $key => $error) {
-        if ($error == UPLOAD_ERR_OK) {
-            $nomeArquivo = $arquivo['name'][$key];
-            $uniqId = uniqid();
-            $extensaoArquivo = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
-
-            $path = "../files/" . $uniqId . "." . $extensaoArquivo;
-
-            $moved = move_uploaded_file($arquivo['tmp_name'][$key], $path);
-
-            if ($moved) {
-                $sql_query = "INSERT INTO tb_arquivos (IdGroup, nomeArquivo, pathArquivo) VALUES (?,?,?)";
-                $sql = $conn->prepare($sql_query);
-                $sql->bind_param("sss", $IdGroup, $nomeArquivo, $path);
-                if (!($sql->execute())) {
-                    die("ERRO: Não foi possivel inserir o arquivo $nomeArquivo");
-                }
-            } else {
-                die("<script>msgPop(ERRO: Não foi possivel mover os arquivos para a pasta');</script>");
-            }
-        } else {
-            die("<script>msgPop(ERRO: Não foi possivel dar upload');</script>");
-        }
-    }
-
-    $sql_query = "INSERT INTO tb_atividades (nomeAtividade, descAtividade, IdMentor, qtnPontos, nivelAutismo, dataPostagem , dataEntrega, IdGroup, IdAluno) VALUES (?,?,?,?,?,?,?,?,?)" or die("<script>msgPop('ERRO: Não foi possivel inserir arquivo');</script>");
-    $sql = $conn->prepare($sql_query);
-    $sql->bind_param("sssssssss", $nomeAtividade, $descAtividade, $IdMentor, $pontos, $nivelAutismo, $dataPostagem, $dataEntrega, $IdGroup, $IdAluno);
-    if ($sql->execute()) {
-        echo ("<script>msgPop('Atividade cadastrada com sucesso');</script>");
-        $sql_query = "";
-    } else {
-        echo ("<script>msgPop('ERRO: Não foi possivel cadastrar atividade');</script>");
-        $sql_query = "";
-    }
-
-    $dados = array();
-}
-
-echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
-$_SESSION['msgLogin'] = "";
-
-?>
 
 </html>

@@ -94,6 +94,17 @@
   margin-left: 50px;
 }
 
+.file {
+  padding: 20px 10px;
+  background-color: var(--branco);
+  color: black;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
 .ids {
   display: flex;
   flex-direction: wrap;

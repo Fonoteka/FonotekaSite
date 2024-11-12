@@ -119,7 +119,7 @@ protectAdm(1);
 
 </body>
 <script src="../js/index.js"></script>
-<script src="../js/storage-supabase.js"></script>
+<script src="../js/storage-guia.js"></script>
 
 <?php
 echo !empty($_SESSION['msgGuia']) ? $_SESSION['msgGuia'] : "";

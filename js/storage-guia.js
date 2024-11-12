@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
           const { data, error } = await supabaseClient.storage
-            .from("images")
+            .from("imagesGuia")
             .upload(fileName, file);
 
           if (error) {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
       async function getImagemURL() {
         try {
           const { data } = supabaseClient.storage
-            .from("images")
+            .from("imagesGuia")
             .getPublicUrl(fileName);
 
           const fileURL = data.publicUrl;
