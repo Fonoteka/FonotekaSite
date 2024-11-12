@@ -1,3 +1,6 @@
+<?php
+include_once("../php/session.php");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,7 +15,7 @@
 <body>
   <header>
     <a class="link_img" href="./index.php">
-      <img class="img_logo" src="../assets/Logo.png" />Fonoteka
+      <img class="img_logo" src="../assets/Logo.png" />Fonotéka
     </a>
 
     <div class="opcoes_div">
@@ -51,7 +54,7 @@
   <section class="cadastro">
     <h1 class="titulo">Cadastro</h1>
 
-    <form class="formulario" method="post">
+    <form class="formulario" action="../php/cadastro.php" method="post">
       <input type="text" name="nome" placeholder="Nome" required />
       <input type="text" name="usuario" placeholder="Usuário" required />
       <input type="email" name="email" placeholder="E-mail" required />
@@ -75,7 +78,7 @@
           Li e estou de acordo com as políticas de privacidade.*
         </label>
       </div>
-      <input type="submit" value="Cadastrar" />
+      <input type="submit" value="Cadastrar" name="SendNovoUsuario" />
     </form>
   </section>
 
@@ -87,56 +90,11 @@
   <script src="../js/index.js"></script>
 </body>
 
-</html>
-
-
 <?php
 
-include('../php/conexao.php');
+echo !empty($_SESSION['msgCadastro']) ? $_SESSION['msgCadastro'] : "";
+$_SESSION['msgCadastro'] = "";
 
-if (isset($_POST['nome']) && isset($_POST['usuario']) && isset($_POST['email']) && isset($_POST['nascimento']) && isset($_POST['telefone']) && isset($_POST['genero']) && isset($_POST['senha']) && isset($_POST['confSenha']) && isset($_POST['politicas'])) {
-  $nome = $_POST['nome'];
-  $usuario = $_POST['usuario'];
-  $email = $_POST['email'];
-  $obj_nascimento = new DateTime($_POST['nascimento']);
-  $nascimento = $obj_nascimento->format('Y-m-d');
-  $genero = $_POST['genero'];
-  $tel = $_POST['telefone'];
-  $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-  $senhaDescriptografada = $_POST['senha'];
-  $confSenha = $_POST['confSenha'];
-  $politicas = $_POST['politicas'];
-
-
-  $hoje = new DateTime(date('Y/m/d'));
-  $diff = $hoje->diff($obj_nascimento);
-  $diff = $diff->y;
-
-  if ($senhaDescriptografada === $confSenha) {
-    if ($diff >= 18) {
-      $sql = $conn->prepare("SELECT IdMentor, Nome FROM tb_cadastro WHERE email = ?");
-      $sql->bind_param("s", $email);
-      $sql->execute();
-      $result = $sql->get_result();
-
-      if ($result->num_rows > 0) {
-        echo ("<script>msgPop('Usuário já cadastrado');</script>");
-      } else {
-        $sql = $conn->prepare("INSERT INTO tb_cadastro(Nome, Email, Telefone, Senha, Usuario, DataNascimento, Genero, Funcao) VALUES (?, ?, ?, ?, ?, ?, ?, 0)");
-        $sql->bind_param("sssssss", $nome, $email, $tel, $senha, $usuario, $nascimento, $genero);
-        if ($sql->execute()) {
-          echo ("<script>msgPop('Usuário cadastrado');</script>");
-          exit();
-        } else {
-          echo ("<script>msgPop('ERRO: Problema de inserção no banco de dados');</script>");
-        }
-      }
-    } else {
-      echo ("<script>msgPop('Idade minima não atendida');</script>");
-    }
-  } else {
-    echo ("<script>msgPop('As senhas não coincidem');</script>");
-  }
-
-}
 ?>
+
+</html>

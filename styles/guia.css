@@ -10,13 +10,28 @@
   box-shadow: var(--box-shadow);
 }
 
-.guia_item > p {
-  margin-left: auto;
-}
-
 .guia_item > img {
   max-width: 100px;
   border-radius: calc(var(--border-radius) / 2);
+}
+
+.div_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: auto;
+}
+
+.div_info > p {
+  font-size: 1.25rem;
+  text-align: right;
+}
+
+.link_guia {
+  align-self: flex-end;
+  font-family: var(--font-primaria);
+  text-decoration: underline;
+  margin: 0;
 }
 
 .error {
@@ -42,17 +57,22 @@
   margin: auto;
 }
 
-.button_addGuia{
-  width: 10%;
+.button_addGuia {
+  width: 15%;
   padding: 10px;
   margin: auto;
 
   background-color: var(--laranja);
   border-radius: var(--border-radius);
   text-align: center;
+
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.button_addGuia:hover{
+.button_addGuia:hover {
   background-color: var(--laranja-escuro);
   color: var(--branco);
 }

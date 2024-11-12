@@ -25,7 +25,7 @@ $mail = new PHPMailer(true);
     <main class="cont_form">
         <h1>Recuperação de conta</h1>
         <form class="form_recuperar" method="POST">
-            <input type="text" name="recupera" placeholder="Email, cpf ou telefone">
+            <input type="text" name="email" placeholder="Email" required>
             <input type="submit" value="Recuperar" name="SendGeraSenha">
             <a href="./index.php">Lembrou?</a>
             <p id="msg"></p>
@@ -40,21 +40,39 @@ $mail = new PHPMailer(true);
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 if (!empty($dados['SendGeraSenha'])) {
-    $recupera = $_POST['recupera'];
+    $email = $_POST['email'];
 
-    $sql_query = "SELECT IdMentor, nome, email, Telefone FROM tb_cadastro WHERE email = ? LIMIT 1";
-    $sql = $conn->prepare($sql_query);
-    $sql->bind_param("s", $recupera);
-    $sql->execute();
-    $result = $sql->get_result();
+    $queryRecupera = $service->initializeQueryBuilder();
 
-    if (($result->num_rows == 1) and ($recupera)) {
-        $user_row = $result->fetch_assoc();
-        $chave_recupera_senha = password_hash($user_row['IdMentor'], PASSWORD_DEFAULT);
-        $sql = $conn->prepare("UPDATE tb_cadastro SET recuperarSenha = ? WHERE IdMentor = ?");
-        $sql->bind_param("ss", $chave_recupera_senha, $user_row['IdMentor']);
+    try {
+        $recupera = $queryRecupera->select("idmentor, nome, email, telefone")
+            ->from("tb_cadastro")
+            ->where("email", "eq.$email")
+            ->range("0-1")
+            ->execute()
+            ->getResult();
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        exit();
+    }
 
-        if ($sql->execute()) {
+    if ($recupera) {
+        $chave_recupera_senha = password_hash($recupera[0]->idmentor, PASSWORD_DEFAULT);
+
+        $db = $service->initializeDatabase("tb_cadastro", "idmentor");
+
+        $updateRecupera = [
+            "recuperarsenha" => $chave_recupera_senha
+        ];
+
+        try {
+            $data = $db->update($recupera[0]->idmentor, $updateRecupera);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit();
+        }
+
+        if ($data) {
             $link = "http://localhost/fonotekaSite/pages/recupSenha.php?chave=$chave_recupera_senha";
 
             try {
@@ -63,16 +81,16 @@ if (!empty($dados['SendGeraSenha'])) {
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'bancodesanguetcc03@gmail.com';
-                $mail->Password = 'doozqbubaxitqqrb';
+                $mail->Password = 'nduaohkoqwgcfmav';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
                 $mail->setFrom('atendimento@fonoteka.com', 'atendimento');
-                $mail->addAddress($user_row['email'], $user_row['nome']);
+                $mail->addAddress($recupera[0]->email, $recupera[0]->nome);
 
                 $mail->isHTML(true);
                 $mail->Subject = 'Recuperar a senha - Fonoteka';
-                $mail->Body = "Prezado(a) " . $user_row['nome'] . "<br><br>Recebemos uma solicitação para redefinir a senha da sua conta. Para prosseguir com a alteração, por favor, <b>clique no link abaixo:</b> <br><br> <a href=" . $link . ">Redefinir senha</a> <br><br>Por questões de segurança, este link é válido apenas uma vez. Se você não solicitou a redefinição da senha, desconsidere este email. Sua conta permanecerá segura. <br><br> Atenciosamente,<br>Iniciativa Fonoteka";
+                $mail->Body = "Prezado(a) " . $recupera[0]->nome . "<br><br>Recebemos uma solicitação para redefinir a senha da sua conta. Para prosseguir com a alteração, por favor, <b>clique no link abaixo:</b> <br><br> <a href=" . $link . ">Redefinir senha</a> <br><br>Por questões de segurança, este link é válido apenas uma vez. Se você não solicitou a redefinição da senha, desconsidere este email. Sua conta permanecerá segura. <br><br> Atenciosamente,<br>Iniciativa Fonoteka";
                 $mail->AltBody = $link;
 
                 $mail->send();
@@ -80,6 +98,7 @@ if (!empty($dados['SendGeraSenha'])) {
                 $_SESSION['msgTexto'] = "<script>msgTexto('<p>Email enviado com sucesso!!</p>')</script>";
             } catch (Exception $e) {
                 $_SESSION['msgTexto'] = "<script>msgTexto('<p>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>')</script>";
+                exit();
             } finally {
                 header("Location: " . $_SERVER['PHP_SELF']);
                 $dados = array();

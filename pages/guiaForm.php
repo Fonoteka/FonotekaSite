@@ -11,6 +11,10 @@ protectAdm(1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+
 </head>
 
 <body>
@@ -73,34 +77,40 @@ protectAdm(1);
 
         </nav>
     </header>
-    <form enctype="multipart/form-data" class="form-guia" method="POST">
+    <form enctype="multipart/form-data" class="form-guia" id="form-guia">
         <h1>Adicione um guia</h1>
 
         <div>
             <p>Titulo:</p>
-            <input type="text" name="titulo" autocomplete="off" placeholder="Digite o Titulo" maxlength="50" autofocus
+            <input type="text" id="titulo" autocomplete="off" placeholder="Digite o Titulo" maxlength="50" autofocus
                 required>
         </div>
 
         <div>
             <p>Descrição:</p>
-            <input type="text" name="desc" autocomplete="off" placeholder="Digite a descrição" maxlength="100" required>
+            <input type="text" id="desc" autocomplete="off" placeholder="Digite a descrição" maxlength="100" required>
         </div>
 
         <div>
             <p>Autor:</p>
-            <input type="text" name="autor" autocomplete="off" placeholder="Digite o autor" maxlength="50" required>
+            <input type="text" id="autor" autocomplete="off" placeholder="Digite o autor" maxlength="50" required>
+        </div>
+
+        <div>
+            <p>Link:</p>
+            <input type="text" id="link" autocomplete="off" placeholder="Digite o link" required>
         </div>
 
         <div>
             <p>Imagem:</p>
-            <input type="file" name="imagem" required>
+            <input type="file" id="imagem" accept="image/*" required>
         </div>
 
         <div class="div_form">
-            <input class="button_cadastro" id="buSubmit" type="submit" value="Cadastrar">
+            <input class="button_cadastro" id="buSubmit" name="SendNewGuia" type="submit" value="Cadastrar">
         </div>
     </form>
+
 
     <dialog>
         <h1 id="msgCadastro"></h1>
@@ -109,61 +119,11 @@ protectAdm(1);
 
 </body>
 <script src="../js/index.js"></script>
+<script src="../js/storage-supabase.js"></script>
 
 <?php
-include_once('../php/conexao.php');
-
-if (isset($_POST['titulo']) && isset($_POST['autor']) && isset($_POST['desc']) && isset($_FILES['imagem'])) {
-
-    $titulo = $_POST['titulo'];
-    $descricao = $_POST['desc'];
-    $autor = $_POST['autor'];
-    $imagem = $_FILES['imagem'];
-
-    if ($imagem['error'])
-        die("Erro ao carregar a imagem");
-
-    if ($imagem['size'] > 2097152)
-        die("Arquivo muito pesado");
-
-    $nomeImagem = $imagem['name'];
-    $uniqId = uniqid();
-    $extensaoImagem = strtolower(pathinfo($nomeImagem, PATHINFO_EXTENSION));
-
-    if ($extensaoImagem != "jpg" && $extensaoImagem != "png" && $extensaoImagem != "jpeg")
-        die("<script>msgPop('Formato não suportado');</script>");
-
-    $path = "../images/" . $uniqId . "." . $extensaoImagem;
-
-    $moved = move_uploaded_file($imagem['tmp_name'], $path);
-
-    if ($moved) {
-        $sql = $conn->prepare("SELECT nomeGuia FROM tb_guias WHERE nomeGuia =?");
-        $sql->bind_param('s', $titulo);
-        $sql->execute();
-
-        $result = $sql->get_result();
-
-        if (mysqli_num_rows($result) > 0) {
-            echo ("<script>msgPop('Guia já cadastrado');</script>");
-        } else {
-            $sql_query = $conn->query("INSERT INTO tb_imagens(nomeImagem,path)VALUES('$nomeImagem', '$path')") or die("Erro ao inserir a imagem");
-
-            $sql_query = $conn->query("SELECT IdImagem FROM tb_imagens WHERE path = '$path'") or die("Erro ao inserir o jogo");
-
-            $idImagem = $sql_query->fetch_array();
-            $idImagem = $idImagem['IdImagem'];
-
-            $sql_query = $conn->query("INSERT INTO tb_guias (nomeGuia, descricao, nomeAutor, IdImagem) VALUES('$titulo','$descricao','$autor', '$idImagem')") or die("Erro ao inserir o jogo");
-
-            echo ("<script>msgPop('Cadastro efetuado com sucesso!!');</script>");
-        }
-    } else {
-        echo ("<script>msgPop('Erro ao mover a imagem para a pasta');</script>");
-    }
-}
-echo !empty($_SESSION['msgLogin']) ? $_SESSION['msgLogin'] : "";
-$_SESSION['msgLogin'] = "";
+echo !empty($_SESSION['msgGuia']) ? $_SESSION['msgGuia'] : "";
+$_SESSION['msgGuia'] = "";
 ?>
 
 </html>

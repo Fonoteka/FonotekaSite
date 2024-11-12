@@ -4,10 +4,17 @@ include_once("../php/session.php");
 include_once("../php/protect.php");
 protectAdm(0);
 
-$sql = $conn->prepare("SELECT idGuia,nomeGuia,descricao,nomeArquivo,nomeAutor FROM tb_guias");
-$sql->execute();
-$result = $sql->get_result();
-$guias = $result->fetch_all(MYSQLI_ASSOC);
+$queryGuias = $service->initializeQueryBuilder();
+
+try {
+  $guias = $queryGuias->select('nomeguia,descricao,nomeautor,linkGuia,path_imagem')
+    ->from('tb_guias')
+    ->execute()
+    ->getResult();
+} catch (Exception $e) {
+  echo $e->getMessage();
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -83,7 +90,7 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
   <main>
     <section class="guia">
       <?php
-      if ($result->num_rows == 0) {
+      if (!$guias) {
         echo "<div class=\"error\">";
         echo "<p class=\"error_menssage\">INFELIZMENTE NÃO POSSUIMOS NENHUM GUIA EDUCACIONAL DISPONIVEL NO MOMENTO</p>";
         echo "<a href=\"./index.php\">Voltar à tela principal</a>";
@@ -92,40 +99,21 @@ $guias = $result->fetch_all(MYSQLI_ASSOC);
       } else {
         foreach ($guias as $index => $value) {
 
-          $idGuia = intval($value['idGuia']);
-          $sql = $conn->query("SELECT IdImagem FROM tb_guias WHERE idGuia = $idGuia");
+          echo "<li class=\"guia_item\">";
+          echo !empty($guias[$index]) ? "<img src=\"{$value->path_imagem}\" alt=\"\">" : "<img src=\"path/default.jpg\" alt=\"Imagem não encontrada\">";
+          echo "<div>";
+          echo "<h1>{$value->nomeguia}</h1>";
+          echo "<h2>{$value->descricao}</h2>";
+          echo "</div>";
+          echo "<div class=\"div_info\">";
+          echo "<p>@{$value->nomeautor}</p>";
+          echo "<a class=\"link_guia\" href=\"{$value->linkGuia}\">Acesse o guia</a>";
+          echo "</div>";
+          echo "</li>";
 
-          if ($sql) {
-            $idImagem = $sql->fetch_assoc();
-
-            if ($idImagem) {
-              $idImagemValue = intval($idImagem['IdImagem']);
-              $sql = $conn->query("SELECT * FROM tb_Imagens WHERE IdImagem = $idImagemValue");
-
-              if ($sql) {
-                $imagem = $sql->fetch_all(MYSQLI_ASSOC);
-
-                echo "<li class=\"guia_item\">";
-                echo !empty($imagem) ? "<img src=\"{$imagem[0]['path']}\" alt=\"\">" : "<img src=\"path/default.jpg\" alt=\"Imagem não encontrada\">";
-                echo "<div>";
-                echo "<h1>{$value['nomeGuia']}</h1>";
-                echo "<h2>{$value['descricao']}</h2>";
-                echo "</div>";
-                echo "<p>@{$value['nomeAutor']}</p>";
-                echo "</li>";
-
-              } else {
-                echo "Erro ao buscar imagem.";
-              }
-            } else {
-              echo "IdImagem não encontrado.";
-            }
-          } else {
-            echo "Erro ao buscar guia.";
-          }
         }
-
       }
+
       ?>
     </section>
     <?php echo $_SESSION['funcao'] ? "<a class=\"button_addGuia\" href=\"./guiaForm.php\"><p class=\"guiaP\">Adicionar Guia</p></a>" : "" ?>
