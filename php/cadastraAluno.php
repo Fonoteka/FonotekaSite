@@ -37,11 +37,10 @@ if (!empty($dados["newAluno"])) {
             "nome" => $nome,
             "usuario" => $usuario,
             "email" => $email,
-            "senha" => $senhaDescriptografada,
+            "senha" => $senha,
             "genero" => $genero,
             "nivelautismo" => $nivel,
-            "idmentor" => $idMentor,
-            "path_imagem" => "https://zaxdehkvsnwabvoyyesz.supabase.co/storage/v1/object/public/images/1731435636173-Cat03.jpg"
+            "idmentor" => $idMentor
         ];
 
         try {
