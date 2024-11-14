@@ -1,5 +1,6 @@
 <?php
 include_once("../php/session.php");
+echo $_SESSION['path_img'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
