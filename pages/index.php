@@ -106,6 +106,9 @@ include_once("../php/session.php");
             <a href="" class="alunoscad"> Ver Alunos Cadastrados </a>
         </div>
     </main>
+
+    <div class="loader loader-hidden"></div>
+
 </body>
 
 <dialog>

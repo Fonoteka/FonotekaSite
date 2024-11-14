@@ -102,8 +102,10 @@ protectAdm(0);
     <button id="buClose" class="buClose">Fechar</button>
   </dialog>
 
-  <script src="../js/index.js"></script>
+  <div class="loader loader-hidden"></div>
 </body>
+
+<script src="../js/index.js"></script>
 
 <?php
 

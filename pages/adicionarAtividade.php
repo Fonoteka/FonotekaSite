@@ -101,6 +101,8 @@ protectAdm(0);
         </div>
     </form>
 
+    <div class="loader loader-hidden"></div>
+
 </body>
 
 <dialog>
@@ -110,6 +112,5 @@ protectAdm(0);
 
 <script src="../js/index.js"></script>
 <script src="../js/storage-atividade.js"></script>
-
 
 </html>

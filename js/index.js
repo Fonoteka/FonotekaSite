@@ -119,3 +119,12 @@ if (listAjuda) {
     });
   });
 }
+
+function loading(state) {
+  const loading = document.querySelector(".loader");
+  if (state == true) {
+    loading.classList.remove("loader-hidden");
+  } else {
+    loading.classList.add("loader-hidden");
+  }
+}

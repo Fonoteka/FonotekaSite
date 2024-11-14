@@ -18,9 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
     formulario.addEventListener("submit", async function (e) {
       e.preventDefault();
 
+      loading(true);
       const fileName = await uploadImagem();
       const fileURL = await getImagemURL();
       cadastraAtividade();
+      loading(false);
 
       async function uploadImagem() {
         const fileInput = document.getElementById("imagem");
