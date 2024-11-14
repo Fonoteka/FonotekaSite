@@ -35,8 +35,8 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
             $_SESSION['id'] = $user[0]->idmentor;
             $_SESSION['nome'] = $user[0]->nome;
             $_SESSION['funcao'] = $user[0]->funcao;
-            $_SESSION['path_img'] = $path[0]->path;
-            
+            $_SESSION['path_img'] = $user[0]->path_imagem;
+
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
 

@@ -2,7 +2,6 @@
   display: none;
   opacity: 0;
   flex-direction: column;
-  /* align-items: center; */
   overflow: hidden;
 
   width: 15vw;
@@ -23,7 +22,7 @@
   animation: aparece 0.5s forwards;
 }
 
-.popLogin > .btn_login{
+.popLogin > .btn_login {
   font-size: 1.25rem;
 }
 
@@ -57,7 +56,7 @@ form > .btn_logout {
 
   border-radius: var(--border-radius);
   border: none;
-  margin-bottom: 5px;
+  margin: 5px 0;
 }
 
 form > .btn_logout:hover {
