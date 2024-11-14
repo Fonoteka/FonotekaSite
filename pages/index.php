@@ -44,7 +44,7 @@ include_once("../php/session.php");
             echo "<label for=\"senha\">Senha:</label>";
             echo "<input type=\"password\" id=\"senha\" name=\"senha\" required disabled>";
             echo "<a class=\"link_popLogin\" href=\"./esqSenha.php\">Esqueceu a senha?</a>";
-            echo "<input class=\"alt_cont\" type=\"submit\" value=\"Acessar\">";
+            echo "<input class=\"btn_login\" type=\"submit\" value=\"Acessar\">";
             echo "<a class=\"link_popLogin\" href=\"./cadastro.php\">Sem conta?</a>";
         }
         echo "</form>";
