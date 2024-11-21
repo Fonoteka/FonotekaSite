@@ -37,6 +37,9 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
             $_SESSION['funcao'] = $user[0]->funcao;
             $_SESSION['path_img'] = $user[0]->path_imagem;
 
+            $id = $_SESSION['id'];
+            $_SESSION['msgLogin'] = "<script>localStorage.setItem(\"idMentor\", $id)</script>";
+
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
 

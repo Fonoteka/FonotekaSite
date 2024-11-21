@@ -11,6 +11,8 @@ protectAdm(0);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../styles/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <title>Fonoteka</title>
 </head>
 </head>
@@ -76,26 +78,25 @@ protectAdm(0);
     </nav>
   </header>
 
+  <main class="main_atividade">
+    <div class="div_titulo_select">
+      <h1 class="perso_titulo">Atividades Personalizadas</h1>
+      <select name="alunos" class="alunos_list">
+        <option value="">SELECIONE O ALUNO</option>
+      </select>
+    </div>
+    <section id="atividades">
+      <ul class="atividade-lista">
+      </ul>
+    </section>
+    <section id="aviso-select">
+      <p id="aviso-select-p">Por favor, selecione um aluno</p>
+    </section>
+  </main>
 
-  <div id="perso">
-    <!--Mostra as informações das atividades personalizadas-->
-    <img class="atividade" src="../assets/atvd1.png">
-    <img class="atividade" src="../assets/atvd2.png">
-    <img class="atividade" src="../assets/atvd3.png">
-
-  </div>
-
-  <div id="perso">
-    <!--Mostra as informações das atividades personalizadas-->
-    <img class="atividade" src="../assets/atvd4.png">
-    <img class="atividade" src="../assets/atvd5.png">
-    <img class="atividade" src="../assets/atvd6.png">
-
-  </div>
-
-  <div class="linha">
-    <a href="adicionarAtividade.php" id="addatividade2"> Adicionar nova atividade </a>
-  </div>
+  <footer class="footer_addAtividade">
+    <a href="adicionarAtividade.php" class="link_addatividade"> Adicionar nova atividade </a>
+  </footer>
 
   <dialog>
     <h1 id="msgCadastro"></h1>
@@ -106,6 +107,7 @@ protectAdm(0);
 </body>
 
 <script src="../js/index.js"></script>
+<script src="../js/data-atividades.js"></script>
 
 <?php
 
