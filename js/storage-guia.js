@@ -14,10 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
     formulario.addEventListener("submit", async function (e) {
       e.preventDefault();
 
+      loading(true);
       await vereficaGuia();
       const fileName = await uploadImagem();
       const fileURL = await getImagemURL();
       cadastraGuia();
+      loading(false);
 
       async function vereficaGuia() {
         try {

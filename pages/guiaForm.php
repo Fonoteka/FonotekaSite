@@ -117,6 +117,8 @@ protectAdm(1);
         <button id="buClose" class="buClose">Fechar</button>
     </dialog>
 
+    <div class="loader loader-hidden"></div>
+
 </body>
 <script src="../js/index.js"></script>
 <script src="../js/storage-guia.js"></script>
