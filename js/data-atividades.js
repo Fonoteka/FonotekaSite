@@ -7,18 +7,21 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const select_alunos = document.querySelector(".alunos_list");
     const idMentor = localStorage.getItem("idMentor");
+
     var aviso = document.querySelector("#aviso-select");
     var p = document.querySelector("#aviso-select-p");
+
     const alunos_lista = await procuraAlunos();
     selectAlunos(alunos_lista);
 
     select_alunos.addEventListener("change", async () => {
-      apagaAtividade();
+      loading(true);
+      apagaAtividade(false);
       if (select_alunos.value) {
         try {
           const { data, error } = await supabaseClient
             .from("tb_atividades")
-            .select("nomeatividade, path_imagem")
+            .select("idatividade,nomeatividade, path_imagem")
             .eq("idaluno", select_alunos.value);
 
           itemAtividade(data);
@@ -30,6 +33,25 @@ document.addEventListener("DOMContentLoaded", async function () {
         aviso.style.display = "block";
         p.innerHTML = "Por favor, selecione um aluno";
       }
+      loading(false);
+
+      const lista_btnExcluir = document.querySelectorAll(".excluir");
+      lista_btnExcluir.forEach((botao) => {
+        botao.addEventListener("click", async () => {
+          loading(true);
+          try {
+            const data = await supabaseClient
+              .from("tb_atividades")
+              .delete()
+              .eq("idatividade", botao.id);
+          } catch (error) {
+            msgPop(`ERRO: ${error}`);
+            return;
+          }
+          apagaAtividade(botao.id);
+          loading(false);
+        });
+      });
     });
 
     async function procuraAlunos() {
@@ -62,6 +84,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         atividades.forEach((item) => {
           const li = document.createElement("li");
           li.classList.add("atividade-item");
+          li.id = item.idatividade;
 
           const img = document.createElement("img");
           img.classList.add("atividade-img");
@@ -84,6 +107,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           btnExcluir.value = "Excluir";
           btnExcluir.classList.add("action-button", "excluir");
           btnExcluir.type = "button";
+          btnExcluir.id = item.idatividade;
 
           div.appendChild(btnAlterar);
           div.appendChild(btnExcluir);
@@ -99,12 +123,18 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     }
 
-    function apagaAtividade() {
+    function apagaAtividade(idLi) {
       const lista_atividade_item = document.querySelectorAll(".atividade-item");
 
-      lista_atividade_item.forEach((atividade) => {
-        atividade.remove();
-      });
+      if (idLi === false) {
+        lista_atividade_item.forEach((atividade) => {
+          atividade.remove();
+        });
+        return;
+      }
+
+      const liCard = document.getElementById(idLi);
+      liCard.remove();
     }
   }
 });
