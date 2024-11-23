@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     const alunos_lista = await procuraAlunos();
     selectAlunos(alunos_lista);
 
+    var dataAtividades;
+
     select_alunos.addEventListener("change", async () => {
       loading(true);
       apagaAtividade(false);
@@ -24,7 +26,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             .select("idatividade,nomeatividade, path_imagem")
             .eq("idaluno", select_alunos.value);
 
-          itemAtividade(data);
+          dataAtividades = data;
+          itemAtividade(dataAtividades);
         } catch (error) {
           msgPop(`ERRO: ${error}`);
           return;
@@ -48,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             msgPop(`ERRO: ${error}`);
             return;
           }
-          apagaAtividade(botao.id);
+          await apagaAtividade(botao.id);
           loading(false);
         });
       });
@@ -89,7 +92,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           const img = document.createElement("img");
           img.classList.add("atividade-img");
           img.src = item.path_imagem;
-          img.alt = "";
+          img.alt = item.nomeatividade;
+          img.id = `img${item.idatividade}`;
 
           const h2 = document.createElement("h2");
           h2.classList.add("item-titulo");
@@ -123,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     }
 
-    function apagaAtividade(idLi) {
+    async function apagaAtividade(idLi) {
       const lista_atividade_item = document.querySelectorAll(".atividade-item");
 
       if (idLi === false) {
@@ -132,6 +136,21 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
         return;
       }
+
+      // const img = document.querySelector("#img" + idLi);
+
+      // try {
+      //   const { data, error } = await supabaseClient.storage
+      //     .from("imagesAtividade")
+      //     .remove(["1732317287583-imagem_2024-11-22_185508202.png"]);
+
+      //   if (error) {
+      //     msgPop(error);
+      //   }
+      // } catch (error) {
+      //   msgPop(`ERRO: ${error}`);
+      //   return;
+      // }
 
       const liCard = document.getElementById(idLi);
       liCard.remove();
