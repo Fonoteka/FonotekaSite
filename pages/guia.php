@@ -107,7 +107,7 @@ try {
           echo "</div>";
           echo "<div class=\"div_info\">";
           echo "<p>@{$value->nomeautor}</p>";
-          echo "<a class=\"link_guia\" href=\"{$value->linkGuia}\">Acesse o guia</a>";
+          echo "<a class=\"link_guia\" href=\"{$value->linkGuia}\" target=\"_blank\">Acesse o guia</a>";
           echo "</div>";
           echo "</li>";
 
