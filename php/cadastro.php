@@ -55,8 +55,8 @@ if (!empty($dados['SendNovoUsuario'])) {
                     'datanascimento' => $nascimento,
                     'genero' => $genero,
                     'funcao' => "FALSE",
-                    'idimagem' => null,
-                    'recuperarsenha' => null
+                    'path_imagem' => "https://zaxdehkvsnwabvoyyesz.supabase.co/storage/v1/object/public/imagesCadastro/perfil-Icon.png",
+                    'recuperarsenha' => null,
 
                 ];
 
