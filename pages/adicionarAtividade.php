@@ -80,7 +80,7 @@ protectAdm(0);
         id="form-ativ">
         <div class="containerimagem">
             <img class="imagem" src="../assets/Adicionarativ.png">
-            <input class="bntadd" type="submit" name="sendAtividade" value="Adicionar" required>
+            <input class="bntadd" type="submit" name="sendAtividade" value="Salvar" required>
         </div>
 
         <div class="containertexto">

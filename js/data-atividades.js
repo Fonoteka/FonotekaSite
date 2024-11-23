@@ -55,6 +55,16 @@ document.addEventListener("DOMContentLoaded", async function () {
           loading(false);
         });
       });
+
+      const lista_btnAlterar = document.querySelectorAll(".alterar");
+      lista_btnAlterar.forEach((botao) => {
+        botao.addEventListener("click", () => {
+          localStorage.setItem("idAtividade", botao.id);
+          location.replace(
+            "http://localhost/fonotekaSite/pages/adicionarAtividade.php"
+          );
+        });
+      });
     });
 
     async function procuraAlunos() {
@@ -104,8 +114,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           const btnAlterar = document.createElement("input");
           btnAlterar.value = "Alterar";
-          btnAlterar.classList.add("action-button");
+          btnAlterar.classList.add("action-button", "alterar");
           btnAlterar.type = "button";
+          btnAlterar.id = item.idatividade;
 
           const btnExcluir = document.createElement("input");
           btnExcluir.value = "Excluir";
