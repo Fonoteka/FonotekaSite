@@ -37,7 +37,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       e.preventDefault();
 
       loading(true);
-      idAtividade !== null ? atualizaAtividade() : cadastraAtividade();
+      idAtividade !== null
+        ? await atualizaAtividade()
+        : await cadastraAtividade();
       loading(false);
 
       async function atualizaAtividade() {
