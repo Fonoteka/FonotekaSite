@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     var dataPostagem = document.getElementById("dataPostagem");
     var dataEntrega = document.getElementById("dataEntrega");
     var idAluno = document.getElementById("idAluno");
-    var idMentor = document.getElementById("idMentor");
+    var idMentor = localStorage.getItem("idMentor");
     const fileInput = document.getElementById("imagem");
 
     const idAtividade = localStorage.getItem("idAtividade");
@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       idAtividade !== null
         ? await atualizaAtividade()
         : await cadastraAtividade();
+      limpaCampos();
       loading(false);
 
       async function atualizaAtividade() {
@@ -158,6 +159,16 @@ document.addEventListener("DOMContentLoaded", async function () {
         msgPop(`ERRO: ${error.message}`);
         return;
       }
+    }
+
+    function limpaCampos() {
+      nomeAtividade.value = "";
+      descAtividade.value = "";
+      pontos.value = "";
+      nivelAutismo.value = "";
+      dataPostagem.value = "";
+      dataEntrega.value = "";
+      idAluno.value = "";
     }
   }
 });

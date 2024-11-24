@@ -76,8 +76,7 @@ protectAdm(0);
 
         </nav>
     </header>
-    <form enctype="multipart/form-data" action="../php/adicionarAtividade.php" method="POST" class="fundo"
-        id="form-ativ">
+    <form enctype="multipart/form-data" method="POST" class="fundo" id="form-ativ">
         <div class="containerimagem">
             <img class="imagem" src="../assets/Adicionarativ.png">
             <input class="bntadd" type="submit" name="sendAtividade" value="Salvar" required>
@@ -97,7 +96,6 @@ protectAdm(0);
             <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" id="dataEntrega" required>
             <input class="pontos" type="number" placeholder="ID Aluno" id="idAluno" required>
             <input class="pontos file" type="file" id="imagem" accept="image/*">
-            <input style="display:none" type="text" id="idMentor" value="<?php echo $_SESSION["id"] ?>">
         </div>
     </form>
 
