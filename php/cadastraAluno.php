@@ -13,7 +13,7 @@ if (!empty($dados["newAluno"])) {
     $email = $dados["email"];
     $senha = password_hash($dados['senha'], PASSWORD_DEFAULT);
     $senhaDescriptografada = $dados["senha"];
-    $idMentor = $dados["idMentor"];
+    $idMentor = $_SESSION['id'];
 
     $queryVerifyAluno = $service->initializeQueryBuilder();
 
@@ -40,7 +40,7 @@ if (!empty($dados["newAluno"])) {
             "senha" => $senha,
             "genero" => $genero,
             "nivelautismo" => $nivel,
-            "idmentor" => $idMentor
+            "idmentor" => $idMentor,
         ];
 
         try {

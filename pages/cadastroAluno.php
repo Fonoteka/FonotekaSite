@@ -93,7 +93,6 @@ protectAdm(0);
             </select>
             <input class="titulotext" type="email" name="email" placeholder="E-mail Aluno:">
             <input class="titulotext" type="password" name="senha" placeholder="Senha do aluno:">
-            <input class="titulotext" type="number" name="idMentor" placeholder="Id do Mentor:">
 
         </div>
     </form>
