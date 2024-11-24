@@ -94,7 +94,9 @@ protectAdm(0);
             <input class="pontos" type="number" placeholder="Nível Autismo" id="nivelAutismo" required>
             <input class="pontos" type="date" placeholder="Data Inicial (Mentor)" id="dataPostagem" required>
             <input class="pontos" type="datetime-local" placeholder="Data Final (Aluno)" id="dataEntrega" required>
-            <input class="pontos" type="number" placeholder="ID Aluno" id="idAluno" required>
+            <select class="pontos" id="idAluno" required>
+                <option value="">Escolha o aluno</option>
+            </select>
             <input class="pontos file" type="file" id="imagem" accept="image/*">
         </div>
     </form>

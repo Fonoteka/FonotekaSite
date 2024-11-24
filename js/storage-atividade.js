@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       idAluno.value = dataAtividade[0].idaluno;
     }
 
+    selectAlunos();
+
     formulario.addEventListener("submit", async function (e) {
       e.preventDefault();
 
@@ -159,6 +161,31 @@ document.addEventListener("DOMContentLoaded", async function () {
         msgPop(`ERRO: ${error.message}`);
         return;
       }
+    }
+
+    async function procuraAlunos() {
+      try {
+        const { data, error } = await supabaseClient
+          .from("tb_cadastroaluno")
+          .select("idaluno, nome")
+          .eq("idmentor", idMentor);
+        return data;
+      } catch (error) {
+        msgPop(`ERRO: ${error}`);
+        return;
+      }
+    }
+
+    async function selectAlunos() {
+      const select_alunos = document.querySelector("#idAluno");
+      const alunos_lista = await procuraAlunos();
+      alunos_lista.forEach((aluno) => {
+        const option = document.createElement("option");
+        const textNome = document.createTextNode(aluno.nome.toUpperCase());
+        option.value = aluno.idaluno;
+        option.appendChild(textNome);
+        select_alunos.appendChild(option);
+      });
     }
 
     function limpaCampos() {
