@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     var dataAtividade;
 
     if (idAtividade !== null) {
-      loading(false);
       dataAtividade = await pegaInfoAtiv();
       nomeAtividade.value = dataAtividade[0].nomeatividade;
       descAtividade.value = dataAtividade[0].descatividade;
@@ -153,6 +152,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           .from("tb_atividades")
           .select()
           .eq("idatividade", idAtividade);
+        localStorage.removeItem("idAtividade");
         return data;
       } catch (error) {
         msgPop(`ERRO: ${error.message}`);
