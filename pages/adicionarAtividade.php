@@ -40,7 +40,7 @@ protectAdm(0);
         <?php
         echo "<form class=\"popLogin\" action=\"../php/login.php\" method=\"POST\">";
         if (isset($_SESSION['id'])) {
-            echo "<button class=\"alt_cont\">Configurações conta</button>";
+            echo "<a class=\"alt_cont\" href=\"./telaPerfil.php\">Configurações conta</a>";
             echo "<a class=\"btn_logout\" href=\"./logout.php\">Sair</a>";
         } else {
             echo "<label for=\"email\">Email:</label>";
@@ -82,11 +82,11 @@ protectAdm(0);
             <img class="imagem" src="../assets/Adicionarativ.png">
             <input class="bntadd" type="submit" name="sendAtividade" value="Salvar" required>
             <div class="fonemasarea">
-            <input class="fonema" type="text" placeholder="1" id="fonema1" required>
-            <input class="fonema" type="text" placeholder="2" id="fonema2" required>
-            <input class="fonema" type="text" placeholder="3" id="fonema3" >
-            <input class="fonema" type="text" placeholder="4" id="fonema4" >
-            <input class="fonema" type="text" placeholder="5" id="fonema5" >
+                <input class="fonema" type="text" placeholder="1" id="fonema1" required>
+                <input class="fonema" type="text" placeholder="2" id="fonema2" required>
+                <input class="fonema" type="text" placeholder="3" id="fonema3">
+                <input class="fonema" type="text" placeholder="4" id="fonema4">
+                <input class="fonema" type="text" placeholder="5" id="fonema5">
             </div>
 
 
@@ -96,7 +96,7 @@ protectAdm(0);
             <input class="titulotext" type="text" id="nomeAtividade" placeholder="Nome da atividade:" required>
             <p class="obs"> Abaixo adicione as informações de forma curta para execução da atividade</p>
             <input class="obsadd" type="text" placeholder="Adicionar descrição" id="descAtividade" required>
-            
+
 
         </div>
 

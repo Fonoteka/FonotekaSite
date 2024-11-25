@@ -41,7 +41,7 @@ protectAdm(0);
     <?php
     echo "<form class=\"popLogin\" action=\"../php/login.php\" method=\"POST\">";
     if (isset($_SESSION['id'])) {
-      echo "<button class=\"alt_cont\">Configurações conta</button>";
+      echo "<a class=\"alt_cont\" href=\"./telaPerfil.php\">Configurações conta</a>";
       echo "<a class=\"btn_logout\" href=\"./logout.php\">Sair</a>";
     } else {
       echo "<label for=\"email\">Email:</label>";

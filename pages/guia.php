@@ -51,7 +51,7 @@ try {
     <?php
     echo "<form class=\"popLogin\" action=\"../php/login.php\" method=\"POST\">";
     if (isset($_SESSION['id'])) {
-      echo "<button class=\"alt_cont\">Configurações conta</button>";
+      echo "<a class=\"alt_cont\" href=\"./telaPerfil.php\">Configurações conta</a>";
       echo "<a class=\"btn_logout\" href=\"./logout.php\">Sair</a>";
     } else {
       echo "<label for=\"email\">Email:</label>";
@@ -116,7 +116,7 @@ try {
 
       ?>
     </section>
-    <?php echo $_SESSION['funcao'] ? "<a class=\"button_addGuia\" href=\"./guiaForm.php\"><p class=\"guiaP\">Adicionar Guia</p></a>" : "" ?>
+    <?php echo !empty($_SESSION['funcao']) ? "<a class=\"button_addGuia\" href=\"./guiaForm.php\"><p class=\"guiaP\">Adicionar Guia</p></a>" : "" ?>
   </main>
 
   <dialog>
