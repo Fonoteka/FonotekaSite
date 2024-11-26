@@ -102,8 +102,8 @@ try {
           echo "<li class=\"guia_item\">";
           echo !empty($guias[$index]) ? "<img src=\"{$value->path_imagem}\" alt=\"\">" : "<img src=\"path/default.jpg\" alt=\"Imagem não encontrada\">";
           echo "<div>";
-          echo "<h1>{$value->nomeguia}</h1>";
-          echo "<h2>{$value->descricao}</h2>";
+          echo "<h1 class=\"titulo_guia\">{$value->nomeguia}</h1>";
+          echo "<h2 class=\"desc_guia\">{$value->descricao}</h2>";
           echo "</div>";
           echo "<div class=\"div_info\">";
           echo "<p>@{$value->nomeautor}</p>";
