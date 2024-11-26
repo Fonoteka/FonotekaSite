@@ -73,7 +73,7 @@ include_once("../php/session.php");
         </nav>
     </header>
 
-    <main class="main_atividade">
+    <main>
         <img class="capa" src="../assets/Carrossel.png">
 
         <!-- Ferramentas do Mentor -->
@@ -102,10 +102,6 @@ include_once("../php/session.php");
             </div>
         </div>
     </main>
-
-    <footer class="retanguloazul">
-        <a href="./atividades.php" class="alunoscad"> Ver Alunos Cadastrados </a>
-    </footer>
 
     <div class="loader loader-hidden"></div>
 
