@@ -41,7 +41,7 @@ $_SESSION['path_img'] = $path[0]->path_imagem
         <div class="opcoes_div">
             <a href="./index.php"> Home </a>
             <a href="./sobrenos.php"> Sobre nós </a>
-            <a href=""> Aluno </a>
+            <a href="./atividades.php"> Aluno </a>
             <a href="./guia.php"> Guia </a>
         </div>
 
@@ -77,7 +77,7 @@ $_SESSION['path_img'] = $path[0]->path_imagem
                 <div class="menu_opcoes_div">
                     <a href="./index.php"> Home </a>
                     <a href="./sobrenos.php"> Sobre nós </a>
-                    <a href=""> Aluno </a>
+                    <a href="./atividades.php"> Aluno </a>
                     <a href="./guia.php"> Guia </a>
                 </div>
                 <hr>

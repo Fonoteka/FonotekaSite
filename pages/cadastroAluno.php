@@ -23,7 +23,7 @@ protectAdm(0);
         <div class="opcoes_div">
             <a href="./index.php"> Home </a>
             <a href="./sobrenos.php"> Sobre nós </a>
-            <a href=""> Aluno </a>
+            <a href="./atividades.php"> Aluno </a>
             <a href="./guia.php"> Guia </a>
         </div>
 
@@ -59,7 +59,7 @@ protectAdm(0);
                 <div class="menu_opcoes_div">
                     <a href="./index.php"> Home </a>
                     <a href="./sobrenos.php"> Sobre nós </a>
-                    <a href=""> Aluno </a>
+                    <a href="./atividades.php"> Aluno </a>
                     <a href="./guia.php"> Guia </a>
                 </div>
                 <hr>
