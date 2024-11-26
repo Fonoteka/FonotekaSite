@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     var dataEntrega = document.getElementById("dataEntrega");
     var idAluno = document.getElementById("idAluno");
     var idMentor = localStorage.getItem("idMentor");
+    var fonema1 = document.getElementById("fonema1");
+    var fonema2 = document.getElementById("fonema2");
+    var fonema3 = document.getElementById("fonema3");
+    var fonema4 = document.getElementById("fonema4");
+    var fonema5 = document.getElementById("fonema5");
     const fileInput = document.getElementById("imagem");
 
     const idAtividade = localStorage.getItem("idAtividade");
@@ -79,22 +84,32 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       async function cadastraAtividade() {
         const fileURL = await getImagemURL();
+        let fonema1Valor = fonema1.value;
+        fonema1Valor = fonema1Valor.toLowerCase();
+        let fonema2Valor = fonema2.value;
+        fonema2Valor = fonema2Valor.toLowerCase();
+        let fonema3Valor = fonema3.value;
+        fonema3Valor = fonema3Valor.toLowerCase();
+        let fonema4Valor = fonema4.value;
+        fonema4Valor = fonema4Valor.toLowerCase();
+        let fonema5Valor = fonema5.value;
+        fonema5Valor = fonema5Valor.toLowerCase();
         try {
           const { error } = await supabaseClient.from("tb_atividades").insert({
             nomeatividade: nomeAtividade.value,
             descatividade: descAtividade.value,
-            idmentor: idMentor.value,
+            idmentor: idMentor,
             qtnpontos: pontos.value,
             nivelautismo: nivelAutismo.value,
             datapostagem: dataPostagem.value,
             dataentrega: dataEntrega.value,
             path_imagem: fileURL,
             idaluno: idAluno.value,
-            fonema1: "teste",
-            fonema2: "teste",
-            fonema3: "teste",
-            fonema4: "teste",
-            fonema5: "teste",
+            fonema1: fonema1Valor,
+            fonema2: fonema2Valor,
+            fonema3: fonema3Valor,
+            fonema4: fonema4Valor,
+            fonema5: fonema5Valor,
           });
 
           if (!error) {
