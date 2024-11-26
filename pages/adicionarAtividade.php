@@ -76,16 +76,9 @@ protectAdm(0);
 
         </nav>
     </header>
-    <form enctype="multipart/form-data" method="POST" class="fundo" id="form-ativ">
+    <form enctype="multipart/form-data" method="POST" class="form_atividade" id="form-ativ">
         <div class="containerimagem">
             <img class="imagem" src="../assets/Adicionarativ.png">
-            <input class="bntadd" type="submit" name="sendAtividade" value="Salvar" required>
-        </div>
-
-        <div class="containertexto">
-            <input class="titulotext" type="text" id="nomeAtividade" placeholder="Nome da atividade:" required>
-            <p class="obs"> Abaixo adicione as informações de forma curta para execução da atividade</p>
-            <input class="obsadd" type="text" placeholder="Adicionar descrição" id="descAtividade" required>
             <div class="fonemasarea">
                 <h1>FONEMAS: </h1>
                 <input class="fonema" type="text" placeholder="1" id="fonema1" required>
@@ -94,6 +87,12 @@ protectAdm(0);
                 <input class="fonema" type="text" placeholder="4" id="fonema4">
                 <input class="fonema" type="text" placeholder="5" id="fonema5">
             </div>
+        </div>
+
+        <div class="containertexto">
+            <input class="titulotext" type="text" id="nomeAtividade" placeholder="Nome da atividade:" required>
+            <p class="obs"> Abaixo adicione as informações de forma curta para execução da atividade</p>
+            <input class="obsadd" type="text" placeholder="Adicionar descrição" id="descAtividade" required>
         </div>
 
         <div class="containeradicional">
@@ -106,6 +105,7 @@ protectAdm(0);
             </select>
             <input class="pontos file" type="file" id="imagem" accept="image/*">
         </div>
+        <input class="bntadd" type="submit" name="sendAtividade" value="Salvar" required>
     </form>
 
     <div class="loader loader-hidden"></div>
