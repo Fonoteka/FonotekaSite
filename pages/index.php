@@ -101,11 +101,11 @@ include_once("../php/session.php");
 
             </div>
         </div>
-
-        <div class="retanguloazul">
-            <a href="" class="alunoscad"> Ver Alunos Cadastrados </a>
-        </div>
     </main>
+
+    <footer class="retanguloazul">
+        <a href="" class="alunoscad"> Ver Alunos Cadastrados </a>
+    </footer>
 
     <div class="loader loader-hidden"></div>
 
