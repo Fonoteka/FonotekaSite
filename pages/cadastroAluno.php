@@ -74,27 +74,24 @@ protectAdm(0);
 
         </nav>
     </header>
-    <form action="../php/cadastraAluno.php" method="POST" class="fundo">
-        <div class="containerimagem">
-            <img class="imagem" src="../assets/perfilaluno.jpg">
-            <input class="bntadd" type="submit" name="newAluno" value="Cadastrar Aluno">
-        </div>
+    <form class="formAluno" action="../php/cadastraAluno.php" method="POST">
+        <img class="containerimagem_aluno" src="../assets/perfilaluno.jpg">
 
-        <div class="containertexto">
-            <input class="titulotext" type="text" name="nome" placeholder="Nome completo aluno:">
-            <input class="titulotext" type="number" name="nivel" placeholder="Nível de Autismo do aluno:">
-            <input class="titulotext" type="text" name="usuario" placeholder="Usuário do aluno:">
-            <select class="titulotext" name="genero">
+        <div class="containertexto_aluno">
+            <input class="titulotext_aluno" type="text" name="nome" placeholder="Nome completo aluno:">
+            <input class="titulotext_aluno" type="number" name="nivel" placeholder="Nível de Autismo do aluno:">
+            <input class="titulotext_aluno" type="text" name="usuario" placeholder="Usuário do aluno:">
+            <select class="titulotext_aluno" name="genero">
                 <option value="">Selecione o gênero</option>
                 <option value="homem">Homem</option>
                 <option value="mulher">Mulher</option>
                 <option value="mulher">Não-binário</option>
                 <option value="mulher">Não Informar</option>
             </select>
-            <input class="titulotext" type="email" name="email" placeholder="E-mail Aluno:">
-            <input class="titulotext" type="password" name="senha" placeholder="Senha do aluno:">
-
+            <input class="titulotext_aluno" type="email" name="email" placeholder="E-mail Aluno:">
+            <input class="titulotext_aluno" type="password" name="senha" placeholder="Senha do aluno:">
         </div>
+        <input class="bntadd_aluno" type="submit" name="newAluno" value="Cadastrar Aluno">
     </form>
 
 </body>

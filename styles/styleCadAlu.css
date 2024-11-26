@@ -1,118 +1,66 @@
-.fundo {
-  background-color: #0097cc;
-  width: 96%;
-  margin-left: 2%;
-  margin-top: 2%;
+.formAluno {
   display: flex;
-  flex-direction: row;
-  border-radius: 20px;
-
-}
-
-.containerimagem {
-  width: 33%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-left: 17%;
-}
-
-.imagem {
-  width: 90%;
-  height: 30%;
-  border-radius: 8px;
-  border: solid 2px #fa5f18;
-  margin-top: 4.5%;
-  margin-left: 5%;
-}
-
-.bntadd {
-  background-color: #fa5f18;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   width: 80%;
-  margin-top: 5%;
+  padding: 20px;
+  margin: auto;
+  margin-top: 2%;
+  border-radius: var(--border-radius);
+  background-color: #0097cc;
+}
+
+.containerimagem_aluno {
+  width: 45%;
+  height: 50%;
+  border: 2.5px solid var(--laranja);
+  border-radius: var(--border-radius);
+}
+
+.formAluno .bntadd_aluno {
+  background-color: #fa5f18;
+  width: 90%;
   color: white;
-  margin-left: 55%;
-  font-size: 25px;
+  font-size: 2rem;
   border: solid 0px;
   padding: 7px;
   font-family: "Gabarito", sans-serif;
-  margin-bottom: 6%;
+  margin-top: 10px;
 }
 
-.containertexto {
-  width: 30%;
-  height: 100%;
+.containertexto_aluno {
+  width: 45%;
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
-.titulotext {
-  margin-top: 5%;
+.titulotext_aluno {
   font-size: 20px;
-  color: rgb(0, 0, 0);
   padding: 3%;
-  border-radius: 25px;
+  border-radius: calc(var(--border-radius) * 2);
   border: solid 2px #fa5f18;
   font-family: "Gabarito", sans-serif;
 }
 
-.obs {
-  color: white;
-  font-family: "Gabarito", sans-serif;
-  margin-left: 3%;
-  font-size: 15px;
-  margin-top: 5%;
-}
-.obsadd {
-  color: rgb(0, 0, 0);
-  font-family: "Gabarito", sans-serif;
-  margin-top: 6.5%;
-  font-size: 15px;
-  height: 300px;
-  margin-left: 1%;
-  border-radius: 5px;
-  border: solid 2px #fa5f18;
-  background-color: #c1e5f5;
-}
-.containeradicional {
-  width: 33%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
+@media screen and (max-width: 1000px) {
+  .formAluno {
+    flex-direction: column;
+    width: 70%;
+  }
 
-.pontos {
-  margin-top: 5%;
-  margin-left: 5%;
-  width: 400px;
-  height: 70px;
-  border: solid 2px #fa5f18;
-  margin-left: 50px;
-}
+  .formAluno .bntadd_aluno {
+    width: 70%;
+  }
 
-.audio {
-  margin-top: 5%;
-  margin-left: 10%;
-  color: white;
-  font-family: "Gabarito", sans-serif;
-}
-.audio1 {
-  margin-top: 5%;
-  margin-left: 5%;
-  width: 300px;
-  height: 70px;
-  margin-left: 50px;
-}
+  .containerimagem_aluno {
+    width: 70%;
+    height: 80%;
+  }
 
-.ids {
-  display: flex;
-  flex-direction: wrap;
-}
-
-.textbox2{
-  margin-top: 1.5%;
-  display: flex;
-  flex-direction: wrap;
-  width: 70%;
-  height:100%
+  .containertexto_aluno {
+    width: 70%;
+  }
 }
