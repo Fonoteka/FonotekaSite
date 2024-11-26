@@ -24,7 +24,7 @@ if (!empty($_POST['email']) && !empty($_POST['senha'])) {
         exit();
     }
 
-    if (is_array($user)) {
+    if (!empty($user)) {
 
         if (password_verify($senha, $user[0]->senha)) {
 
