@@ -80,23 +80,20 @@ protectAdm(0);
         <div class="containerimagem">
             <img class="imagem" src="../assets/Adicionarativ.png">
             <input class="bntadd" type="submit" name="sendAtividade" value="Salvar" required>
-            <div class="fonemasarea">
-                <input class="fonema" type="text" placeholder="1" id="fonema1" required>
-                <input class="fonema" type="text" placeholder="2" id="fonema2" required>
-                <input class="fonema" type="text" placeholder="3" id="fonema3">
-                <input class="fonema" type="text" placeholder="4" id="fonema4">
-                <input class="fonema" type="text" placeholder="5" id="fonema5">
-            </div>
-
-
         </div>
 
         <div class="containertexto">
             <input class="titulotext" type="text" id="nomeAtividade" placeholder="Nome da atividade:" required>
             <p class="obs"> Abaixo adicione as informações de forma curta para execução da atividade</p>
             <input class="obsadd" type="text" placeholder="Adicionar descrição" id="descAtividade" required>
-
-
+            <div class="fonemasarea">
+                <h1>FONEMAS: </h1>
+                <input class="fonema" type="text" placeholder="1" id="fonema1" required>
+                <input class="fonema" type="text" placeholder="2" id="fonema2" required>
+                <input class="fonema" type="text" placeholder="3" id="fonema3">
+                <input class="fonema" type="text" placeholder="4" id="fonema4">
+                <input class="fonema" type="text" placeholder="5" id="fonema5">
+            </div>
         </div>
 
         <div class="containeradicional">
