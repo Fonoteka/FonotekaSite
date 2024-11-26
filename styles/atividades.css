@@ -1,6 +1,6 @@
 .main_atividade {
   height: 80vh;
-  overflow: scroll;
+  overflow: auto;
 }
 
 #aviso-select {
