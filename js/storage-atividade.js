@@ -13,14 +13,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     var dataPostagem = document.getElementById("dataPostagem");
     var dataEntrega = document.getElementById("dataEntrega");
     var idAluno = document.getElementById("idAluno");
-    var idMentor = document.getElementById("idMentor");
+    var idMentor = localStorage.getItem("idMentor");
     const fileInput = document.getElementById("imagem");
 
     const idAtividade = localStorage.getItem("idAtividade");
     var dataAtividade;
 
     if (idAtividade !== null) {
-      loading(false);
       dataAtividade = await pegaInfoAtiv();
       nomeAtividade.value = dataAtividade[0].nomeatividade;
       descAtividade.value = dataAtividade[0].descatividade;
@@ -33,6 +32,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       idAluno.value = dataAtividade[0].idaluno;
     }
 
+    selectAlunos();
+
     formulario.addEventListener("submit", async function (e) {
       e.preventDefault();
 
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       idAtividade !== null
         ? await atualizaAtividade()
         : await cadastraAtividade();
+      limpaCampos();
       loading(false);
 
       async function atualizaAtividade() {
@@ -153,11 +155,47 @@ document.addEventListener("DOMContentLoaded", async function () {
           .from("tb_atividades")
           .select()
           .eq("idatividade", idAtividade);
+        localStorage.removeItem("idAtividade");
         return data;
       } catch (error) {
         msgPop(`ERRO: ${error.message}`);
         return;
       }
+    }
+
+    async function procuraAlunos() {
+      try {
+        const { data, error } = await supabaseClient
+          .from("tb_cadastroaluno")
+          .select("idaluno, nome")
+          .eq("idmentor", idMentor);
+        return data;
+      } catch (error) {
+        msgPop(`ERRO: ${error}`);
+        return;
+      }
+    }
+
+    async function selectAlunos() {
+      const select_alunos = document.querySelector("#idAluno");
+      const alunos_lista = await procuraAlunos();
+      alunos_lista.forEach((aluno) => {
+        const option = document.createElement("option");
+        const textNome = document.createTextNode(aluno.nome.toUpperCase());
+        option.value = aluno.idaluno;
+        option.appendChild(textNome);
+        select_alunos.appendChild(option);
+      });
+    }
+
+    function limpaCampos() {
+      nomeAtividade.value = "";
+      descAtividade.value = "";
+      pontos.value = "";
+      nivelAutismo.value = "";
+      dataPostagem.value = "";
+      dataEntrega.value = "";
+      idAluno.value = "";
     }
   }
 });
