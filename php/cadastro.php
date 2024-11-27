@@ -75,5 +75,5 @@ if (!empty($dados['SendNovoUsuario'])) {
     } else {
         $_SESSION['msgCadastro'] = "<script>msgPop('As senhas não coincidem');</script>";
     }
-    header("Location: ../pages/cadastro.php");
+    header("Location: ../pages/index.php");
 }
