@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     const idAtividade = localStorage.getItem("idAtividade");
     var dataAtividade;
 
+    await selectAlunos();
+
     if (idAtividade !== null) {
       dataAtividade = await pegaInfoAtiv();
       nomeAtividade.value = dataAtividade[0].nomeatividade;
@@ -35,14 +37,28 @@ document.addEventListener("DOMContentLoaded", async function () {
       let isoDateEntrega = dataAtividade[0].dataentrega;
       dataEntrega.value = isoDateEntrega.substring(0, 19).replace("T", " ");
       idAluno.value = dataAtividade[0].idaluno;
+      fonema1.value = dataAtividade[0].fonema1;
+      fonema2.value = dataAtividade[0].fonema2;
+      fonema3.value = dataAtividade[0].fonema3;
+      fonema4.value = dataAtividade[0].fonema4;
+      fonema5.value = dataAtividade[0].fonema5;
     }
-
-    selectAlunos();
 
     formulario.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       loading(true);
+      let fonema1Valor = fonema1.value;
+      fonema1Valor = fonema1Valor.toLowerCase();
+      let fonema2Valor = fonema2.value;
+      fonema2Valor = fonema2Valor.toLowerCase();
+      let fonema3Valor = fonema3.value;
+      fonema3Valor = fonema3Valor.toLowerCase();
+      let fonema4Valor = fonema4.value;
+      fonema4Valor = fonema4Valor.toLowerCase();
+      let fonema5Valor = fonema5.value;
+      fonema5Valor = fonema5Valor.toLowerCase();
+
       idAtividade !== null
         ? await atualizaAtividade()
         : await cadastraAtividade();
@@ -68,6 +84,11 @@ document.addEventListener("DOMContentLoaded", async function () {
               idaluno: idAluno.value,
               path_imagem:
                 path_imagem == null ? dataAtividade.path_imagem : path_imagem,
+              fonema1: fonema1Valor,
+              fonema2: fonema2Valor,
+              fonema3: fonema3Valor,
+              fonema4: fonema4Valor,
+              fonema5: fonema5Valor,
             })
             .eq("idatividade", idAtividade);
 
@@ -84,16 +105,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       async function cadastraAtividade() {
         const fileURL = await getImagemURL();
-        let fonema1Valor = fonema1.value;
-        fonema1Valor = fonema1Valor.toLowerCase();
-        let fonema2Valor = fonema2.value;
-        fonema2Valor = fonema2Valor.toLowerCase();
-        let fonema3Valor = fonema3.value;
-        fonema3Valor = fonema3Valor.toLowerCase();
-        let fonema4Valor = fonema4.value;
-        fonema4Valor = fonema4Valor.toLowerCase();
-        let fonema5Valor = fonema5.value;
-        fonema5Valor = fonema5Valor.toLowerCase();
+
         try {
           const { error } = await supabaseClient.from("tb_atividades").insert({
             nomeatividade: nomeAtividade.value,
@@ -211,6 +223,12 @@ document.addEventListener("DOMContentLoaded", async function () {
       dataPostagem.value = "";
       dataEntrega.value = "";
       idAluno.value = "";
+      fonema1.value = "";
+      fonema2.value = "";
+      fonema3.value = "";
+      fonema4.value = "";
+      fonema5.value = "";
+      fileInput.value = "";
     }
   }
 });
